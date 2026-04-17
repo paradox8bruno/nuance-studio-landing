@@ -1,0 +1,23 @@
+# Fotos — nunca subir para o GitHub
+ensaios/*/originais/
+ensaios/*/previas/
+ensaios/*/completas/
+ensaios/*/full/
+
+# Imagens soltas na raiz de um cliente (sem subpasta)
+ensaios/*/*.jpg
+ensaios/*/*.jpeg
+ensaios/*/*.png
+ensaios/*/*.webp
+ensaios/*/*.tif
+ensaios/*/*.tiff
+ensaios/*/*.JPG
+ensaios/*/*.JPEG
+ensaios/*/*.PNG
+ensaios/*/*.WEBP
+ensaios/*/*.TIF
+ensaios/*/*.TIFF
+
+# Cache Python
+__pycache__/
+*.pyc

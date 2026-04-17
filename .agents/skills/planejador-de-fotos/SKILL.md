@@ -13,6 +13,8 @@ The top priority is identity fidelity: when a reference image is provided, prese
 
 This project assumes one or more reference photos of the real person will be sent with generation, so prompts should not manually describe the person's age, skin color, hair type, or facial traits unless the user explicitly asks for that.
 
+The default quality target is real photographic credibility. The image should look like a believable human portrait created from a real reference person, not an "AI-looking" portrait that tries too hard to prove realism.
+
 ## When To Use
 
 Use this skill when the user wants any of the following:
@@ -39,6 +41,9 @@ Do not use this skill when:
 - Avoid cliché props tied to professions unless the user explicitly asks for them. For lawyers, avoid gavels, scales of justice, and dusty law libraries by default.
 - Keep lighting physically coherent. Use one believable lighting design per shot.
 - Prefer specific photographic language over vague praise words. Avoid keyword stuffing such as "masterpiece, best quality, trending, perfect anatomy".
+- Do not use hype realism language such as "hyper-realistic", "ultra realistic", "no AI artifacts", "without AI look", "100% human", "proof of realism", or similar phrasing as the main realism strategy.
+- Do not force realism with exaggerated skin-detail language like "visible pores proving humanity", "micro-imperfections", "asymmetry that proves it is human", or "extreme photoreal texture".
+- For professional portraits, default to restrained, credible, commercially usable realism.
 
 ## Workflow
 
@@ -102,6 +107,25 @@ Use the base JSON structure below unless the user asks for a different format:
 
 Read [references/nano-banana-rules.md](references/nano-banana-rules.md) when writing or revising the final JSON.
 
+### 4.1 Human Realism Pass
+
+Before finalizing any prompt, check all fields and remove language that commonly makes results look fake:
+
+- Remove exaggerated realism claims
+- Remove repeated mentions of AI or fake-avoidance
+- Remove redundant skin-detail language
+- Remove biometric descriptions already covered by the reference image
+- Remove graphic-design instructions that belong in layout, not in the generated photo
+
+Then strengthen realism using only:
+
+- believable lighting
+- believable wardrobe
+- believable pose
+- believable environment
+- coherent lens and framing language
+- restrained finish and grading
+
 ### 5. Respect The Project JSON Contract
 
 - Keep the field order exactly as shown above.
@@ -132,6 +156,8 @@ Read [references/nano-banana-rules.md](references/nano-banana-rules.md) when wri
 - Preserve hairline, texture, volume, and grooming logic from the reference.
 - Request realistic skin detail, eyes in sharp focus, and natural facial finish.
 - Only add makeup or grooming choices when the concept needs them.
+- Do not default to pore-heavy, retouch-heavy, or skin-microscopy language.
+- A good default is natural grooming, realistic skin texture, and no beauty retouching.
 
 ### `action_and_pose`
 
@@ -160,6 +186,8 @@ Read [references/nano-banana-rules.md](references/nano-banana-rules.md) when wri
 - Define the finish in photographic terms.
 - Prefer magazine, editorial, corporate, cinematic, documentary, film-stock, or luxury portrait language.
 - Keep post-processing believable.
+- Avoid stacking intense finish words such as `hyper-realistic`, `8k`, `HDR`, `ultra detailed`, `perfect skin`, and `extreme contrast`.
+- If realism matters more than style, choose restraint over intensity.
 
 ## Output Modes
 
@@ -202,6 +230,8 @@ Every final prompt should:
 - Use coherent light, optics, styling, and environment
 - Avoid contradictions
 - Be immediately usable in a Nano Banana workflow
+- Avoid "AI-looking realism" caused by over-description or hype-heavy wording
+- Separate image prompt content from ad layout or graphic design instructions
 
 ## Response Style
 

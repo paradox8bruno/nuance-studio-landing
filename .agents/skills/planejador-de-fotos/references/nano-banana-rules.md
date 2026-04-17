@@ -6,13 +6,15 @@ Use this reference when writing or revising final JSON prompts.
 
 The prompt is not just descriptive. It must control identity, scene logic, lighting, optics, and finish in separate fields so the model does not blur one dimension into another.
 
+The default goal is believable human photographic realism. The prompt should reduce synthetic-looking output, not intensify it with hype language.
+
 ## Identity Lock Language
 
 Use language close to this inside `subject` whenever a reference image exists:
 
 - "Preservar exatamente a mesma pessoa da imagem de referência"
-- "Manter traços biométricos, estrutura facial, tom de pele, textura do cabelo e marcadores visuais consistentes com a referência"
-- "Não alterar idade aparente, proporções faciais ou identidade visual"
+- "Manter fidelidade biométrica total e identidade visual consistente com a referência"
+- "Não alterar idade aparente, proporções faciais, marcadores visuais ou identidade"
 
 Do not over-describe what the reference image already anchors.
 
@@ -87,6 +89,8 @@ Only use fillable placeholders for physical traits if the user explicitly asks f
 - Request sharp eyes and natural skin texture
 - Translate emotional goals into visible body language
 - Prefer precise material and fit descriptions in wardrobe
+- Keep post-processing restrained and commercially believable
+- Use realism through coherence, not through exaggerated detail claims
 
 ## Anti-Patterns
 
@@ -97,6 +101,11 @@ Avoid:
 - Non-visual abstractions with no physical manifestation
 - Cliché professional props by default
 - Excessive beauty filtering language
+- `hyper-realistic`, `ultra realistic`, `no AI artifacts`, `without AI look`, `100% human`, `proves it is real`, or similar phrases
+- Repeated "pore", "micro-texture", "micro-imperfection", or "asymmetry proves humanity" language
+- Design/layout instructions inside the photo-generation prompt
+- Extreme noir drama as the default authority look
+- Manual biometric description when the reference image is already attached
 
 ## Focal Length Heuristics
 
@@ -137,40 +146,47 @@ For lawyers by default, avoid:
 
 When the user asks to tweak a prompt, keep the existing identity lock and only change the requested fields. Do not casually rewrite the whole concept unless the user asks for a new direction.
 
-## User-Preferred Style Examples
+## Prompt Hygiene Checklist
 
-The project prefers prompts shaped like these patterns:
+- Identity is locked to the reference image
+- No biometric description is repeated unnecessarily
+- The scene uses one believable environment
+- The lighting uses one coherent setup
+- The lens language matches the intended framing
+- The finish is restrained and photographic
+- No graphic overlays, CTA text, borders, or branding instructions are embedded in the image prompt
+- No hype-heavy anti-AI wording appears in the JSON
 
-### Standard portrait template
+## Recommended Standard Portrait Template
 
 ```json
 {
-  "subject": "Preservar exatamente a mesma pessoa da imagem de referência enviada, mantendo fidelidade biométrica total e identidade visual consistente. Semblante calmo, analítico e de confiança silenciosa. Olhar direto, inteligente e levemente enigmático.",
-  "clothing": "Camisa estilo henley moderna em tom cinza urze (heather gray) ou blusa de gola alta preta minimalista (turtleneck). Tecido de alta qualidade com caimento perfeito.",
-  "hair_and_face": "Iluminação esculpindo sutilmente as maçãs do rosto. Detalhes microscópicos da epiderme visíveis, garantindo total fotorrealismo.",
-  "action_and_pose": "Plano médio (headshot clássico). Braços cruzados de forma solta na altura do abdômen, postura ereta, habitando o espaço com segurança.",
-  "environment": "Fundo de estúdio escuro, cinza carvão sólido (solid charcoal neutral studio background).",
-  "lighting": "Iluminação de estúdio dramática porém suave. Luz principal a 45 graus (Rembrandt light) criando dimensão no rosto, luz de recorte traseira (rim light) sutil para separar o sujeito do fundo escuro.",
-  "camera_and_optics": "Captura de formato médio, lente prime de 105mm para compressão facial elegante, abertura f/5.6 garantindo nitidez absoluta na textura da roupa e no rosto.",
-  "style_and_grading": "Estética moderna e sofisticada, alto contraste dinâmico, paleta de cores monocromática com pretos ricos e aveludados.",
+  "subject": "Preservar exatamente a mesma pessoa da imagem de referência enviada, mantendo fidelidade biométrica total e identidade visual consistente. Retrato profissional da mesma pessoa, com presença calma, segura e confiável.",
+  "clothing": "Blazer escuro estruturado ou alfaiataria limpa com camisa clara bem ajustada, styling profissional atemporal e discreto.",
+  "hair_and_face": "Manter cabelo, grooming, estrutura facial e marcadores visuais consistentes com a referência. Textura de pele natural, acabamento realista e sem retoque cosmético exagerado.",
+  "action_and_pose": "Retrato chest-up com postura ereta, ombros alinhados, olhar direto para a câmera e expressão séria porém natural.",
+  "environment": "Fundo de estúdio neutro em cinza escuro ou grafite, limpo, premium e sem elementos distrativos.",
+  "lighting": "Luz principal de estúdio a 45 graus com queda suave de sombra e preenchimento discreto, definição facial natural e catchlights realistas.",
+  "camera_and_optics": "Estética de retrato profissional com lente de 85mm, profundidade de campo rasa e foco preciso no rosto.",
+  "style_and_grading": "Realismo editorial premium, gradação contida, contraste equilibrado, textura de pele e tecido natural, acabamento humano e crível.",
   "resolution_target": "4K",
-  "aspect_ratio_target": "1:1"
+  "aspect_ratio_target": "4:5"
 }
 ```
 
-### Model-specific payload
+## Recommended Model-Specific Template
 
 ```json
 {
   "model": "gemini-3.1-flash-image-preview",
-  "subject": "Preservar exatamente a mesma pessoa da imagem de referência enviada, mantendo fidelidade biométrica total e identidade visual consistente. Expressão concentrada e analítica, presença forte e controlada.",
-  "clothing": "Blazer masculino preto estruturado, camisa social branca com colarinho levemente aberto. Alto contraste entre tecidos.",
-  "hair_and_face": "Textura de pele hiper-detalhada, foco em navalha no olho iluminado, traços faciais preservados com realismo absoluto.",
-  "action_and_pose": "Rosto exatamente de frente para a câmera. Queixo paralelo ao chão. Expressão neutra e intensa. Enquadramento busto fechado.",
-  "environment": "Fundo de estúdio preto absoluto, textura mate sem reflexo. Zero elementos cenográficos.",
-  "lighting": "Split lighting clássico com fonte única lateral a 90 graus, sem fill light, contraste máximo absoluto.",
-  "camera_and_optics": "Full-frame, lente prime 85mm, f/2.0. Profundidade de campo rasa e foco no olho iluminado.",
-  "style_and_grading": "Fotorrealismo cinematográfico extremo, retrato noir de luxo, pretos profundos e textura de pele muito detalhada.",
+  "subject": "Preservar exatamente a mesma pessoa da imagem de referência enviada, mantendo fidelidade biométrica total e identidade visual consistente. Retrato profissional da mesma pessoa com expressão concentrada, serena e confiante.",
+  "clothing": "Blazer escuro estruturado com camisa social clara, styling limpo, sofisticado e atemporal.",
+  "hair_and_face": "Manter cabelo, grooming, estrutura facial e marcadores visuais consistentes com a referência. Textura de pele natural, olhos bem definidos e acabamento sem suavização artificial.",
+  "action_and_pose": "Enquadramento busto fechado, rosto levemente orientado à câmera, queixo neutro, postura firme e expressão controlada.",
+  "environment": "Fundo de estúdio escuro neutro, limpo e sem elementos cenográficos.",
+  "lighting": "Luz lateral controlada com contraste moderado e preenchimento mínimo, definição facial elegante e fisicamente plausível.",
+  "camera_and_optics": "Full-frame, lente 85mm, profundidade de campo rasa e foco preciso no olho mais próximo da câmera.",
+  "style_and_grading": "Realismo editorial sofisticado, pretos ricos porém naturais, gradação contida e acabamento premium sem exagero dramático.",
   "resolution_target": "4K",
   "aspect_ratio_target": "2:3"
 }
