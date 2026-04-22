@@ -1,0 +1,2342 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ensaio Fotográfico Profissional — Nuance Studio</title>
+    <meta
+      name="description"
+      content="Fotos profissionais de autoridade para advogados. Resultado em até 24h. Você vê a prévia antes de pagar."
+    />
+    <meta name="theme-color" content="#080808" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1710893766988755");
+      fbq("track", "PageView");
+    </script>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1710893766988755&ev=PageView&noscript=1"
+        alt=""
+      />
+    </noscript>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #080808;
+        --bg-soft: #101010;
+        --bg-elevated: #151515;
+        --surface: rgba(255, 255, 255, 0.04);
+        --surface-strong: rgba(255, 255, 255, 0.07);
+        --line: rgba(255, 255, 255, 0.1);
+        --line-strong: rgba(201, 161, 74, 0.28);
+        --text: #f6f2ea;
+        --text-soft: rgba(246, 242, 234, 0.74);
+        --text-dim: rgba(246, 242, 234, 0.54);
+        --gold: #d4ab5a;
+        --gold-soft: #f0d594;
+        --accent: #25d366;
+        --accent-strong: #1db954;
+        --radius-sm: 0.9rem;
+        --radius-md: 1.3rem;
+        --radius-lg: 1.8rem;
+        --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.28);
+        --container: 74rem;
+        --header-height: 4.15rem;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background: var(--bg);
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          radial-gradient(
+            circle at top right,
+            rgba(212, 171, 90, 0.12),
+            transparent 26%
+          ),
+          linear-gradient(180deg, #090909 0%, #070707 100%);
+        color: var(--text);
+        font-family: "Inter", system-ui, sans-serif;
+        overflow-x: clip;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      a,
+      summary {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 1rem;
+        top: -3rem;
+        z-index: 1000;
+        padding: 0.85rem 1rem;
+        border-radius: 999px;
+        background: #ffffff;
+        color: #000000;
+        font-weight: 700;
+        transition: top 180ms ease;
+      }
+
+      .skip-link:focus {
+        top: 1rem;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--gold-soft);
+        outline-offset: 3px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 480ms cubic-bezier(0.2, 0.65, 0.3, 1),
+          transform 480ms cubic-bezier(0.2, 0.65, 0.3, 1);
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .serif {
+        font-family: "Playfair Display", Georgia, serif;
+      }
+
+      .page-shell {
+        width: min(calc(100% - 1.5rem), var(--container));
+        margin-inline: auto;
+      }
+
+      .topbar {
+        border-bottom: 1px solid rgba(201, 161, 74, 0.12);
+        background: rgba(11, 11, 11, 0.92);
+        color: var(--text-soft);
+        font-size: 0.76rem;
+        line-height: 1.45;
+      }
+
+      .topbar-inner {
+        width: min(calc(100% - 1.5rem), var(--container));
+        margin-inline: auto;
+        padding: 0.62rem 0;
+        text-align: center;
+      }
+
+      .topbar strong {
+        color: var(--gold-soft);
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        background: rgba(8, 8, 8, 0.78);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .site-header-inner {
+        min-height: var(--header-height);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.9rem;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        min-width: 0;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: var(--text);
+        white-space: nowrap;
+      }
+
+      .brand span {
+        margin-left: 0.32rem;
+        color: var(--gold);
+      }
+
+      .header-cta,
+      .cta-button,
+      .cta-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        min-height: 3.2rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        transition:
+          background-color 180ms ease,
+          border-color 180ms ease,
+          color 180ms ease,
+          transform 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .header-cta,
+      .cta-button {
+        background: linear-gradient(180deg, #2bd96c 0%, #1db954 100%);
+        color: #ffffff;
+        box-shadow: 0 16px 38px rgba(37, 211, 102, 0.2);
+      }
+
+      .header-cta {
+        padding: 0.85rem 1rem;
+        min-height: 2.85rem;
+        font-size: 0.88rem;
+        flex: 0 0 auto;
+      }
+
+      .cta-button {
+        width: 100%;
+        padding: 1rem 1.3rem;
+      }
+
+      .cta-secondary {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.02);
+        padding: 0.95rem 1.2rem;
+      }
+
+      .header-cta:hover,
+      .cta-button:hover,
+      .cta-secondary:hover,
+      .floating-wa:hover {
+        transform: translateY(-1px);
+      }
+
+      .cta-secondary:hover {
+        border-color: rgba(255, 255, 255, 0.24);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .section {
+        padding: 3.6rem 0;
+        scroll-margin-top: calc(var(--header-height) + 1rem);
+      }
+
+      .eyebrow {
+        margin: 0 0 0.9rem;
+        color: var(--gold-soft);
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .section-head {
+        max-width: 34rem;
+        margin-bottom: 1.8rem;
+      }
+
+      .section-head.section-head-compact {
+        margin-top: 2rem;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(2rem, 7vw, 2.6rem);
+        line-height: 0.98;
+        letter-spacing: -0.04em;
+        text-wrap: balance;
+      }
+
+      .section-head p {
+        margin: 0.9rem 0 0;
+        color: var(--text-soft);
+        line-height: 1.7;
+      }
+
+      .hero {
+        padding: 0 0 2.8rem;
+      }
+
+      .hero-frame {
+        display: grid;
+        gap: 1.15rem;
+      }
+
+      .hero-media {
+        position: relative;
+        margin-inline: calc(50% - 50vw);
+        min-height: min(44svh, 32rem);
+        overflow: clip;
+        background: #0f0f0f;
+      }
+
+      .hero-media::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 42%;
+        background: linear-gradient(
+          180deg,
+          rgba(8, 8, 8, 0) 0%,
+          rgba(8, 8, 8, 0.78) 72%,
+          var(--bg) 100%
+        );
+        pointer-events: none;
+      }
+
+      .hero-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .hero-copy h1 {
+        margin: 0;
+        max-width: 11ch;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(2.45rem, 10vw, 4.1rem);
+        line-height: 0.92;
+        letter-spacing: -0.06em;
+        text-wrap: balance;
+      }
+
+      .hero-copy h1 span {
+        color: var(--gold-soft);
+      }
+
+      .hero-copy p {
+        margin: 0;
+        max-width: 32rem;
+        color: var(--text-soft);
+        font-size: 1rem;
+        line-height: 1.68;
+      }
+
+      .hero-quickproof {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.65rem;
+      }
+
+      .proof-chip {
+        min-width: 0;
+        padding: 0.85rem 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .proof-chip strong {
+        display: block;
+        margin-bottom: 0.12rem;
+        font-size: 0.98rem;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .proof-chip span {
+        display: block;
+        color: var(--text-dim);
+        font-size: 0.74rem;
+        line-height: 1.45;
+      }
+
+      .hero-note {
+        display: grid;
+        gap: 0.7rem;
+        padding: 1rem 1rem 1.05rem;
+        border: 1px solid rgba(201, 161, 74, 0.16);
+        border-radius: var(--radius-md);
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.02)
+          ),
+          rgba(212, 171, 90, 0.05);
+      }
+
+      .hero-note blockquote {
+        margin: 0;
+        font-size: 0.98rem;
+        line-height: 1.62;
+        color: var(--text);
+        text-wrap: pretty;
+      }
+
+      .hero-note cite {
+        color: var(--text-dim);
+        font-style: normal;
+        font-size: 0.83rem;
+      }
+
+      .poster-strip {
+        display: grid;
+        gap: 0.9rem;
+        padding: 1.15rem;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: var(--radius-lg);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.015)
+        );
+      }
+
+      .poster-strip h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        line-height: 1.2;
+        text-wrap: balance;
+      }
+
+      .poster-grid {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .poster-item {
+        display: grid;
+        gap: 0.18rem;
+        padding: 0.95rem 1rem;
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .poster-item strong {
+        font-size: 0.95rem;
+      }
+
+      .poster-item span {
+        color: var(--text-dim);
+        font-size: 0.83rem;
+        line-height: 1.5;
+      }
+
+      .results-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .result-pair {
+        display: grid;
+        gap: 0.7rem;
+        padding-bottom: 1.35rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .result-pair:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .result-images {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .result-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: var(--bg-soft);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .result-card img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 896 / 1200;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .result-tag {
+        position: absolute;
+        top: 0.85rem;
+        left: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        min-height: 1.9rem;
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .result-tag.before {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(8, 8, 8, 0.68);
+        color: rgba(255, 255, 255, 0.88);
+      }
+
+      .result-tag.after {
+        border: 1px solid rgba(201, 161, 74, 0.35);
+        background: rgba(212, 171, 90, 0.92);
+        color: #000000;
+      }
+
+      .result-copy {
+        display: grid;
+        gap: 0.35rem;
+      }
+
+      .result-copy strong {
+        font-size: 1rem;
+      }
+
+      .result-copy p {
+        margin: 0;
+        color: var(--text-dim);
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.7rem;
+      }
+
+      .gallery-card {
+        overflow: hidden;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: var(--bg-soft);
+      }
+
+      .gallery-card img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 896 / 1200;
+        object-fit: cover;
+      }
+
+      .steps-grid,
+      .pricing-grid,
+      .guide-grid,
+      .faq-list,
+      .final-panel {
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .step-card,
+      .pricing-card,
+      .guide-card,
+      .faq-item,
+      .final-panel {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-lg);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.02)
+        );
+      }
+
+      .step-card,
+      .guide-card {
+        padding: 1.15rem;
+        display: grid;
+        gap: 0.9rem;
+        align-content: start;
+      }
+
+      .step-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .step-card::after {
+        content: "";
+        position: absolute;
+        inset: auto -1.2rem -1.6rem auto;
+        width: 6.5rem;
+        height: 6.5rem;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(212, 171, 90, 0.12),
+          transparent 68%
+        );
+        pointer-events: none;
+      }
+
+      .step-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.2rem;
+        height: 2.2rem;
+        margin-bottom: 0.85rem;
+        border-radius: 999px;
+        background: rgba(212, 171, 90, 0.14);
+        color: var(--gold-soft);
+        font-weight: 800;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .step-kicker {
+        display: inline-flex;
+        align-items: center;
+        min-height: 1.9rem;
+        padding: 0.35rem 0.72rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text-dim);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .step-copy {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 0.35rem;
+      }
+
+      .step-card h3,
+      .pricing-card h3,
+      .guide-card h3,
+      .final-panel h2 {
+        margin: 0;
+        text-wrap: balance;
+      }
+
+      .step-card p,
+      .guide-card p,
+      .guide-card li,
+      .pricing-card li,
+      .pricing-card p,
+      .faq-body,
+      .final-panel p {
+        color: var(--text-soft);
+        line-height: 1.68;
+      }
+
+      .step-card p,
+      .guide-card p,
+      .pricing-card p {
+        margin: 0;
+        font-size: 0.94rem;
+      }
+
+      .process-assurance {
+        margin-top: 1rem;
+        padding: 1.15rem;
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(212, 171, 90, 0.18);
+        background:
+          radial-gradient(
+            circle at top right,
+            rgba(212, 171, 90, 0.12),
+            transparent 40%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.02)
+          );
+      }
+
+      .process-assurance h3 {
+        margin: 0;
+        font-size: 1rem;
+        text-wrap: balance;
+      }
+
+      .process-assurance p {
+        margin: 0.45rem 0 0;
+        color: var(--text-soft);
+        font-size: 0.92rem;
+        line-height: 1.65;
+      }
+
+      .process-pill-list {
+        list-style: none;
+        margin: 1rem 0 0;
+        padding: 0;
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .process-pill {
+        display: flex;
+        gap: 0.7rem;
+        align-items: flex-start;
+        min-width: 0;
+        padding: 0.9rem 0.95rem;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .process-pill strong {
+        display: block;
+        font-size: 0.88rem;
+      }
+
+      .process-pill span {
+        display: block;
+        margin-top: 0.14rem;
+        color: var(--text-dim);
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-glance {
+        display: grid;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .glance-card {
+        padding: 0.95rem 1rem;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .glance-card strong {
+        display: block;
+        font-size: 0.9rem;
+      }
+
+      .glance-card span {
+        display: block;
+        margin-top: 0.18rem;
+        color: var(--text-dim);
+        font-size: 0.82rem;
+        line-height: 1.5;
+      }
+
+      .pricing-card {
+        overflow: hidden;
+        display: grid;
+        align-content: start;
+      }
+
+      .pricing-card.featured {
+        border-color: rgba(212, 171, 90, 0.34);
+        background:
+          radial-gradient(
+            circle at top right,
+            rgba(212, 171, 90, 0.12),
+            transparent 38%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.025)
+          );
+      }
+
+      .pricing-top,
+      .pricing-body {
+        padding: 1.15rem;
+      }
+
+      .pricing-top {
+        display: grid;
+        gap: 0.2rem;
+      }
+
+      .pricing-top {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .pricing-label-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .pricing-label,
+      .pricing-badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 1.85rem;
+        padding: 0.35rem 0.68rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .pricing-label {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--text-dim);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .pricing-badge {
+        background: rgba(212, 171, 90, 0.92);
+        color: #000000;
+      }
+
+      .pricing-subtitle {
+        margin-top: 0.28rem;
+        color: var(--text-dim);
+        font-size: 0.88rem;
+      }
+
+      .pricing-highlight {
+        margin-top: 0.95rem;
+        padding: 0.9rem 0.95rem;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .pricing-highlight strong {
+        display: block;
+        font-size: 0.88rem;
+      }
+
+      .pricing-highlight span {
+        display: block;
+        margin-top: 0.18rem;
+        color: var(--text-dim);
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+
+      .price {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.2rem;
+        margin-top: 0.85rem;
+        font-family: "Playfair Display", Georgia, serif;
+        color: var(--gold-soft);
+        line-height: 0.92;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .price small {
+        margin-top: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .price strong {
+        font-size: clamp(2.8rem, 10vw, 3.4rem);
+        font-weight: 700;
+        letter-spacing: -0.05em;
+      }
+
+      .price span {
+        margin-top: 0.65rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .pricing-list,
+      .guide-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 0.6rem;
+      }
+
+      .pricing-list {
+        margin: 1rem 0 1.1rem;
+      }
+
+      .pricing-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.7rem;
+        margin: 1rem 0 0.1rem;
+      }
+
+      .pricing-stat {
+        padding: 0.82rem 0.85rem;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .pricing-stat strong {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+      }
+
+      .pricing-stat span {
+        display: block;
+        margin-top: 0.26rem;
+        color: var(--text);
+        font-size: 0.9rem;
+        line-height: 1.45;
+      }
+
+      .pricing-cta-note {
+        margin: 0.78rem 0 0;
+        color: var(--text-dim);
+        font-size: 0.82rem;
+        line-height: 1.55;
+      }
+
+      .pricing-compare {
+        margin-top: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.035),
+          rgba(255, 255, 255, 0.02)
+        );
+      }
+
+      .pricing-compare-head {
+        padding: 1rem 1.05rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .pricing-compare-head h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .pricing-compare-head p {
+        margin: 0.35rem 0 0;
+        color: var(--text-dim);
+        font-size: 0.86rem;
+        line-height: 1.55;
+      }
+
+      .compare-row {
+        display: grid;
+        gap: 0.7rem;
+        padding: 1rem 1.05rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .compare-label {
+        color: var(--gold-soft);
+        font-size: 0.73rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .compare-values {
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .compare-cell {
+        padding: 0.88rem 0.92rem;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .compare-cell strong {
+        display: block;
+        margin-bottom: 0.35rem;
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .compare-cell p {
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 0.88rem;
+        line-height: 1.58;
+      }
+
+      .pricing-list li,
+      .guide-list li {
+        display: flex;
+        gap: 0.65rem;
+        align-items: flex-start;
+        min-width: 0;
+      }
+
+      .list-mark {
+        flex: 0 0 auto;
+        margin-top: 0.18rem;
+        color: var(--gold-soft);
+        font-size: 0.9rem;
+        line-height: 1;
+      }
+
+      .guide-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .guide-card.good {
+        border-color: rgba(43, 217, 108, 0.18);
+        background: linear-gradient(
+          180deg,
+          rgba(43, 217, 108, 0.08),
+          rgba(255, 255, 255, 0.02)
+        );
+      }
+
+      .guide-card.bad {
+        border-color: rgba(255, 108, 108, 0.18);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 108, 108, 0.08),
+          rgba(255, 255, 255, 0.02)
+        );
+      }
+
+      .guide-card h3 {
+        font-size: 1rem;
+        margin-bottom: 0.9rem;
+      }
+
+      .guide-note {
+        margin-top: 0.95rem;
+        padding: 1rem 1rem 1.05rem;
+        border-radius: var(--radius-md);
+        background: rgba(212, 171, 90, 0.08);
+        border: 1px solid rgba(212, 171, 90, 0.16);
+        color: var(--text-soft);
+        line-height: 1.65;
+      }
+
+      .faq-item {
+        overflow: hidden;
+      }
+
+      .faq-item summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 1.05rem;
+        color: var(--text);
+        font-weight: 600;
+        line-height: 1.45;
+      }
+
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-icon {
+        flex: 0 0 auto;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold-soft);
+        font-size: 1rem;
+        transition:
+          background-color 180ms ease,
+          border-color 180ms ease,
+          transform 180ms ease;
+      }
+
+      .faq-item[open] .faq-icon {
+        background: rgba(212, 171, 90, 0.12);
+        border-color: rgba(212, 171, 90, 0.25);
+        transform: rotate(45deg);
+      }
+
+      .faq-body {
+        padding: 0 1.05rem 1rem;
+        font-size: 0.94rem;
+      }
+
+      .final-panel {
+        position: relative;
+        overflow: hidden;
+        padding: 1.35rem;
+        background:
+          radial-gradient(
+            circle at top right,
+            rgba(212, 171, 90, 0.14),
+            transparent 36%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.02)
+          );
+      }
+
+      .final-panel h2 {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(2rem, 7vw, 2.9rem);
+        line-height: 0.98;
+        letter-spacing: -0.05em;
+        text-wrap: balance;
+      }
+
+      .final-panel h2 span {
+        color: var(--gold-soft);
+      }
+
+      .footer {
+        padding: 2rem 0 5.8rem;
+        color: var(--text-dim);
+        font-size: 0.82rem;
+        text-align: center;
+      }
+
+      .footer a {
+        color: rgba(43, 217, 108, 0.88);
+        font-weight: 600;
+      }
+
+      .footer-brandline {
+        justify-content: center;
+        margin: 0 0 0.7rem;
+      }
+
+      .footer-copy {
+        margin: 0 0 0.4rem;
+      }
+
+      .footer-meta {
+        margin: 0;
+      }
+
+      .floating-wa {
+        position: fixed;
+        right: calc(1rem + env(safe-area-inset-right));
+        bottom: calc(1rem + env(safe-area-inset-bottom));
+        z-index: 60;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #2bd96c 0%, #1db954 100%);
+        color: #ffffff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 12px 30px rgba(37, 211, 102, 0.28);
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .floating-wa svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: currentColor;
+      }
+
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 70;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+        transition: width 80ms linear;
+      }
+
+      @media (min-width: 768px) {
+        :root {
+          --header-height: 4.5rem;
+        }
+
+        .topbar-inner,
+        .page-shell {
+          width: min(calc(100% - 2.5rem), var(--container));
+        }
+
+        .header-cta {
+          padding-inline: 1.2rem;
+        }
+
+        .section {
+          padding: 5rem 0;
+        }
+
+        .hero-frame {
+          grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+          align-items: stretch;
+          gap: 1.4rem;
+          min-height: calc(100svh - var(--header-height) - 3rem);
+        }
+
+        .hero-media {
+          margin-inline: 0;
+          min-height: auto;
+          border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        }
+
+        .hero-copy {
+          align-content: center;
+          padding: 2rem 0 1rem;
+        }
+
+        .poster-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .results-grid {
+          gap: 1.35rem;
+        }
+
+        .result-pair {
+          grid-template-columns: minmax(0, 1.3fr) minmax(16rem, 0.7fr);
+          gap: 1.2rem;
+          align-items: center;
+        }
+
+        .result-images {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .steps-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .pricing-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          align-items: stretch;
+        }
+
+        .pricing-glance,
+        .process-pill-list {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .compare-row {
+          grid-template-columns: minmax(8.5rem, 0.55fr) minmax(0, 1fr);
+          align-items: start;
+        }
+
+        .compare-values {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .guide-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .final-panel {
+          grid-template-columns: minmax(0, 1fr) auto;
+          align-items: end;
+          gap: 1.2rem;
+        }
+
+        .final-panel .cta-button {
+          width: auto;
+          min-width: 18rem;
+        }
+
+        .footer {
+          padding-bottom: 2.5rem;
+        }
+
+        .floating-wa {
+          width: 3.8rem;
+          height: 3.8rem;
+        }
+      }
+
+      @media (min-width: 1100px) {
+        .section {
+          padding: 5.8rem 0;
+        }
+
+        .hero-copy h1 {
+          max-width: 9ch;
+        }
+
+        .poster-strip {
+          padding: 1.35rem;
+        }
+
+        .result-pair {
+          grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.55fr);
+        }
+
+        .pricing-top,
+        .pricing-body,
+        .step-card,
+        .guide-card,
+        .final-panel {
+          padding: 1.4rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Pular para o conteúdo</a>
+    <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+    <div class="topbar">
+      <div class="topbar-inner">
+        <strong>Você vê a prévia antes de pagar</strong> e aprova com calma no
+        WhatsApp.
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="page-shell site-header-inner">
+        <a class="brand" href="#top" translate="no"
+          >Nuance <span>Studio</span></a
+        >
+        <a
+          class="header-cta"
+          href="https://wa.me/5511936229510?text=Ol%C3%A1%2C+quero+saber+mais+sobre+o+ensaio+profissional"
+          target="_blank"
+          rel="noreferrer"
+          data-wa-source="header"
+        >
+          Falar no WhatsApp
+        </a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="page-shell hero-frame">
+          <div class="hero-media reveal is-visible">
+            <img
+              src="fotos/hero-principal.jpg"
+              alt="Retrato profissional criado pelo Nuance Studio"
+              width="896"
+              height="1200"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+
+          <div class="hero-copy">
+            <p class="eyebrow reveal is-visible">
+              Nuance Studio · Para advogados
+            </p>
+            <h1 class="reveal is-visible">
+              Sua foto precisa parecer <span>autoridade</span>, não improviso.
+            </h1>
+            <p class="reveal is-visible">
+              Você envia uma foto comum, recebe a prévia em até 24h e só paga se
+              aprovar.
+            </p>
+            <a
+              class="cta-button reveal is-visible"
+              href="https://wa.me/5511936229510?text=Ol%C3%A1%2C+quero+fazer+meu+ensaio+profissional"
+              target="_blank"
+              rel="noreferrer"
+              data-wa-source="hero"
+            >
+              Quero ver minha prévia
+            </a>
+
+            <div
+              class="hero-quickproof reveal is-visible"
+              aria-label="Pontos rápidos da oferta"
+            >
+              <div class="proof-chip">
+                <strong>24h</strong>
+                <span>Prévia no WhatsApp</span>
+              </div>
+              <div class="proof-chip">
+                <strong>Sem risco</strong>
+                <span>Você aprova primeiro</span>
+              </div>
+              <div class="proof-chip">
+                <strong>Pronto para uso</strong>
+                <span>Redes sociais, site e materiais</span>
+              </div>
+            </div>
+
+            <div class="hero-note reveal">
+              <blockquote>
+                “Meus clientes perguntaram onde fiz o ensaio. Quando falei que
+                foi online, ninguém acreditou.”
+              </blockquote>
+              <cite>Dr. Fábio M., advogado trabalhista</cite>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-shell">
+          <div class="poster-strip reveal">
+            <p class="eyebrow">Prova & risco zero</p>
+            <h2>
+              O processo foi desenhado para celular e para decisão rápida.
+            </h2>
+            <div class="poster-grid">
+              <div class="poster-item">
+                <strong>1. Envie sua foto</strong>
+                <span
+                  >Selfie ou foto comum. Sem estúdio, sem deslocamento.</span
+                >
+              </div>
+              <div class="poster-item">
+                <strong>2. Receba a prévia</strong>
+                <span
+                  >Você vê poses, fundos e variações antes de qualquer
+                  cobrança.</span
+                >
+              </div>
+              <div class="poster-item">
+                <strong>3. Aprove e libere</strong>
+                <span
+                  >Gostou? Aí sim escolhe as fotos ou leva o ensaio
+                  completo.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="resultados">
+        <div class="page-shell">
+          <div class="section-head reveal">
+            <p class="eyebrow">Resultados reais</p>
+            <h2>A diferença aparece em segundos.</h2>
+            <p>
+              Menos volume, mais prova. No mobile, a pessoa precisa entender
+              rápido que é a mesma pessoa, só que apresentada de forma
+              profissional.
+            </p>
+          </div>
+
+          <div class="results-grid">
+            <article class="result-pair reveal">
+              <div class="result-images">
+                <figure class="result-card">
+                  <img
+                    src="fotos/antes-1.jpg"
+                    alt="Foto original enviada pelo cliente"
+                    width="896"
+                    height="1200"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption class="result-tag before">Antes</figcaption>
+                </figure>
+                <figure class="result-card">
+                  <img
+                    src="fotos/depois-1.jpg"
+                    alt="Resultado profissional do mesmo cliente"
+                    width="896"
+                    height="1200"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption class="result-tag after">Depois</figcaption>
+                </figure>
+              </div>
+              <div class="result-copy">
+                <strong>Mesmo rosto. Outra presença.</strong>
+                <p>
+                  A leitura muda: mais confiança, mais cuidado e mais presença
+                  nos canais digitais, no site e nos materiais profissionais.
+                </p>
+              </div>
+            </article>
+
+            <article class="result-pair reveal">
+              <div class="result-images">
+                <figure class="result-card">
+                  <img
+                    src="fotos/antes-3.jpg"
+                    alt="Segunda foto original enviada pelo cliente"
+                    width="896"
+                    height="1200"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption class="result-tag before">Antes</figcaption>
+                </figure>
+                <figure class="result-card">
+                  <img
+                    src="fotos/depois-3.jpg"
+                    alt="Segundo resultado profissional do mesmo cliente"
+                    width="896"
+                    height="1200"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption class="result-tag after">Depois</figcaption>
+                </figure>
+              </div>
+              <div class="result-copy">
+                <strong
+                  >Natural o suficiente para parecer ensaio presencial.</strong
+                >
+                <p>
+                  Expressão, proporção e acabamento ficam prontos para uso
+                  profissional sem aquele visual genérico de “foto de IA”.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="section-head section-head-compact reveal">
+            <p class="eyebrow">Variações do ensaio</p>
+            <h2>Um ensaio, várias opções úteis.</h2>
+            <p>
+              Você recebe versões que funcionam para redes sociais, site,
+              WhatsApp Business, bio e comunicação do escritório.
+            </p>
+          </div>
+
+          <div class="gallery-grid reveal">
+            <figure class="gallery-card">
+              <img
+                src="fotos/galeria-1.jpg"
+                alt="Variação do ensaio profissional 1"
+                width="896"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <figure class="gallery-card">
+              <img
+                src="fotos/galeria-2.jpg"
+                alt="Variação do ensaio profissional 2"
+                width="896"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <figure class="gallery-card">
+              <img
+                src="fotos/galeria-4.jpg"
+                alt="Variação do ensaio profissional 3"
+                width="896"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <figure class="gallery-card">
+              <img
+                src="fotos/galeria-6.jpg"
+                alt="Variação do ensaio profissional 4"
+                width="896"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="processo">
+        <div class="page-shell">
+          <div class="section-head reveal">
+            <p class="eyebrow">Como funciona</p>
+            <h2>
+              Você envia a base. Nós devolvemos um ensaio pronto para usar.
+            </h2>
+            <p>
+              O processo inteiro acontece pelo WhatsApp, com prévia antes do
+              pagamento. Sem estúdio, sem deslocamento e sem precisar decidir no
+              escuro.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card reveal">
+              <div class="step-head">
+                <div class="step-number">1</div>
+                <span class="step-kicker">Envio simples</span>
+              </div>
+              <div class="step-copy">
+                <h3>Mande 1 ou 2 fotos que já te representem bem</h3>
+                <p>
+                  Uma selfie com luz boa e rosto visível já resolve. Se tiver
+                  uma foto sorrindo e outra mais séria, melhor ainda para
+                  ampliar as opções do ensaio.
+                </p>
+              </div>
+            </article>
+
+            <article class="step-card reveal">
+              <div class="step-head">
+                <div class="step-number">2</div>
+                <span class="step-kicker">Prévia primeiro</span>
+              </div>
+              <div class="step-copy">
+                <h3>Receba uma amostra real antes de decidir</h3>
+                <p>
+                  Em até 24 horas enviamos a prévia com marca d’água no
+                  WhatsApp. Você compara com o que usa hoje e entende o ganho
+                  antes de qualquer cobrança.
+                </p>
+              </div>
+            </article>
+
+            <article class="step-card reveal">
+              <div class="step-head">
+                <div class="step-number">3</div>
+                <span class="step-kicker">Ajuste sem atrito</span>
+              </div>
+              <div class="step-copy">
+                <h3>Aprove, peça ajuste ou pare por ali</h3>
+                <p>
+                  Se quiser refinar pose, expressão ou direção, ajustamos. Se
+                  não fizer sentido para você, encerra por ali e não paga nada.
+                </p>
+              </div>
+            </article>
+
+            <article class="step-card reveal">
+              <div class="step-head">
+                <div class="step-number">4</div>
+                <span class="step-kicker">Entrega liberada</span>
+              </div>
+              <div class="step-copy">
+                <h3>Leve as versões prontas para usar onde mais importa</h3>
+                <p>
+                  As imagens finais saem em alta resolução, sem marca d’água e
+                  prontas para redes sociais, site, WhatsApp Business, bio,
+                  apresentações e materiais institucionais.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="process-assurance reveal">
+            <h3>
+              Por que esse formato converte melhor do que um orçamento
+              tradicional
+            </h3>
+            <p>
+              Você não precisa imaginar o resultado nem tomar uma decisão só na
+              promessa. Primeiro vê, depois decide.
+            </p>
+            <ul class="process-pill-list">
+              <li class="process-pill">
+                <div class="list-mark">✓</div>
+                <div>
+                  <strong>Você vê antes</strong>
+                  <span>A prévia reduz a dúvida logo no começo.</span>
+                </div>
+              </li>
+              <li class="process-pill">
+                <div class="list-mark">✓</div>
+                <div>
+                  <strong>Decide com calma</strong>
+                  <span>Sem pressão para fechar no impulso.</span>
+                </div>
+              </li>
+              <li class="process-pill">
+                <div class="list-mark">✓</div>
+                <div>
+                  <strong>Só então paga</strong>
+                  <span>O risco fica do nosso lado até a aprovação.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="preco">
+        <div class="page-shell">
+          <div class="section-head reveal">
+            <p class="eyebrow">Escolha o formato</p>
+            <h2>
+              Você pode liberar tudo de uma vez ou começar por poucas fotos.
+            </h2>
+            <p>
+              A diferença precisa ficar clara no celular: quando vale mais cada
+              opção, como você decide e o que realmente muda no uso final.
+            </p>
+          </div>
+
+          <div class="pricing-glance reveal">
+            <div class="glance-card">
+              <strong>Prévia antes do pagamento</strong>
+              <span
+                >Você avalia com contexto antes de liberar qualquer valor.</span
+              >
+            </div>
+            <div class="glance-card">
+              <strong>Entrega em alta resolução</strong>
+              <span
+                >As imagens finais chegam prontas para publicar e
+                apresentar.</span
+              >
+            </div>
+            <div class="glance-card">
+              <strong>Atendimento direto no WhatsApp</strong>
+              <span>Rápido para alinhar, aprovar e seguir sem fricção.</span>
+            </div>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="pricing-card featured reveal">
+              <div class="pricing-top">
+                <div class="pricing-label-row">
+                  <span class="pricing-label">Opção principal</span>
+                  <span class="pricing-badge">Mais escolhido</span>
+                </div>
+                <h3>Ensaio completo</h3>
+                <p class="pricing-subtitle">
+                  100+ fotos liberadas por um valor fixo
+                </p>
+                <div
+                  class="price"
+                  aria-label="Preço único de 89 reais e 90 centavos"
+                >
+                  <small>R$</small>
+                  <strong>89</strong>
+                  <span>,90</span>
+                </div>
+                <div class="pricing-highlight">
+                  <strong
+                    >Melhor escolha para ganhar variedade e presença em vários
+                    canais</strong
+                  >
+                  <span
+                    >Ideal para quem quer renovar de uma vez redes sociais,
+                    site, WhatsApp Business, bio e materiais
+                    institucionais.</span
+                  >
+                </div>
+              </div>
+              <div class="pricing-body">
+                <div class="pricing-stats" aria-hidden="true">
+                  <div class="pricing-stat">
+                    <strong>Decisão</strong>
+                    <span>Você aprova a prévia e libera o pacote inteiro.</span>
+                  </div>
+                  <div class="pricing-stat">
+                    <strong>Melhor para</strong>
+                    <span
+                      >Quem quer volume, consistência e várias versões
+                      úteis.</span
+                    >
+                  </div>
+                </div>
+                <ul class="pricing-list">
+                  <li>
+                    <span class="list-mark">✦</span
+                    ><span
+                      >Leva todas as fotos do ensaio em alta resolução</span
+                    >
+                  </li>
+                  <li>
+                    <span class="list-mark">✦</span
+                    ><span>Múltiplas poses, fundos e composições úteis</span>
+                  </li>
+                  <li>
+                    <span class="list-mark">✦</span
+                    ><span
+                      >Ótimo para redes sociais, site, perfil profissional e
+                      materiais institucionais</span
+                    >
+                  </li>
+                  <li>
+                    <span class="list-mark">✦</span
+                    ><span>Só paga depois de aprovar a prévia</span>
+                  </li>
+                </ul>
+                <a
+                  class="cta-button"
+                  href="https://wa.me/5511936229510?text=Quero+o+ensaio+completo+por+R%2489%2C90"
+                  target="_blank"
+                  rel="noreferrer"
+                  data-wa-source="pricing-complete"
+                >
+                  Quero o ensaio completo
+                </a>
+                <p class="pricing-cta-note">
+                  Faz mais sentido quando você quer resolver sua presença visual
+                  de uma vez, sem ficar escolhendo foto por foto.
+                </p>
+              </div>
+            </article>
+
+            <article class="pricing-card reveal">
+              <div class="pricing-top">
+                <div class="pricing-label-row">
+                  <span class="pricing-label">Opção flexível</span>
+                </div>
+                <h3>Por foto</h3>
+                <p class="pricing-subtitle">
+                  Você escolhe só as imagens que quiser liberar
+                </p>
+                <div
+                  class="price"
+                  aria-label="Preço por foto de 9 reais e 90 centavos"
+                >
+                  <small>R$</small>
+                  <strong>9</strong>
+                  <span>,90</span>
+                </div>
+                <div class="pricing-highlight">
+                  <strong
+                    >Entrada mais leve para testar ou resolver uma necessidade
+                    pontual</strong
+                  >
+                  <span
+                    >Boa quando você quer poucas imagens agora e prefere começar
+                    com compromisso menor.</span
+                  >
+                </div>
+              </div>
+              <div class="pricing-body">
+                <div class="pricing-stats" aria-hidden="true">
+                  <div class="pricing-stat">
+                    <strong>Decisão</strong>
+                    <span
+                      >Você destrava só as imagens que realmente quer
+                      usar.</span
+                    >
+                  </div>
+                  <div class="pricing-stat">
+                    <strong>Melhor para</strong>
+                    <span
+                      >Quem quer testar primeiro ou precisa de menos
+                      volume.</span
+                    >
+                  </div>
+                </div>
+                <ul class="pricing-list">
+                  <li>
+                    <span class="list-mark">✦</span
+                    ><span>Recebe a prévia completa antes de decidir</span>
+                  </li>
+                  <li>
+                    <span class="list-mark">✦</span
+                    ><span>Paga apenas pelas fotos escolhidas</span>
+                  </li>
+                  <li>
+                    <span class="list-mark">✦</span
+                    ><span
+                      >Entrega final sem marca d’água e pronta para uso</span
+                    >
+                  </li>
+                  <li>
+                    <span class="list-mark">✦</span
+                    ><span
+                      >Boa opção para quem quer testar com menos volume</span
+                    >
+                  </li>
+                </ul>
+                <a
+                  class="cta-secondary"
+                  href="https://wa.me/5511936229510?text=Quero+ver+minha+pr%C3%A9via+e+escolher+as+fotos"
+                  target="_blank"
+                  rel="noreferrer"
+                  data-wa-source="pricing-single"
+                >
+                  Quero escolher por foto
+                </a>
+                <p class="pricing-cta-note">
+                  Funciona bem para quem quer começar pequeno, validar o
+                  resultado e liberar só o que já pretende usar agora.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="pricing-compare reveal">
+            <div class="pricing-compare-head">
+              <h3>O que realmente muda entre as duas opções</h3>
+              <p>
+                Sem tabela confusa. Compare rápido e escolha pelo seu momento,
+                não por adivinhação.
+              </p>
+            </div>
+
+            <div class="compare-row">
+              <div class="compare-label">Como decide</div>
+              <div class="compare-values">
+                <div class="compare-cell">
+                  <strong>Ensaio completo</strong>
+                  <p>
+                    Vê a prévia, aprova e libera o pacote inteiro de uma vez.
+                  </p>
+                </div>
+                <div class="compare-cell">
+                  <strong>Por foto</strong>
+                  <p>Vê a prévia e escolhe só as imagens que quer destravar.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="compare-row">
+              <div class="compare-label">Quando vale mais</div>
+              <div class="compare-values">
+                <div class="compare-cell">
+                  <strong>Ensaio completo</strong>
+                  <p>
+                    Quando você quer variedade, consistência visual e presença
+                    em vários canais digitais.
+                  </p>
+                </div>
+                <div class="compare-cell">
+                  <strong>Por foto</strong>
+                  <p>
+                    Quando quer testar, resolver uma peça pontual ou começar com
+                    investimento menor.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="compare-row">
+              <div class="compare-label">Onde rende</div>
+              <div class="compare-values">
+                <div class="compare-cell">
+                  <strong>Ensaio completo</strong>
+                  <p>
+                    Redes sociais, site, WhatsApp Business, bio, propostas,
+                    apresentações e materiais institucionais.
+                  </p>
+                </div>
+                <div class="compare-cell">
+                  <strong>Por foto</strong>
+                  <p>
+                    Foto principal do perfil, assinatura visual, apresentação
+                    específica ou uma necessidade imediata.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="compare-row">
+              <div class="compare-label">Pagamento</div>
+              <div class="compare-values">
+                <div class="compare-cell">
+                  <strong>Ensaio completo</strong>
+                  <p>Valor fixo único, só depois da sua aprovação.</p>
+                </div>
+                <div class="compare-cell">
+                  <strong>Por foto</strong>
+                  <p>
+                    Você paga apenas pelas imagens que fizer sentido liberar.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="guide-note reveal">
+            A regra continua simples: você vê a prévia, decide com calma e só
+            então libera o pagamento.
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="guia">
+        <div class="page-shell">
+          <div class="section-head reveal">
+            <p class="eyebrow">Guia rápido</p>
+            <h2>O que mandar para o resultado ficar melhor.</h2>
+            <p>
+              Sem checklist gigante. Só o que realmente faz diferença para a
+              geração ficar fiel.
+            </p>
+          </div>
+
+          <div class="guide-grid">
+            <article class="guide-card good reveal">
+              <h3>Pode enviar</h3>
+              <ul class="guide-list">
+                <li>
+                  <span class="list-mark">✓</span
+                  ><span>Foto frontal com o rosto bem visível</span>
+                </li>
+                <li>
+                  <span class="list-mark">✓</span
+                  ><span>Boa iluminação natural</span>
+                </li>
+                <li>
+                  <span class="list-mark">✓</span
+                  ><span>Uma foto sorrindo e outra sem sorrir</span>
+                </li>
+                <li>
+                  <span class="list-mark">✓</span
+                  ><span>Óculos de grau normal, sem problema</span>
+                </li>
+              </ul>
+            </article>
+
+            <article class="guide-card bad reveal">
+              <h3>Evite enviar</h3>
+              <ul class="guide-list">
+                <li>
+                  <span class="list-mark">✕</span
+                  ><span>Óculos escuros, boné ou chapéu</span>
+                </li>
+                <li>
+                  <span class="list-mark">✕</span
+                  ><span>Foto muito escura ou contra a luz</span>
+                </li>
+                <li>
+                  <span class="list-mark">✕</span
+                  ><span>Imagem tremida ou desfocada</span>
+                </li>
+                <li>
+                  <span class="list-mark">✕</span
+                  ><span>Rosto cortado ou muito virado</span>
+                </li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="guide-note reveal">
+            Se tiver dúvida, mande a foto mesmo assim. A gente consegue te
+            orientar no próprio WhatsApp antes de seguir.
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="page-shell">
+          <div class="section-head reveal">
+            <p class="eyebrow">Perguntas frequentes</p>
+            <h2>O que normalmente trava a decisão.</h2>
+            <p>
+              As respostas foram mantidas curtas para leitura rápida no celular.
+            </p>
+          </div>
+
+          <div class="faq-list">
+            <details class="faq-item reveal">
+              <summary>
+                <span>Realmente parece foto de estúdio?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-body">
+                Sim. O objetivo é parecer ensaio profissional de verdade, não
+                filtro. A prévia existe justamente para você validar isso antes
+                de pagar.
+              </div>
+            </details>
+
+            <details class="faq-item reveal">
+              <summary>
+                <span>Como vejo o resultado antes de pagar?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-body">
+                Enviamos a prévia com marca d’água pelo WhatsApp. Você avalia,
+                pede ajuste se necessário e só então escolhe se quer liberar as
+                fotos.
+              </div>
+            </details>
+
+            <details class="faq-item reveal">
+              <summary>
+                <span>Se eu não gostar, fico preso?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-body">
+                Não. Se a prévia não fizer sentido para você, não paga nada. A
+                proposta comercial continua sem risco.
+              </div>
+            </details>
+
+            <details class="faq-item reveal">
+              <summary>
+                <span>Posso usar nas redes sociais, site e materiais?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-body">
+                Sim. As imagens finais são entregues em alta resolução, prontas
+                para redes sociais, site, WhatsApp Business e materiais
+                institucionais.
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-shell">
+          <div class="final-panel reveal">
+            <div>
+              <p class="eyebrow">Nuance Studio</p>
+              <h2>
+                Sua imagem precisa estar no nível
+                <span>do profissional que você já é.</span>
+              </h2>
+              <p>
+                Se a pessoa chegou até aqui no celular, ela já entendeu a
+                proposta. Agora o fechamento precisa ser curto e direto.
+              </p>
+            </div>
+
+            <a
+              class="cta-button"
+              href="https://wa.me/5511936229510?text=Ol%C3%A1%2C+quero+fazer+meu+ensaio+profissional"
+              target="_blank"
+              rel="noreferrer"
+              data-wa-source="final"
+            >
+              Começar agora no WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="page-shell">
+        <p class="brand footer-brandline" translate="no">
+          Nuance <span>Studio</span>
+        </p>
+        <p class="footer-copy">
+          Ensaio fotográfico profissional remoto para advogados e profissionais
+          liberais.
+        </p>
+        <p class="footer-meta">
+          <a
+            href="https://wa.me/5511936229510?text=Ol%C3%A1%2C+quero+fazer+meu+ensaio+profissional"
+            target="_blank"
+            rel="noreferrer"
+            data-wa-source="footer"
+          >
+            Falar no WhatsApp
+          </a>
+          · © <span id="year"></span> Nuance Studio
+        </p>
+      </div>
+    </footer>
+
+    <a
+      class="floating-wa"
+      href="https://wa.me/5511936229510?text=Ol%C3%A1%2C+quero+fazer+meu+ensaio+profissional"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Falar no WhatsApp"
+      title="Falar no WhatsApp"
+      data-wa-source="floating"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
+
+    <script>
+      const revealItems = document.querySelectorAll(".reveal");
+      const progressBar = document.getElementById("progressBar");
+      const waLinks = document.querySelectorAll("[data-wa-source]");
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const yearSlot = document.getElementById("year");
+
+      if (yearSlot) {
+        yearSlot.textContent = String(new Date().getFullYear());
+      }
+
+      const trackWhatsappClick = (source) => {
+        if (typeof fbq === "undefined") {
+          return;
+        }
+
+        fbq("track", "Lead", {
+          content_name: "whatsapp_click",
+          content_category: "advogados",
+          source,
+        });
+      };
+
+      waLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          const source = link.getAttribute("data-wa-source") || "unknown";
+          trackWhatsappClick(source);
+        });
+      });
+
+      if (!prefersReducedMotion && "IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries, activeObserver) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              entry.target.classList.add("is-visible");
+              activeObserver.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.16,
+            rootMargin: "0px 0px -8% 0px",
+          },
+        );
+
+        revealItems.forEach((item) => {
+          if (!item.classList.contains("is-visible")) {
+            observer.observe(item);
+          }
+        });
+      } else {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      }
+
+      let ticking = false;
+
+      const updateProgressBar = () => {
+        const total =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const percent = total > 0 ? (window.scrollY / total) * 100 : 0;
+        progressBar.style.width = percent + "%";
+        ticking = false;
+      };
+
+      const requestProgressUpdate = () => {
+        if (ticking) {
+          return;
+        }
+
+        ticking = true;
+        window.requestAnimationFrame(updateProgressBar);
+      };
+
+      window.addEventListener("scroll", requestProgressUpdate, {
+        passive: true,
+      });
+      updateProgressBar();
+    </script>
+  </body>
+</html>
