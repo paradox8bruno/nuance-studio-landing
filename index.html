@@ -893,13 +893,106 @@
     }
 
     /* ======================================================
-       RESPONSIVE TWEAKS
+       MOBILE FIRST — 95% do tráfego é mobile
     ====================================================== */
-    @media (max-width: 480px) {
-      .section { padding: 72px 20px; }
-      .hero { padding: 80px 20px 60px; }
-      .pc-top, .pc-body { padding: 24px; }
-      .guarantee-box { padding: 24px; }
+
+    /* — Tablet/Mobile grande (≤ 760px) — */
+    @media (max-width: 760px) {
+      /* Hero: foto acima do texto, menos altura */
+      .hero { min-height: auto; padding: 60px 20px 52px; }
+      .hero-left p { max-width: 100%; }
+      .hero-stats { gap: 16px; margin-top: 28px; padding-top: 20px; }
+      .stat .s-num { font-size: 22px; }
+
+      /* Seções: padding menor */
+      .section { padding: 60px 20px; }
+      .ba-section { padding: 60px 20px; }
+
+      /* Sec headers */
+      .sec-head { margin-bottom: 40px; }
+      .sec-head h2 { font-size: clamp(22px, 5vw, 32px); }
+
+      /* Tabela de comparação: empilha verticalmente */
+      .ct-head { grid-template-columns: 1fr; }
+      .ct-col-bad { border-right: none; border-bottom: 1px solid var(--border); }
+      .ct-row { grid-template-columns: 1fr; }
+      .ct-cell:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+
+      /* Depoimentos */
+      .test-card { padding: 20px; }
+
+      /* Garantia */
+      .guarantee-box { flex-direction: column; gap: 12px; padding: 22px; }
+
+      /* FAQ */
+      details summary { padding: 16px 18px; font-size: 14px; }
+      details .fb { padding: 0 18px 16px; font-size: 13px; }
+
+      /* Price card */
+      .pc-top { flex-direction: column; padding: 22px; }
+      .pc-price { text-align: left; }
+      .pc-body { padding: 22px; }
+
+      /* Steps */
+      .step-card { padding: 20px 18px; }
+    }
+
+    /* — Mobile (≤ 640px) — */
+    @media (max-width: 640px) {
+      /* Before/After: empilha verticalmente (não lado a lado) */
+      .ba-pair {
+        grid-template-columns: 1fr !important;
+        max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 8px;
+      }
+      .ba-arrow-col { display: none !important; }
+      .ba-frame { aspect-ratio: 3/4; }
+
+      /* Gallery: 2 colunas */
+      .gallery-strip {
+        grid-template-columns: repeat(2, 1fr) !important;
+        max-width: 400px !important;
+      }
+
+      /* Pricing grid: 1 coluna */
+      #pricing-grid {
+        grid-template-columns: 1fr !important;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Hero foto: menor no mobile */
+      .hero-photo-slot { max-height: 320px; }
+
+      /* Botão WA: full width confortável */
+      .btn-wa { font-size: 15px; padding: 17px 24px; }
+
+      /* CTA micro: coluna */
+      .cta-micro { flex-direction: column; gap: 6px; align-items: center; }
+
+      /* Hero badges */
+      .hero-proof { gap: 14px; }
+      .proof-item { font-size: 12px; }
+
+      /* Float WA: menor e mais perto do canto */
+      .float-wa { bottom: 16px; right: 16px; width: 52px; height: 52px; font-size: 22px; }
+    }
+
+    /* — Mobile pequeno (≤ 400px) — */
+    @media (max-width: 400px) {
+      .hero { padding: 52px 16px 44px; }
+      .section { padding: 52px 16px; }
+      .ba-section { padding: 52px 16px; }
+      .container { padding: 0 16px; }
+      nav { padding: 12px 16px; }
+      .logo { font-size: 15px; letter-spacing: 3px; }
+      .hero-left h1 { font-size: 24px; }
+      .sec-head h2 { font-size: 20px; }
+      #pricing-grid { max-width: 100%; }
+      .ba-pair { max-width: 100%; }
     }
   </style>
 </head>
