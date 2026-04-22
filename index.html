@@ -9,6 +9,16 @@
   <link rel="canonical" href="https://nuance-studio-landing.vercel.app/" />
   <meta property="og:url" content="https://nuance-studio-landing.vercel.app/" />
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-11WXXV8Q03"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-11WXXV8Q03');
+  </script>
+
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -670,17 +680,90 @@
     /* ======================================================
        QUALIDADE — comparação lado a lado
     ====================================================== */
-    .quality-section { background: var(--dark-2); }
+    .quality-section {
+      background:
+        radial-gradient(circle at top center, rgba(201,161,74,.08) 0%, transparent 34%),
+        linear-gradient(180deg, #131313 0%, #0b0b0b 100%);
+    }
+    .quality-shell {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .quality-intro {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .quality-panel {
+      border-radius: 24px;
+      border: 1px solid rgba(201,161,74,.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)),
+        rgba(10,10,10,.78);
+      padding: 22px 20px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.28);
+    }
+    .quality-panel .label {
+      margin-bottom: 14px;
+    }
+    .quality-panel h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 5vw, 34px);
+      line-height: 1.12;
+      margin-bottom: 12px;
+    }
+    .quality-panel p {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 46ch;
+    }
+    .quality-panel strong {
+      color: var(--off-white);
+    }
+    .quality-proof {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .quality-proof-card {
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      padding: 18px 18px 16px;
+    }
+    .quality-proof-card .qp-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+      margin-bottom: 10px;
+    }
+    .quality-proof-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+    .quality-proof-card p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
     .quality-points {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 14px;
-      max-width: 760px;
-      margin: 0 auto 24px;
+      gap: 12px;
+      margin: 0 auto 22px;
     }
     .quality-point {
       padding: 18px 18px 16px;
-      border-radius: var(--r);
+      border-radius: 18px;
       border: 1px solid rgba(201,161,74,.16);
       background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
     }
@@ -697,104 +780,58 @@
       color: var(--text-mid);
       line-height: 1.6;
     }
-    /* ── COMPARE TABLE (redesign) ───────────────────────── */
-    .compare-table {
-      max-width: 780px;
-      margin: 0 auto;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(6,6,6,0.5);
-    }
-    .ct-head {
-      display: none;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .ct-col-labelbar {
-      display: none;
-    }
-    .ct-col-bad {
-      padding: 16px;
-      background: rgba(160,30,30,0.07);
-      border-right: 1px solid rgba(255,255,255,0.08);
-    }
-    .ct-col-good {
-      padding: 16px;
-      background: rgba(201,161,74,0.06);
-    }
-    .ct-col-label {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .bad-label {
-      background: rgba(160,30,30,0.18);
-      border: 1px solid rgba(220,80,80,0.22);
-      color: #e06060;
-    }
-    .good-label {
-      background: rgba(201,161,74,0.15);
-      border: 1px solid rgba(201,161,74,0.28);
-      color: var(--gold-2);
-    }
-    .ct-head h4 {
-      margin: 0;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.35;
-      color: var(--white);
-    }
-    .ct-row {
+    .quality-compare {
       display: grid;
       grid-template-columns: 1fr;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      transition: background 0.15s ease;
+      gap: 14px;
+      margin: 0 auto;
     }
-    .ct-row:hover { background: rgba(255,255,255,0.012); }
-    .ct-topic {
-      grid-column: 1 / -1;
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.018);
+    .quality-card {
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01)),
+        rgba(8,8,8,.84);
+      overflow: hidden;
+      box-shadow: 0 18px 60px rgba(0,0,0,.24);
     }
-    .ct-topic strong {
+    .quality-card-head {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+    }
+    .quality-card-head strong {
       display: block;
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 700;
       color: var(--white);
       margin-bottom: 4px;
+      line-height: 1.3;
     }
-    .ct-topic span {
-      font-size: 11.5px;
-      color: rgba(246,242,234,0.38);
-      line-height: 1.5;
-    }
-    .ct-cell {
-      padding: 14px 16px;
+    .quality-card-head span {
+      display: block;
       font-size: 12.5px;
-      line-height: 1.65;
+      color: rgba(246,242,234,.46);
+      line-height: 1.55;
+    }
+    .quality-card-body {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .quality-side {
+      padding: 16px 18px 18px;
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
       flex-direction: column;
+      gap: 10px;
     }
-    .ct-cell:nth-child(2) {
-      background: rgba(160,30,30,0.04);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      color: rgba(246,242,234,0.58);
+    .quality-side.bad {
+      background: linear-gradient(180deg, rgba(160,30,30,.06), rgba(160,30,30,.03));
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-    .ct-cell:nth-child(3) {
-      background: rgba(201,161,74,0.03);
-      color: rgba(246,242,234,0.8);
+    .quality-side.good {
+      background: linear-gradient(180deg, rgba(201,161,74,.06), rgba(201,161,74,.03));
     }
-    .ct-cell::before {
-      content: attr(data-col);
+    .quality-side-label {
       display: inline-flex;
       align-items: center;
       padding: 4px 10px;
@@ -803,81 +840,61 @@
       font-weight: 800;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 2px;
+      width: fit-content;
     }
-    .ct-cell:nth-child(2)::before {
+    .quality-side.bad .quality-side-label {
       background: rgba(160,30,30,0.18);
       border: 1px solid rgba(220,80,80,0.22);
       color: #e06060;
     }
-    .ct-cell:nth-child(3)::before {
+    .quality-side.good .quality-side-label {
       background: rgba(201,161,74,0.15);
       border: 1px solid rgba(201,161,74,0.28);
       color: var(--gold-2);
     }
-    .ct-cell-copy {
+    .quality-copy {
       display: flex;
       align-items: flex-start;
       gap: 10px;
+      font-size: 13px;
+      line-height: 1.7;
     }
-    .ci {
+    .quality-side.bad .quality-copy {
+      color: rgba(246,242,234,.62);
+    }
+    .quality-side.good .quality-copy {
+      color: rgba(246,242,234,.84);
+    }
+    .quality-icon {
       flex-shrink: 0;
       font-size: 14px;
       margin-top: 2px;
       line-height: 1;
     }
     @media (min-width: 601px) {
+      .quality-intro {
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, .9fr);
+        align-items: stretch;
+      }
       .quality-points {
         grid-template-columns: repeat(3, 1fr);
       }
     }
-    @media (min-width: 701px) {
-      .ct-head {
-        display: grid;
+    @media (min-width: 761px) {
+      .quality-compare {
+        gap: 16px;
       }
-      .ct-head {
-        grid-template-columns: 170px 1fr 1fr;
+      .quality-card-body {
+        grid-template-columns: 1fr 1fr;
       }
-      .ct-col-labelbar {
-        display: flex;
-        padding: 22px 20px;
-        background: rgba(255,255,255,0.015);
-        border-right: 1px solid rgba(255,255,255,0.08);
-        align-items: flex-end;
-      }
-      .ct-col-labelbar span {
-        font-size: 10px;
-        font-weight: 800;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: rgba(246,242,234,0.3);
-      }
-      .ct-col-bad, .ct-col-good { padding: 22px 20px; }
-      .ct-row {
-        grid-template-columns: 170px 1fr 1fr;
-      }
-      .ct-topic {
-        grid-column: auto;
-        padding: 18px 20px;
-        border-right: 1px solid rgba(255,255,255,0.06);
+      .quality-side.bad {
         border-bottom: none;
-      }
-      .ct-cell {
-        padding: 18px 20px;
-        font-size: 13px;
-        flex-direction: row;
-      }
-      .ct-cell:nth-child(2) {
-        border-bottom: none;
-        border-right: 1px solid rgba(255,255,255,0.06);
-      }
-      .ct-cell::before {
-        display: none;
+        border-right: 1px solid rgba(255,255,255,.06);
       }
     }
     .quality-note {
       max-width: 760px;
-      margin: 16px auto 0;
+      margin: 18px auto 0;
       text-align: center;
       font-size: 13px;
       color: var(--text-dim);
@@ -1767,86 +1784,164 @@
 ============================================================ -->
 <section class="section quality-section">
   <div class="container">
-    <div class="sec-head reveal">
-      <div class="gold-line"></div>
-      <span class="label">A diferença que muda tudo</span>
-      <h2 class="serif">A diferença não está no efeito.<br/>Está na credibilidade.</h2>
-      <p>O objetivo não é parecer editado. É parecer você, com presença profissional suficiente para sustentar o padrão que o seu escritório comunica.</p>
+    <div class="quality-shell">
+      <div class="quality-intro reveal">
+        <div class="quality-panel">
+          <div class="gold-line left"></div>
+          <span class="label">A diferença que muda tudo</span>
+          <h3>A diferença não está no efeito.<br/>Está na credibilidade.</h3>
+          <p><strong>O cliente não está julgando beleza.</strong> Ele está lendo sinais de preparo, seriedade e consistência. Quando a imagem parece improvisada ou artificial, a confiança cai antes da conversa começar.</p>
+        </div>
+        <div class="quality-proof">
+          <div class="quality-proof-card">
+            <span class="qp-kicker">✦ O que precisa acontecer</span>
+            <h4>Parecer você, no nível do profissional que você já é.</h4>
+            <p>Sem cara de filtro, sem exagero e sem aquela sensação de “imagem gerada”.</p>
+          </div>
+          <div class="quality-proof-card">
+            <span class="qp-kicker">✦ O que muda na prática</span>
+            <h4>Mais coerência entre sua imagem, seu discurso e seu posicionamento.</h4>
+            <p>É isso que faz a foto funcionar em WhatsApp, Instagram, site e perfil profissional.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="quality-points reveal">
+        <div class="quality-point">
+          <strong>Fidelidade</strong>
+          <p>O rosto continua reconhecivelmente seu, sem distorcer traços nem inventar outra pessoa.</p>
+        </div>
+        <div class="quality-point">
+          <strong>Acabamento</strong>
+          <p>Luz, postura, roupa e enquadramento se alinham para leitura profissional imediata.</p>
+        </div>
+        <div class="quality-point">
+          <strong>Segurança</strong>
+          <p>Você analisa a prévia antes de pagar, então a decisão acontece com clareza, não no escuro.</p>
+        </div>
+      </div>
+
+      <div class="quality-compare reveal">
+        <article class="quality-card">
+          <div class="quality-card-head">
+            <strong>Identidade facial</strong>
+            <span>É a primeira coisa que precisa convencer. Se o rosto parecer “quase você”, a imagem perde valor na hora.</span>
+          </div>
+          <div class="quality-card-body">
+            <div class="quality-side bad">
+              <span class="quality-side-label">❌ IA genérica</span>
+              <div class="quality-copy">
+                <span class="quality-icon">❌</span>
+                <span>Traços mudam, o rosto fica plastificado e a imagem passa a sensação de montagem.</span>
+              </div>
+            </div>
+            <div class="quality-side good">
+              <span class="quality-side-label">✦ Nuance Studio</span>
+              <div class="quality-copy">
+                <span class="quality-icon" style="color:var(--gold-2)">✦</span>
+                <span>Seus traços continuam reconhecíveis, com presença natural e leitura profissional.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="quality-card">
+          <div class="quality-card-head">
+            <strong>Expressão e postura</strong>
+            <span>Autoridade não vem de rigidez. Vem de uma expressão segura e de uma postura que não parece forçada.</span>
+          </div>
+          <div class="quality-card-body">
+            <div class="quality-side bad">
+              <span class="quality-side-label">❌ IA genérica</span>
+              <div class="quality-copy">
+                <span class="quality-icon">❌</span>
+                <span>Olhar vazio, sorriso estranho ou pose dura demais denunciam artificialidade.</span>
+              </div>
+            </div>
+            <div class="quality-side good">
+              <span class="quality-side-label">✦ Nuance Studio</span>
+              <div class="quality-copy">
+                <span class="quality-icon" style="color:var(--gold-2)">✦</span>
+                <span>Expressão firme, postura limpa e presença compatível com perfil profissional real.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="quality-card">
+          <div class="quality-card-head">
+            <strong>Acabamento visual</strong>
+            <span>Roupa, luz, tecido e proporção precisam fechar juntos. Quando uma peça falha, a foto inteira perde credibilidade.</span>
+          </div>
+          <div class="quality-card-body">
+            <div class="quality-side bad">
+              <span class="quality-side-label">❌ IA genérica</span>
+              <div class="quality-copy">
+                <span class="quality-icon">❌</span>
+                <span>Proporções estranhas, roupa falsa, brilho incoerente e aspecto amador.</span>
+              </div>
+            </div>
+            <div class="quality-side good">
+              <span class="quality-side-label">✦ Nuance Studio</span>
+              <div class="quality-copy">
+                <span class="quality-icon" style="color:var(--gold-2)">✦</span>
+                <span>Leitura de ensaio profissional: luz coerente, tecido convincente e enquadramento pronto para uso.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="quality-card">
+          <div class="quality-card-head">
+            <strong>Percepção de autoridade</strong>
+            <span>No final, a pergunta é simples: a foto parece séria ou parece experimento?</span>
+          </div>
+          <div class="quality-card-body">
+            <div class="quality-side bad">
+              <span class="quality-side-label">❌ IA genérica</span>
+              <div class="quality-copy">
+                <span class="quality-icon">❌</span>
+                <span>A imagem chama atenção pelo efeito, mas não sustenta confiança quando a pessoa olha de perto.</span>
+              </div>
+            </div>
+            <div class="quality-side good">
+              <span class="quality-side-label">✦ Nuance Studio</span>
+              <div class="quality-copy">
+                <span class="quality-icon" style="color:var(--gold-2)">✦</span>
+                <span>A leitura final é de retrato profissional pronto para representar você em canais reais.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="quality-card">
+          <div class="quality-card-head">
+            <strong>Risco da decisão</strong>
+            <span>Você não deveria pagar para descobrir se a foto ficou boa ou não.</span>
+          </div>
+          <div class="quality-card-body">
+            <div class="quality-side bad">
+              <span class="quality-side-label">❌ IA genérica</span>
+              <div class="quality-copy">
+                <span class="quality-icon">❌</span>
+                <span>Você paga primeiro, recebe depois e torce para conseguir aproveitar alguma imagem.</span>
+              </div>
+            </div>
+            <div class="quality-side good">
+              <span class="quality-side-label">✦ Nuance Studio</span>
+              <div class="quality-copy">
+                <span class="quality-icon" style="color:var(--gold-2)">✦</span>
+                <span>Você vê a prévia, avalia com calma, pede ajuste se necessário e só paga se aprovar.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="quality-note reveal">
+        <strong>É isso que separa uma imagem chamativa</strong> de uma imagem que realmente sustenta confiança, valor e autoridade.
+      </p>
     </div>
-    <div class="quality-points reveal">
-      <div class="quality-point">
-        <strong>Fidelidade</strong>
-        <p>O rosto continua sendo reconhecivelmente seu, sem virar outra pessoa.</p>
-      </div>
-      <div class="quality-point">
-        <strong>Acabamento</strong>
-        <p>Expressão, roupa, luz e enquadramento ficam prontos para uso profissional real.</p>
-      </div>
-      <div class="quality-point">
-        <strong>Segurança</strong>
-        <p>Você vê a prévia antes de pagar, então a decisão não acontece no escuro.</p>
-      </div>
-    </div>
-    <div class="compare-table reveal">
-      <div class="ct-head">
-        <div class="ct-col-labelbar">
-          <span>O que importa</span>
-        </div>
-        <div class="ct-col-bad">
-          <p class="ct-col-label bad-label">❌ IA genérica</p>
-          <h4>O que passa insegurança</h4>
-        </div>
-        <div class="ct-col-good">
-          <p class="ct-col-label good-label">✦ Nuance Studio</p>
-          <h4>O que sustenta sua imagem profissional</h4>
-        </div>
-      </div>
-      <div class="ct-body">
-        <div class="ct-row">
-          <div class="ct-topic">
-            <strong>Rosto</strong>
-            <span>Primeira coisa que precisa convencer.</span>
-          </div>
-          <div class="ct-cell" data-col="IA genérica"><span class="ct-cell-copy"><span class="ci">❌</span><span>Traços mudam, o rosto parece artificial ou “quase você”.</span></span></div>
-          <div class="ct-cell" data-col="Nuance Studio"><span class="ct-cell-copy"><span class="ci" style="color:var(--gold-2)">✦</span><span>Seus traços continuam reconhecíveis, com aparência natural e profissional.</span></span></div>
-        </div>
-        <div class="ct-row">
-          <div class="ct-topic">
-            <strong>Expressão</strong>
-            <span>Confiança sem cara travada ou artificial.</span>
-          </div>
-          <div class="ct-cell" data-col="IA genérica"><span class="ct-cell-copy"><span class="ci">❌</span><span>Expressão dura, olhar vazio ou pose com cara de montagem.</span></span></div>
-          <div class="ct-cell" data-col="Nuance Studio"><span class="ct-cell-copy"><span class="ci" style="color:var(--gold-2)">✦</span><span>Expressão segura, postura limpa e presença compatível com perfil profissional.</span></span></div>
-        </div>
-        <div class="ct-row">
-          <div class="ct-topic">
-            <strong>Acabamento</strong>
-            <span>Roupa, luz e proporção precisam fechar.</span>
-          </div>
-          <div class="ct-cell" data-col="IA genérica"><span class="ct-cell-copy"><span class="ci">❌</span><span>Proporções erradas, tecido estranho, luz incoerente e aspecto amador.</span></span></div>
-          <div class="ct-cell" data-col="Nuance Studio"><span class="ct-cell-copy"><span class="ci" style="color:var(--gold-2)">✦</span><span>Luz, roupa e enquadramento com leitura de ensaio profissional pronto para uso.</span></span></div>
-        </div>
-        <div class="ct-row">
-          <div class="ct-topic">
-            <strong>Percepção</strong>
-            <span>Precisa parecer sério, não experimental.</span>
-          </div>
-          <div class="ct-cell" data-col="IA genérica"><span class="ct-cell-copy"><span class="ci">❌</span><span>A imagem denuncia que foi gerada e perde autoridade na hora.</span></span></div>
-          <div class="ct-cell" data-col="Nuance Studio"><span class="ct-cell-copy"><span class="ci" style="color:var(--gold-2)">✦</span><span>Leitura de retrato profissional, não de teste com IA.</span></span></div>
-        </div>
-        <div class="ct-row">
-          <div class="ct-topic">
-            <strong>Risco</strong>
-            <span>Não deveria pagar para descobrir se funciona.</span>
-          </div>
-          <div class="ct-cell" data-col="IA genérica"><span class="ct-cell-copy"><span class="ci">❌</span><span>Você paga primeiro e torce para o resultado servir.</span></span></div>
-          <div class="ct-cell" data-col="Nuance Studio"><span class="ct-cell-copy"><span class="ci" style="color:var(--gold-2)">✦</span><span>Você recebe a prévia, avalia com calma e só paga se aprovar.</span></span></div>
-        </div>
-      </div>
-    </div>
-    <p class="quality-note reveal">
-      <strong>É isso que separa uma imagem chamativa</strong> de uma imagem que realmente sustenta confiança, valor e autoridade.
-    </p>
   </div>
 </section>
 
