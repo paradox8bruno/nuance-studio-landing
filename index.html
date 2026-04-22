@@ -372,7 +372,10 @@
     .hero-text .label { margin-bottom: 18px; }
     .hero-text .cta-stack { align-items: flex-start; }
     .hero-text .btn-wa { max-width: 360px; }
-    .hero-text .cta-micro { justify-content: flex-start; }
+    .hero-text .cta-micro {
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
 
     .hero-h1 {
       font-family: 'Playfair Display', serif;
@@ -554,31 +557,6 @@
       background: var(--dark-1);
       padding: 96px 24px;
     }
-    /* Grade de comparações */
-    .ba-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      max-width: 820px;
-      margin: 0 auto 16px;
-    }
-    @media (max-width: 680px) { .ba-grid { grid-template-columns: 1fr; max-width: 360px; } }
-
-    .ba-item { position: relative; }
-    .ba-frame {
-      aspect-ratio: 3/4;
-      border-radius: var(--r);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      position: relative;
-      transition: border-color .3s;
-    }
-    .ba-frame:hover { border-color: var(--border-gold); }
-    .ba-frame img { width: 100%; height: 100%; object-fit: cover; }
-    .ba-frame .photo-placeholder {
-      background: linear-gradient(160deg, #181818, #111);
-    }
-    /* Grade de comparações */
     .ba-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -695,7 +673,7 @@
     .quality-section { background: var(--dark-2); }
     .quality-points {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
       gap: 14px;
       max-width: 760px;
       margin: 0 auto 24px;
@@ -728,10 +706,8 @@
       overflow: hidden;
       background: rgba(6,6,6,0.5);
     }
-    /* Header row (Mobile) */
     .ct-head {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: none;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .ct-col-labelbar {
@@ -774,11 +750,9 @@
       line-height: 1.35;
       color: var(--white);
     }
-    /* Body rows (Mobile) */
     .ct-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      flex-wrap: wrap;
+      grid-template-columns: 1fr;
       border-top: 1px solid rgba(255,255,255,0.06);
       transition: background 0.15s ease;
     }
@@ -808,15 +782,43 @@
       display: flex;
       align-items: flex-start;
       gap: 10px;
+      flex-direction: column;
     }
     .ct-cell:nth-child(2) {
       background: rgba(160,30,30,0.04);
-      border-right: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       color: rgba(246,242,234,0.58);
     }
     .ct-cell:nth-child(3) {
       background: rgba(201,161,74,0.03);
       color: rgba(246,242,234,0.8);
+    }
+    .ct-cell::before {
+      content: attr(data-col);
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .ct-cell:nth-child(2)::before {
+      background: rgba(160,30,30,0.18);
+      border: 1px solid rgba(220,80,80,0.22);
+      color: #e06060;
+    }
+    .ct-cell:nth-child(3)::before {
+      background: rgba(201,161,74,0.15);
+      border: 1px solid rgba(201,161,74,0.28);
+      color: var(--gold-2);
+    }
+    .ct-cell-copy {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
     }
     .ci {
       flex-shrink: 0;
@@ -825,6 +827,14 @@
       line-height: 1;
     }
     @media (min-width: 601px) {
+      .quality-points {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (min-width: 701px) {
+      .ct-head {
+        display: grid;
+      }
       .ct-head {
         grid-template-columns: 170px 1fr 1fr;
       }
@@ -845,7 +855,6 @@
       .ct-col-bad, .ct-col-good { padding: 22px 20px; }
       .ct-row {
         grid-template-columns: 170px 1fr 1fr;
-        flex-wrap: nowrap;
       }
       .ct-topic {
         grid-column: auto;
@@ -853,7 +862,18 @@
         border-right: 1px solid rgba(255,255,255,0.06);
         border-bottom: none;
       }
-      .ct-cell { padding: 18px 20px; font-size: 13px; }
+      .ct-cell {
+        padding: 18px 20px;
+        font-size: 13px;
+        flex-direction: row;
+      }
+      .ct-cell:nth-child(2) {
+        border-bottom: none;
+        border-right: 1px solid rgba(255,255,255,0.06);
+      }
+      .ct-cell::before {
+        display: none;
+      }
     }
     .quality-note {
       max-width: 760px;
@@ -1072,40 +1092,150 @@
        PREÇO / INVESTIMENTO
     ====================================================== */
     .price-section { background: var(--black); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 420px;
+      margin: 0 auto 24px;
+    }
     .price-card {
-      max-width: 600px;
-      margin: 0 auto;
-      background: var(--dark-2);
-      border: 1px solid var(--border-gold);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
       border-radius: var(--r-lg);
       overflow: hidden;
-      box-shadow: 0 0 80px rgba(201,161,74,.06), 0 40px 100px rgba(0,0,0,.5);
     }
-    .pc-top {
-      background: linear-gradient(135deg, #1a1508 0%, #0e0a04 100%);
-      padding: 32px 36px;
-      border-bottom: 1px solid var(--border-gold);
-      display: flex; justify-content: space-between; align-items: flex-start;
-      flex-wrap: wrap; gap: 16px;
+    .price-card.secondary {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
     }
-    .pc-top h3 {
+    .price-card.featured {
+      background: linear-gradient(160deg, #1a1508, #0e0a04);
+      border: 1px solid rgba(201,161,74,.5);
+      box-shadow: 0 0 60px rgba(201,161,74,.08);
+    }
+    .price-badge {
+      position: absolute;
+      top: -1px;
+      right: 20px;
+      background: var(--gold-1);
+      color: #000;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 0 0 8px 8px;
+    }
+    .price-head {
+      padding: 28px 28px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .price-card.featured .price-head {
+      border-bottom-color: rgba(201,161,74,.2);
+    }
+    .price-kicker {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--text-dim);
+    }
+    .price-card.featured .price-kicker {
+      color: var(--gold-2);
+    }
+    .price-title {
       font-family: 'Playfair Display', serif;
-      font-size: 22px; font-weight: 700;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
-    .pc-top p { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
-    .pc-price { text-align: right; }
-    .pc-price .plabel { font-size: 11px; color: var(--text-dim); }
-    .pc-price .pval {
+    .price-subtitle {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+    .price-card.featured .price-subtitle {
+      color: rgba(255,255,255,.58);
+    }
+    .price-body {
+      padding: 24px 28px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .price-meta-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+    .price-card.featured .price-meta-label,
+    .price-card.featured .price-helper {
+      color: rgba(255,255,255,.52);
+    }
+    .price-value {
       font-family: 'Playfair Display', serif;
-      font-size: 44px; font-weight: 700;
+      font-size: 44px;
+      font-weight: 700;
       color: var(--gold-2);
       line-height: 1;
     }
-    .pc-price .pval sup { font-size: 20px; vertical-align: top; margin-top: 6px; display: inline-block; }
-    .pc-body { padding: 32px 36px; }
-    .pc-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-    .pc-list li { display: flex; gap: 12px; font-size: 15px; color: var(--text-mid); align-items: flex-start; }
-    .pc-list li::before { content: "✦"; color: var(--gold-1); font-size: 10px; margin-top: 4px; flex-shrink: 0; }
+    .price-value sup {
+      font-size: 20px;
+      vertical-align: top;
+      margin-top: 6px;
+      display: inline-block;
+    }
+    .price-value small {
+      font-size: 22px;
+    }
+    .price-helper {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 8px;
+      line-height: 1.65;
+    }
+    .price-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .price-list li {
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .price-list li::before {
+      content: "✦";
+      color: var(--gold-1);
+      flex-shrink: 0;
+    }
+    .price-card .btn-outline,
+    .price-card .btn-wa {
+      width: 100%;
+      max-width: 100%;
+    }
+    .price-footnote {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-bottom: 32px;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    .price-footnote strong {
+      color: var(--text-mid);
+    }
 
     /* GARANTIA */
     .guarantee-box {
@@ -1253,11 +1383,14 @@
       .progress-bar,
       .hb-dot {
         animation: none !important;
-        transition: none !important    /* ======================================================
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+
+    /* ======================================================
        RESPONSIVO (MOBILE FIRST BASE E OVERRIDES)
     ====================================================== */
-
-    /* — MOBILE (BASE) — */
     .section { padding: 52px 16px; }
     .ba-section { padding: 52px 16px; }
     .container { padding: 0 16px; }
@@ -1279,24 +1412,11 @@
     .guarantee-box { flex-direction: column; gap: 12px; padding: 22px; }
     details summary { padding: 16px 18px; font-size: 14px; }
     details .fb { padding: 0 18px 16px; font-size: 13px; }
-    .pc-top { flex-direction: column; padding: 22px; }
-    .pc-price { text-align: left; }
-    .pc-body { padding: 22px; }
     .btn-wa { font-size: 15px; padding: 17px 24px; }
     .cta-micro { flex-direction: column; gap: 6px; align-items: center; }
-    .hero-proof { gap: 14px; }
-    .proof-item { font-size: 12px; }
     .float-wa { bottom: 16px; right: 16px; width: 52px; height: 52px; font-size: 22px; }
-
-    #pricing-grid {
-      grid-template-columns: 1fr !important;
-      max-width: 360px;
-      margin-left: auto;
-      margin-right: auto;
-    }
     .price-featured { order: -1; }
 
-    /* — TABLET/DESKTOP EXPANSION — */
     @media (min-width: 401px) {
       .section { padding: 60px 20px; }
       .ba-section { padding: 60px 20px; }
@@ -1318,16 +1438,12 @@
       .btn-wa { font-size: 16px; padding: 20px 32px; }
       .cta-micro { flex-direction: row; }
       .float-wa { bottom: 28px; right: 28px; width: 60px; height: 60px; font-size: 28px; }
-
-      #pricing-grid {
-        grid-template-columns: 1fr 1fr !important;
-        max-width: none;
-      }
-      .price-featured { order: 0; }
+      .pricing-grid { grid-template-columns: 1fr 1fr; max-width: 700px; }
     }
 
     @media (min-width: 701px) {
       .test-grid { grid-template-columns: repeat(3, 1fr); }
+      .price-featured { order: 0; }
     }
 
     @media (min-width: 761px) {
@@ -1340,10 +1456,6 @@
       details summary { padding: 20px 24px; font-size: 15px; }
       details .fb { padding: 0 24px 20px; font-size: 14px; }
 
-      .pc-top { flex-direction: row; padding: 32px 36px; }
-      .pc-price { text-align: right; }
-      .pc-body { padding: 32px 36px; }
-
       .steps-grid::before { left: 28px; }
       .step-card {
         grid-template-columns: 56px 1fr auto;
@@ -1354,12 +1466,6 @@
         margin-top: 0;
         justify-self: auto;
       }
-    }ng: 12px 16px; }
-      .logo { font-size: 15px; letter-spacing: 3px; }
-      .hero-h1 { font-size: 22px; }
-      .sec-head h2 { font-size: 20px; }
-      #pricing-grid { max-width: 100%; }
-      .ba-pair { max-width: 100%; }
     }
   </style>
 </head>
@@ -1371,7 +1477,7 @@
 
 <!-- TOP BAR -->
 <div class="topbar">
-  🛡️ <strong>Você vê as fotos prontas ANTES de pagar</strong> — aprovação garantida. Se não gostar, não paga nada.
+  🛡️ <strong>Você recebe a prévia antes de pagar</strong> — aprova com calma, pede ajuste se quiser e só então decide.
 </div>
 
 <!-- NAV -->
@@ -1401,7 +1507,7 @@
       <span class="gold-text">autoridade</span>, não improviso.
     </h1>
     <p class="hero-sub">
-      Você envia uma foto comum, recebe a prévia em até 24h e só paga se aprovar.
+      Você envia 1 ou 2 fotos comuns, recebe a prévia do ensaio em até 24h e só paga se aprovar. Sem fotógrafo, sem deslocamento e sem risco.
     </p>
     <div class="cta-stack">
       <a href="https://wa.me/5511936229510?text=Ol%C3%A1%2C+quero+fazer+meu+ensaio+profissional"
@@ -1454,8 +1560,8 @@
 <!-- PROOF STRIP -->
 <div class="proof-strip">
   <span style="color:var(--gold-2);letter-spacing:2px;">★★★★★</span>
-  <strong>"Meus clientes perguntaram onde fiz o ensaio. Disse que foi online — ninguém acreditou."</strong>
-  <span class="proof-author">— Cliente Nuance Studio</span>
+  <strong>"Passei a usar as fotos no WhatsApp, no Instagram e no perfil profissional. A percepção mudou na hora."</strong>
+  <span class="proof-author">— Cliente Nuance Studio · Advocacia</span>
 </div>
 
 <!-- FAIXA: FLUXO DE APROVAÇÃO -->
@@ -1504,7 +1610,7 @@
       <div class="gold-line"></div>
       <span class="label">Resultados reais</span>
       <h2 class="serif">A transformação fala<br/>por si mesma.</h2>
-      <p>Mesma pessoa. Mesma essência. Uma imagem completamente diferente — e o que ela comunica muda tudo.</p>
+      <p>Mesma pessoa. Outra leitura. O que muda não é só a estética da foto: é a credibilidade que ela transmite.</p>
     </div>
 
     <!-- PAR 1 -->
@@ -1597,7 +1703,7 @@
     <div class="sec-head reveal" style="margin-top:72px; margin-bottom:32px;">
       <span class="label">Variações do ensaio</span>
       <h2 class="serif" style="font-size:clamp(22px,3vw,32px);">Um ensaio. Dezenas de opções.</h2>
-      <p>Poses, fundos e estilos diferentes — tudo entregue num único ensaio de 100+ fotos.</p>
+      <p>Você recebe variações pensadas para diferentes contextos de uso, sem precisar marcar novo ensaio nem repetir processo.</p>
     </div>
     <div class="gallery-strip reveal">
       <div class="gallery-frame"><img src="fotos/galeria-1.jpg" alt="Variação ensaio 1" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
@@ -1629,7 +1735,7 @@
       <div class="gold-line"></div>
       <span class="label">O problema</span>
       <h2 class="serif">Sua foto de perfil está<br/>custando clientes.</h2>
-      <p>A primeira impressão acontece antes da primeira palavra — e ela começa pela sua imagem.</p>
+      <p>Antes de confiar no seu trabalho, o cliente julga sua apresentação. Quando a imagem parece improvisada, a autoridade perde força.</p>
     </div>
     <div class="pain-list">
       <div class="pain-item reveal">
@@ -1646,7 +1752,7 @@
       </div>
       <div class="pain-item reveal reveal-delay-3">
         <span class="pain-ic">📱</span>
-        <p>"Uso a mesma foto nas redes sociais, WhatsApp e site. <em>Parece desleixo</em> — e eu sei disso."</p>
+        <p>"Uso a mesma foto antiga em tudo. <em>Ela já não representa o nível do meu trabalho</em> — e isso fica evidente."</p>
       </div>
       <div class="pain-item reveal reveal-delay-4">
         <span class="pain-ic">⚖️</span>
@@ -1665,7 +1771,7 @@
       <div class="gold-line"></div>
       <span class="label">A diferença que muda tudo</span>
       <h2 class="serif">A diferença não está no efeito.<br/>Está na credibilidade.</h2>
-      <p>O ponto não é parecer “bonito”. É parecer você, só que no nível de imagem que sua atuação profissional exige.</p>
+      <p>O objetivo não é parecer editado. É parecer você, com presença profissional suficiente para sustentar o padrão que o seu escritório comunica.</p>
     </div>
     <div class="quality-points reveal">
       <div class="quality-point">
@@ -1701,45 +1807,45 @@
             <strong>Rosto</strong>
             <span>Primeira coisa que precisa convencer.</span>
           </div>
-          <div class="ct-cell"><span class="ci">❌</span> Traços mudam, o rosto parece artificial ou “quase você”.</div>
-          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Seus traços continuam reconhecíveis, com aparência natural e profissional.</div>
+          <div class="ct-cell" data-col="IA genérica"><span class="ct-cell-copy"><span class="ci">❌</span><span>Traços mudam, o rosto parece artificial ou “quase você”.</span></span></div>
+          <div class="ct-cell" data-col="Nuance Studio"><span class="ct-cell-copy"><span class="ci" style="color:var(--gold-2)">✦</span><span>Seus traços continuam reconhecíveis, com aparência natural e profissional.</span></span></div>
         </div>
         <div class="ct-row">
           <div class="ct-topic">
             <strong>Expressão</strong>
             <span>Confiança sem cara travada ou artificial.</span>
           </div>
-          <div class="ct-cell"><span class="ci">❌</span> Expressão dura, olhar vazio ou pose com cara de montagem.</div>
-          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Expressão segura, postura limpa e presença compatível com perfil profissional.</div>
+          <div class="ct-cell" data-col="IA genérica"><span class="ct-cell-copy"><span class="ci">❌</span><span>Expressão dura, olhar vazio ou pose com cara de montagem.</span></span></div>
+          <div class="ct-cell" data-col="Nuance Studio"><span class="ct-cell-copy"><span class="ci" style="color:var(--gold-2)">✦</span><span>Expressão segura, postura limpa e presença compatível com perfil profissional.</span></span></div>
         </div>
         <div class="ct-row">
           <div class="ct-topic">
             <strong>Acabamento</strong>
             <span>Roupa, luz e proporção precisam fechar.</span>
           </div>
-          <div class="ct-cell"><span class="ci">❌</span> Proporções erradas, tecido estranho, luz incoerente e aspecto amador.</div>
-          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Luz, roupa e enquadramento com leitura de ensaio profissional pronto para uso.</div>
+          <div class="ct-cell" data-col="IA genérica"><span class="ct-cell-copy"><span class="ci">❌</span><span>Proporções erradas, tecido estranho, luz incoerente e aspecto amador.</span></span></div>
+          <div class="ct-cell" data-col="Nuance Studio"><span class="ct-cell-copy"><span class="ci" style="color:var(--gold-2)">✦</span><span>Luz, roupa e enquadramento com leitura de ensaio profissional pronto para uso.</span></span></div>
         </div>
         <div class="ct-row">
           <div class="ct-topic">
             <strong>Percepção</strong>
             <span>Precisa parecer sério, não experimental.</span>
           </div>
-          <div class="ct-cell"><span class="ci">❌</span> A imagem denuncia que foi gerada e perde autoridade na hora.</div>
-          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Leitura de retrato profissional, não de teste com IA.</div>
+          <div class="ct-cell" data-col="IA genérica"><span class="ct-cell-copy"><span class="ci">❌</span><span>A imagem denuncia que foi gerada e perde autoridade na hora.</span></span></div>
+          <div class="ct-cell" data-col="Nuance Studio"><span class="ct-cell-copy"><span class="ci" style="color:var(--gold-2)">✦</span><span>Leitura de retrato profissional, não de teste com IA.</span></span></div>
         </div>
         <div class="ct-row">
           <div class="ct-topic">
             <strong>Risco</strong>
             <span>Não deveria pagar para descobrir se funciona.</span>
           </div>
-          <div class="ct-cell"><span class="ci">❌</span> Você paga primeiro e torce para o resultado servir.</div>
-          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Você recebe a prévia, avalia com calma e só paga se aprovar.</div>
+          <div class="ct-cell" data-col="IA genérica"><span class="ct-cell-copy"><span class="ci">❌</span><span>Você paga primeiro e torce para o resultado servir.</span></span></div>
+          <div class="ct-cell" data-col="Nuance Studio"><span class="ct-cell-copy"><span class="ci" style="color:var(--gold-2)">✦</span><span>Você recebe a prévia, avalia com calma e só paga se aprovar.</span></span></div>
         </div>
       </div>
     </div>
     <p class="quality-note reveal">
-      <strong>É isso que separa um retrato que só chama atenção</strong> de uma imagem que realmente passa confiança.
+      <strong>É isso que separa uma imagem chamativa</strong> de uma imagem que realmente sustenta confiança, valor e autoridade.
     </p>
   </div>
 </section>
@@ -1753,7 +1859,7 @@
       <div class="gold-line"></div>
       <span class="label">Processo</span>
       <h2 class="serif">Você manda a foto.<br/>O resto acontece no WhatsApp.</h2>
-      <p>Sem ligação, sem formulário longo e sem ensaio presencial. O processo inteiro é curto, claro e sem risco.</p>
+      <p>Sem ligação, sem formulário longo e sem perder tempo. O processo inteiro foi desenhado para ser rápido, claro e fácil de aprovar.</p>
     </div>
     <div class="steps-grid">
       <div class="step-card reveal">
@@ -1768,7 +1874,7 @@
         <div class="step-num">2</div>
         <div class="step-copy">
           <h3>Receba sua prévia em até 24h</h3>
-          <p>Nós montamos seu ensaio com poses, fundos e variações de uso profissional. Você recebe a prévia com marca d'água para ver exatamente como ficou antes de qualquer cobrança.</p>
+          <p>Nós montamos seu ensaio com poses, fundos e variações de uso profissional. Você recebe a prévia com marca d'água para avaliar o resultado real antes de qualquer cobrança.</p>
         </div>
         <span class="step-badge">👁️ Vê antes de pagar</span>
       </div>
@@ -1776,7 +1882,7 @@
         <div class="step-num">3</div>
         <div class="step-copy">
           <h3>Aprove, peça ajuste ou encerre</h3>
-          <p>Se quiser ajustar algum detalhe, pedimos antes da liberação. Se aprovou, você escolhe entre pagar por foto ou levar o ensaio completo. Se não fizer sentido para você, não paga nada.</p>
+          <p>Se quiser ajustar algum detalhe, ajustamos antes da liberação. Se aprovou, você escolhe entre pagar por foto ou levar o ensaio completo. Se não fizer sentido para você, não paga nada.</p>
         </div>
         <span class="step-badge">🔒 Zero risco</span>
       </div>
@@ -1804,7 +1910,7 @@
       <div class="gold-line"></div>
       <span class="label">Como enviar</span>
       <h2 class="serif">O que você precisa<br/>mandar para nós.</h2>
-      <p>Não tem mistério — mas essas dicas garantem um resultado ainda mais impecável.</p>
+      <p>Quanto melhor a base, mais forte fica o resultado. Estas orientações evitam perda de qualidade e aceleram sua aprovação.</p>
     </div>
     <div class="guide-wrap reveal">
       <div class="guide-card ok">
@@ -1851,7 +1957,7 @@
     <div class="test-grid">
       <div class="test-card reveal">
         <div class="stars">★★★★★</div>
-        <blockquote>"Mandei uma selfie do escritório. Recebi fotos que parecem de um ensaio de R$2.000. Meus clientes perguntaram onde fiz — ninguém acreditou que foi online."</blockquote>
+        <blockquote>"Mandei uma selfie simples do escritório. Recebi fotos que parecem ensaio presencial. Passei a usar no WhatsApp, Instagram e apresentação do escritório."</blockquote>
         <div class="test-auth">
           <div class="ava">F</div>
           <div>
@@ -1862,7 +1968,7 @@
       </div>
       <div class="test-card reveal reveal-delay-1">
         <div class="stars">★★★★★</div>
-        <blockquote>"Eu tinha muito preconceito — já vi foto de IA horrível por aí. O resultado foi completamente diferente. Natural, profissional, parece eu de verdade."</blockquote>
+        <blockquote>"Eu tinha receio de ficar artificial. O resultado veio natural, elegante e com cara de foto profissional de verdade. Pareço eu, só que melhor apresentada."</blockquote>
         <div class="test-auth">
           <div class="ava">A</div>
           <div>
@@ -1873,7 +1979,7 @@
       </div>
       <div class="test-card reveal reveal-delay-2">
         <div class="stars">★★★★★</div>
-        <blockquote>"Processo super simples. Enviei à noite, de manhã já tinha as prévias. Aprovei na hora. Meu perfil na OAB, redes sociais e WhatsApp ficaram impecáveis."</blockquote>
+        <blockquote>"O processo foi muito simples. Enviei à noite, no dia seguinte já tinha prévia para aprovar. Resolveu meu perfil profissional sem parar minha rotina."</blockquote>
         <div class="test-auth">
           <div class="ava">R</div>
           <div>
@@ -1894,31 +2000,29 @@
     <div class="sec-head reveal">
       <div class="gold-line"></div>
       <span class="label">Investimento</span>
-      <h2 class="serif">Menos de 1% do custo<br/>de um ensaio presencial.</h2>
-      <p>Um ensaio fotográfico presencial custa R$1.000 a R$2.000 — fora o tempo, o deslocamento e a roupa. Aqui você começa em R$9,90 e só paga depois de ver o resultado.</p>
+      <h2 class="serif">Você não precisa gastar<br/>como em um ensaio presencial.</h2>
+      <p>Um ensaio tradicional pode custar de R$1.000 a R$2.000, além do deslocamento e do tempo perdido. Aqui você vê o resultado primeiro e decide depois.</p>
     </div>
 
-    <!-- CARDS DE PREÇO: DOIS LADOS -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:700px; margin:0 auto 24px;" class="reveal" id="pricing-grid">
+    <div class="pricing-grid reveal">
 
-      <!-- OPÇÃO 1: por foto -->
-      <div class="price-secondary" style="background:var(--dark-2); border:1px solid var(--border); border-radius:var(--r-lg); overflow:hidden; display:flex; flex-direction:column;">
-        <div style="padding:28px 28px 20px; border-bottom:1px solid var(--border);">
-          <p style="font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;">Opção 1</p>
-          <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:4px;">Por foto</h3>
-          <p style="font-size:13px;color:var(--text-dim);">Escolha só as que você quiser</p>
+      <div class="price-card secondary">
+        <div class="price-head">
+          <p class="price-kicker">Opção 1</p>
+          <h3 class="price-title">Por foto</h3>
+          <p class="price-subtitle">Para quem quer validar o resultado e liberar só as imagens preferidas.</p>
         </div>
-        <div style="padding:24px 28px; flex:1; display:flex; flex-direction:column; justify-content:space-between; gap:20px;">
+        <div class="price-body">
           <div>
-            <p style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">Preço por foto</p>
-            <p style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--gold-2);line-height:1;"><sup style="font-size:18px;vertical-align:top;margin-top:7px;display:inline-block;">R$</sup>9<span style="font-size:22px">,90</span></p>
-            <p style="font-size:12px;color:var(--text-dim);margin-top:8px;">Você vê todas as fotos geradas — paga só pelas que escolher</p>
+            <p class="price-meta-label">Preço por foto</p>
+            <p class="price-value"><sup>R$</sup>9<small>,90</small></p>
+            <p class="price-helper">Você recebe a prévia do ensaio e paga apenas pelas fotos que realmente quiser usar.</p>
           </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
-            <li style="font-size:13px;color:var(--text-mid);display:flex;gap:8px;"><span style="color:var(--gold-1)">✦</span> Recebe a prévia com 100+ fotos</li>
-            <li style="font-size:13px;color:var(--text-mid);display:flex;gap:8px;"><span style="color:var(--gold-1)">✦</span> Escolhe as que quer — paga só essas</li>
-            <li style="font-size:13px;color:var(--text-mid);display:flex;gap:8px;"><span style="color:var(--gold-1)">✦</span> Alta resolução, sem marca d'água</li>
-            <li style="font-size:13px;color:var(--text-mid);display:flex;gap:8px;"><span style="color:var(--gold-1)">✦</span> Só paga depois de aprovar</li>
+          <ul class="price-list">
+            <li>Recebe a prévia completa do ensaio</li>
+            <li>Escolhe só as imagens que fazem sentido para você</li>
+            <li>Entrega em alta resolução, sem marca d'água</li>
+            <li>Pagamento só depois da aprovação</li>
           </ul>
           <a href="https://wa.me/5511936229510?text=Quero+ver+meu+ensaio+e+escolher+as+fotos"
              data-wa-source="price-foto"
@@ -1929,31 +2033,30 @@
         </div>
       </div>
 
-      <!-- OPÇÃO 2: ensaio completo — DESTAQUE -->
-      <div class="price-featured" style="background:linear-gradient(160deg,#1a1508,#0e0a04);border:1px solid rgba(201,161,74,.5);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 60px rgba(201,161,74,.08);">
-        <div style="padding:28px 28px 20px;border-bottom:1px solid rgba(201,161,74,.2);position:relative;">
-          <div style="position:absolute;top:-1px;right:20px;background:var(--gold-1);color:#000;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:0 0 8px 8px;">Mais escolhido</div>
-          <p style="font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-2);margin-bottom:8px;">Opção 2</p>
-          <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:4px;">Ensaio Completo</h3>
-          <p style="font-size:13px;color:rgba(255,255,255,.5);">100+ fotos, todas liberadas</p>
+      <div class="price-card featured price-featured">
+        <div class="price-badge">Mais escolhido</div>
+        <div class="price-head">
+          <p class="price-kicker">Opção 2</p>
+          <h3 class="price-title">Ensaio completo</h3>
+          <p class="price-subtitle">Melhor custo-benefício para quem quer renovar a presença profissional de uma vez.</p>
         </div>
-        <div style="padding:24px 28px;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:20px;">
+        <div class="price-body">
           <div>
-            <p style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:4px;">Preço único</p>
-            <p style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--gold-2);line-height:1;"><sup style="font-size:18px;vertical-align:top;margin-top:7px;display:inline-block;">R$</sup>89<span style="font-size:22px">,90</span></p>
-            <p style="font-size:12px;color:rgba(255,255,255,.45);margin-top:8px;">Leva todas as fotos do ensaio por um preço fixo</p>
+            <p class="price-meta-label">Preço único</p>
+            <p class="price-value"><sup>R$</sup>89<small>,90</small></p>
+            <p class="price-helper">Você libera o ensaio inteiro por um valor fixo e já sai com material para vários canais.</p>
           </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
-            <li style="font-size:13px;color:var(--text-mid);display:flex;gap:8px;"><span style="color:var(--gold-1)">✦</span> 100+ fotos em alta resolução</li>
-            <li style="font-size:13px;color:var(--text-mid);display:flex;gap:8px;"><span style="color:var(--gold-1)">✦</span> Múltiplas poses, fundos e estilos</li>
-            <li style="font-size:13px;color:var(--text-mid);display:flex;gap:8px;"><span style="color:var(--gold-1)">✦</span> Instagram, WhatsApp, redes sociais e site</li>
-            <li style="font-size:13px;color:var(--text-mid);display:flex;gap:8px;"><span style="color:var(--gold-1)">✦</span> Só paga depois de aprovar</li>
+          <ul class="price-list">
+            <li>100+ fotos em alta resolução</li>
+            <li>Múltiplas poses, fundos e estilos profissionais</li>
+            <li>Material pronto para WhatsApp, Instagram, site e apresentações</li>
+            <li>Pagamento só depois da aprovação</li>
           </ul>
           <a href="https://wa.me/5511936229510?text=Quero+o+ensaio+completo+por+R%2489%2C90"
              data-wa-source="price-completo"
              target="_blank" rel="noopener"
              class="btn-wa"
-             style="max-width:100%;font-size:14px;padding:16px;">
+             style="max-width:100%;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Quero o ensaio completo
           </a>
@@ -1961,14 +2064,14 @@
       </div>
 
     </div>
-    <p class="reveal" style="text-align:center;font-size:12px;color:var(--text-dim);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;">
-      💡 <strong style="color:var(--text-mid)">Dica:</strong> a maioria dos clientes que recebe a prévia opta pelo ensaio completo — pois a diferença de preço por foto individual acaba sendo maior.
+    <p class="reveal price-footnote">
+      💡 <strong>Dica:</strong> quem precisa atualizar WhatsApp, site e redes costuma preferir o ensaio completo, porque já sai com volume suficiente para meses de uso.
     </p>
-    <div class="guarantee-box reveal" style="max-width:600px;">
+    <div class="guarantee-box reveal">
       <div class="gb-icon">🛡️</div>
       <div class="gb-body">
         <h4>Garantia Total de Aprovação</h4>
-        <p>Você recebe a prévia completa do ensaio com marca d'água. Avalia cada foto. Só confirma o pagamento depois de aprovar. Se não gostar de nada, não paga absolutamente nada. Sem questionamento, sem burocracia.</p>
+        <p>Você recebe a prévia completa com marca d'água, avalia com calma e decide só depois. Se quiser ajuste, pedimos antes da liberação. Se não gostar, não paga nada.</p>
       </div>
     </div>
   </div>
@@ -1987,23 +2090,23 @@
     <div class="faq-list">
       <details class="reveal">
         <summary>Realmente parece uma foto de estúdio profissional?</summary>
-        <div class="fb">Sim. Nosso processo é voltado exclusivamente para qualidade e realismo. Não é um filtro de aplicativo. É um ensaio criado do zero — com poses, fundos, iluminação de estúdio e detalhes de alta resolução. A maioria dos nossos clientes usa as fotos nas redes sociais, no site e em materiais impressos sem dizer que é digital. Ninguém percebe.</div>
+        <div class="fb">Sim. O foco não é fazer uma imagem chamativa, e sim um retrato profissional convincente. O resultado é pensado para uso real em WhatsApp, Instagram, site, apresentações e perfil profissional.</div>
       </details>
       <details class="reveal">
         <summary>Como vejo o resultado antes de pagar?</summary>
-        <div class="fb">Enviamos as prévias do ensaio completo com uma marca d'água discreta pelo WhatsApp. Você avalia cada foto, escolhe o que quer, pede ajuste se necessário. Só confirma o pagamento depois de aprovar o resultado. Se não gostar de nada, não paga nada — é tão simples assim.</div>
+        <div class="fb">Enviamos a prévia do ensaio com marca d'água pelo WhatsApp. Você analisa, pede ajuste se necessário e só aprova o pagamento quando fizer sentido para você. Se não quiser seguir, não paga nada.</div>
       </details>
       <details class="reveal">
         <summary>Qual foto eu preciso enviar?</summary>
-        <div class="fb">Uma selfie boa já funciona. Quanto melhor a qualidade — iluminação, nitidez, rosto bem visível — melhor o resultado final. O obrigatório é: sem óculos escuros e sem boné/chapéu. O fundo não importa, trocamos tudo. Enviamos um guia detalhado pelo WhatsApp assim que você entrar em contato.</div>
+        <div class="fb">Uma selfie boa já resolve. O ideal é ter boa iluminação, nitidez e rosto bem visível. O obrigatório é: sem óculos escuros e sem boné ou chapéu. O fundo não importa, porque nós cuidamos disso.</div>
       </details>
       <details class="reveal">
         <summary>Quanto tempo demora para receber?</summary>
-        <div class="fb">As prévias chegam em até 24 horas depois que você envia as fotos. Após a aprovação e o pagamento, as imagens finais em alta resolução são liberadas no mesmo dia — geralmente em poucas horas.</div>
+        <div class="fb">As prévias chegam em até 24 horas após o envio das fotos. Depois da aprovação e do pagamento, as versões finais em alta resolução são liberadas no mesmo dia.</div>
       </details>
       <details class="reveal">
         <summary>Posso usar as fotos em qualquer lugar?</summary>
-        <div class="fb">Sim. As fotos são suas, sem restrição. Redes sociais, Instagram, WhatsApp Business, site, cartão de visita, apresentações, OAB, materiais de escritório, outdoor — use em qualquer lugar.</div>
+        <div class="fb">Sim. Você pode usar no WhatsApp Business, Instagram, site, perfil profissional, apresentações, assinatura de e-mail e materiais do escritório.</div>
       </details>
       <details class="reveal">
         <summary>Funciona se eu usar óculos de grau?</summary>
@@ -2011,11 +2114,11 @@
       </details>
       <details class="reveal">
         <summary>Posso pedir ajuste nas fotos?</summary>
-        <div class="fb">Sim. Se a prévia não ficou exatamente como você esperava — fundo diferente, expressão, enquadramento, estilo — você pede o ajuste antes de aprovar. A revisão está incluída no processo, sem custo adicional.</div>
+        <div class="fb">Sim. Se a prévia não estiver no ponto certo, você pede o ajuste antes de aprovar. A revisão faz parte do processo.</div>
       </details>
       <details class="reveal">
         <summary>Como funciona o pagamento?</summary>
-        <div class="fb">Você aprova as prévias, informa quais fotos quer (ou pede o ensaio completo), e aí fazemos a cobrança. Aceitamos PIX (liberação imediata), cartão de crédito e débito.</div>
+        <div class="fb">Você aprova a prévia, escolhe entre fotos avulsas ou ensaio completo e só então fazemos a cobrança. Aceitamos PIX, cartão de crédito e débito.</div>
       </details>
     </div>
   </div>
@@ -2034,7 +2137,7 @@
       <span class="gold-text">do profissional que você é.</span>
     </h2>
     <p class="reveal">
-      Fotos de autoridade para Instagram, WhatsApp e redes sociais. Sem ensaio, sem deslocamento, sem risco. Resultado em 24h.
+      Atualize sua presença profissional com rapidez, clareza e zero risco. Você envia a foto, vê a prévia e decide só depois.
     </p>
     <div class="cta-stack reveal">
       <a href="https://wa.me/5511936229510?text=Ol%C3%A1%2C+quero+fazer+meu+ensaio+profissional"

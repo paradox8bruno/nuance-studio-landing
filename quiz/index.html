@@ -16,6 +16,8 @@
       href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="../fotos/antes-3.jpg" />
+    <link rel="preload" as="image" href="../fotos/depois-3.jpg" />
 
     <script>
       !(function (f, b, e, v, n, t, s) {
@@ -161,7 +163,8 @@
       .quiz-progress-fill {
         height: 100%;
         width: 0%;
-        background: linear-gradient(90deg, #2d5aaf, var(--gold), var(--gold-2));
+        background: linear-gradient(90deg, transparent, var(--gold), var(--gold-2));
+        box-shadow: 0 0 10px rgba(200, 169, 110, 0.5);
         transition: width 0.55s var(--ease);
       }
 
@@ -376,9 +379,20 @@
       .btn-cta:hover:not(:disabled) {
         transform: translateY(-2px);
         box-shadow:
-          0 22px 52px rgba(34, 197, 94, 0.34),
-          0 6px 18px rgba(34, 197, 94, 0.22);
-        filter: brightness(1.05);
+          0 22px 52px rgba(34, 197, 94, 0.45),
+          0 6px 18px rgba(34, 197, 94, 0.30);
+        filter: brightness(1.1);
+      }
+      @keyframes pulse-btn {
+        0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(34,197,94,0); }
+        100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+      }
+      .btn-cta.pulse {
+        animation: pulse-btn 2.5s infinite;
+      }
+      .btn-cta.pulse:hover:not(:disabled) {
+        animation: none;
       }
       .btn-cta:active {
         transform: translateY(0);
@@ -489,9 +503,10 @@
           box-shadow 0.2s ease;
       }
       .option:hover {
-        border-color: rgba(200, 169, 110, 0.35);
-        background: rgba(200, 169, 110, 0.06);
-        transform: translateY(-1px);
+        border-color: rgba(200, 169, 110, 0.45);
+        background: rgba(200, 169, 110, 0.08);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(200, 169, 110, 0.08);
       }
       .option.selected {
         border-color: rgba(200, 169, 110, 0.65);
@@ -690,6 +705,7 @@
         display: block;
         font-size: 15px;
         font-weight: 700;
+        color: #fff;
         margin-bottom: 4px;
       }
       .process-copy p {
@@ -926,7 +942,7 @@
           </div>
 
           <button class="btn-cta" type="button" data-go="state">
-            Começar diagnóstico <span class="arrow">→</span>
+            Iniciar Diagnóstico Gratuito <span class="arrow">→</span>
           </button>
 
           <p class="body-sm" style="text-align: center; margin-top: 16px">
@@ -1508,11 +1524,10 @@
           </div>
 
           <h2 class="h-lg" tabindex="-1">
-            Se a prévia vier no nível certo, o que faz mais sentido para você?
+            Como você prefere receber e avaliar sua prévia gratuita?
           </h2>
           <p class="body-md">
-            Ainda não é compra. É só uma definição de preferência para o próximo
-            passo ficar mais alinhado ao seu momento.
+            Lembrando: você só decide se vai liberar as imagens <strong style="color: #fff">depois</strong> de ver o resultado.
           </p>
 
           <div class="options" data-step-key="offer" data-type="single">
@@ -1520,44 +1535,41 @@
               class="option"
               type="button"
               data-value="single"
-              data-label="Escolher só algumas fotos primeiro"
+              data-label="Focar em 1 ou 2 necessidades urgentes"
             >
-              <div class="option-title">Escolher só algumas fotos primeiro</div>
+              <div class="option-title">Focar em 1 ou 2 necessidades urgentes</div>
               <div class="option-desc">
-                Prefiro uma entrada mais leve e pagar apenas pelas imagens que
-                realmente quiser liberar.
+                Quero ver a prévia direcionada para resolver um canal específico agora (ex: perfil ou site).
               </div>
-              <span class="option-tag">entrada mais simples</span>
+              <span class="option-tag">entrada mais direta</span>
             </button>
             <button
               class="option"
               type="button"
               data-value="complete"
-              data-label="Levar o ensaio completo se a prévia estiver boa"
+              data-label="Ver variedade de estilos para múltiplos canais"
             >
               <div class="option-title">
-                Levar o ensaio completo se estiver bom
+                Ver variedade de estilos para múltiplos canais
               </div>
               <div class="option-desc">
-                Se o nível estiver certo, prefiro receber tudo de uma vez e
-                ampliar uso em vários canais.
+                Quero receber uma visão de "ensaio completo" para padronizar toda a minha presença online.
               </div>
-              <span class="option-tag">mais valor por variedade</span>
+              <span class="option-tag">foco em padronização</span>
             </button>
             <button
               class="option"
               type="button"
               data-value="examples"
-              data-label="Ver mais exemplos e conversar antes de decidir"
+              data-label="Ainda não sei, quero conversar primeiro"
             >
               <div class="option-title">
-                Ver mais exemplos e conversar antes de decidir
+                Ainda não sei, quero conversar primeiro
               </div>
               <div class="option-desc">
-                Ainda estou aquecendo a decisão e quero uma conversa guiada
-                antes de avançar.
+                Gostaria de ver exemplos da minha área ou tirar dúvidas antes de enviar a foto.
               </div>
-              <span class="option-tag">a conversa vem antes da compra</span>
+              <span class="option-tag">decisão guiada</span>
             </button>
           </div>
 
@@ -1611,7 +1623,7 @@
           </div>
 
           <a
-            class="btn-cta"
+            class="btn-cta pulse"
             id="resultCta"
             href="https://wa.me/5511936229510"
             target="_blank"
@@ -1619,8 +1631,11 @@
             data-wa-source="quiz-result"
             style="display: flex; margin-bottom: 10px"
           >
-            Quero meu diagnóstico no WhatsApp <span class="arrow">→</span>
+            Liberar minha prévia no WhatsApp <span class="arrow">→</span>
           </a>
+          <p style="text-align: center; font-size: 11px; color: var(--gold); margin-top: -6px; margin-bottom: 24px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+            (Risco Zero: Só pague se aprovar)
+          </p>
 
           <button class="btn-sec" type="button" data-restart>
             Refazer o quiz
@@ -1828,10 +1843,10 @@
 
         if (answers.offer === "single") {
           sumOf.textContent =
-            "Começar leve: ver a prévia e escolher só algumas fotos, se fizer sentido para você.";
+            "Focar em necessidade urgente: ver a prévia direcionada para os canais mais críticos.";
         } else if (answers.offer === "complete") {
           sumOf.textContent =
-            "Ensaio completo: se a prévia vier no nível certo, ampliar uso e reduzir dependência de uma única imagem.";
+            "Visão completa: se a prévia vier no nível certo, ampliar uso para padronizar toda a presença online.";
         } else {
           sumOf.textContent =
             "Conversa guiada: ver mais exemplos e alinhar expectativa antes de qualquer decisão.";
@@ -1864,17 +1879,17 @@
           avoid: "Evito usar minha foto porque ela não me representa.",
         };
         const msg = [
-          "Olá, acabei de finalizar o diagnóstico de imagem da Nuance Studio.",
+          "Olá, acabei de finalizar o *Diagnóstico de Imagem* da Nuance Studio.",
           "",
-          stateMap[answers.state] || "",
+          `_${stateMap[answers.state] || ""}_`,
           "",
-          `Onde pesa mais: ${listChannels()}`,
-          `Dor principal: ${answers.pain || "—"}`,
-          `Principal bloqueio: ${BL_LABELS[answers.blocker] || "—"}`,
-          `Reação ao formato: ${answers.fit || "—"}`,
-          `Preferência de formato: ${answers.offer || "—"}`,
+          `*Onde pesa mais:* ${listChannels()}`,
+          `*Dor principal:* ${answers.pain || "—"}`,
+          `*Principal bloqueio:* ${BL_LABELS[answers.blocker] || "—"}`,
+          `*Nível de Prontidão:* ${score}/100`,
+          `*Formato preferido:* ${answers.offer || "—"}`,
           "",
-          "Quero seguir para o próximo passo.",
+          "Quero liberar minha prévia gratuita.",
         ].join("\n");
 
         cta.href = `https://wa.me/5511936229510?text=${encodeURIComponent(msg)}`;
