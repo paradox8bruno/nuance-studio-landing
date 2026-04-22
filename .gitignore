@@ -21,3 +21,8 @@ ensaios/*/*.TIFF
 # Cache Python
 __pycache__/
 *.pyc
+
+# Node / Remotion
+node_modules/
+renders/
+public/remotion-assets/

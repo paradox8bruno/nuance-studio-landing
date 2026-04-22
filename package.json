@@ -1,0 +1,29 @@
+{
+  "name": "agentphotos",
+  "version": "1.0.0",
+  "description": "Este projeto agora gera prévias com marca d'água para envio ao cliente, mantendo as fotos completas separadas para a entrega final.",
+  "main": "script.js",
+  "scripts": {
+    "remotion:studio": "remotion studio src/index.ts",
+    "remotion:render": "remotion render src/index.ts MetaAdsBeforeAfter renders/meta-ads-antes-depois.mp4 --codec=h264",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@remotion/motion-blur": "4.0.448",
+    "@remotion/noise": "4.0.448",
+    "@remotion/webcodecs": "4.0.448",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "remotion": "4.0.448"
+  },
+  "devDependencies": {
+    "@remotion/cli": "4.0.448",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^6.0.3"
+  }
+}

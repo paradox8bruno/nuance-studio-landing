@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico de Imagem Profissional · Nuance Studio</title>
+  <meta name="description" content="Responda 7 perguntas rápidas e descubra o que sua foto de perfil está comunicando antes de você falar uma palavra." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Facebook Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1710893766988755');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1710893766988755&ev=PageView&noscript=1" />
+  </noscript>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #080808;
+      --dark-1: #0e0e0e;
+      --dark-2: #141414;
+      --dark-3: #1c1c1c;
+      --border: rgba(255,255,255,.07);
+      --border-gold: rgba(201,161,74,.3);
+      --gold-1: #c9a14a;
+      --gold-2: #e8c068;
+      --gold-3: #f0d080;
+      --white: #ffffff;
+      --text-dim: rgba(255,255,255,.55);
+      --text-mid: rgba(255,255,255,.75);
+      --green-wa: #25d366;
+      --r: 14px;
+      --r-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── PROGRESS BAR ─── */
+    #quiz-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: rgba(255,255,255,.08);
+      z-index: 1000;
+    }
+    #quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold-1), var(--gold-3));
+      width: 0%;
+      transition: width .5s ease;
+    }
+
+    /* ─── TOPBAR ─── */
+    #quiz-topbar {
+      position: fixed;
+      top: 3px;
+      left: 0;
+      right: 0;
+      height: 53px;
+      background: rgba(8,8,8,.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 999;
+    }
+    #quiz-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      color: var(--gold-2);
+      text-transform: uppercase;
+    }
+    #quiz-step-counter {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-dim);
+      letter-spacing: .06em;
+    }
+
+    /* ─── SCREENS ─── */
+    .quiz-screen {
+      display: none;
+    }
+    .quiz-screen.active {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding-top: 56px;
+      animation: quizFadeIn .35s ease;
+    }
+
+    @keyframes quizFadeIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SCREEN 0 — INTRO ─── */
+    #screen-0 {
+      align-items: center;
+      justify-content: flex-start;
+      padding-bottom: 48px;
+    }
+    .intro-inner {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 32px 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+    }
+    .intro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201,161,74,.1);
+      border: 1px solid var(--border-gold);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--gold-2);
+      text-transform: uppercase;
+    }
+    .intro-h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 42px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--white);
+    }
+    .intro-h1 em {
+      font-style: normal;
+      color: var(--gold-2);
+      display: block;
+    }
+    .intro-sub {
+      font-size: 15px;
+      color: var(--text-mid);
+      max-width: 420px;
+      line-height: 1.65;
+    }
+    .intro-images {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      max-width: 420px;
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+    .intro-images img {
+      flex: 1;
+      height: 160px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .intro-images-placeholder {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      max-width: 420px;
+    }
+    .intro-img-slot {
+      flex: 1;
+      height: 160px;
+      background: var(--dark-3);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .intro-img-slot span {
+      font-size: 22px;
+    }
+    .intro-img-slot small {
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: .05em;
+    }
+    .intro-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
+      color: #080808;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      padding: 16px 32px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      max-width: 340px;
+      justify-content: center;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 24px rgba(201,161,74,.25);
+    }
+    .intro-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(201,161,74,.35);
+    }
+    .intro-social-proof {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-mid);
+    }
+    .stars { color: var(--gold-2); font-size: 14px; letter-spacing: 2px; }
+    .intro-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--text-dim);
+      padding-bottom: 8px;
+    }
+
+    /* ─── QUESTION SCREENS ─── */
+    .question-inner {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .q-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      color: var(--gold-1);
+      text-transform: uppercase;
+    }
+    .q-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 4.5vw, 28px);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--white);
+    }
+    .q-sub {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-top: -6px;
+      line-height: 1.6;
+    }
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .option-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-left: 3px solid transparent;
+      border-radius: var(--r);
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: transform .2s, border-color .2s, background .2s, box-shadow .2s;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .option-card:hover {
+      transform: translateX(4px);
+      border-left-color: var(--gold-1);
+      border-color: var(--border-gold);
+      background: rgba(201,161,74,.06);
+    }
+    .option-card.selected {
+      transform: translateX(4px);
+      border-left-color: var(--gold-1);
+      border-color: var(--border-gold);
+      background: rgba(201,161,74,.09);
+      pointer-events: none;
+    }
+    .option-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      width: 32px;
+      text-align: center;
+    }
+    .option-text {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-mid);
+      line-height: 1.4;
+    }
+    .option-card.selected .option-text {
+      color: var(--white);
+    }
+    .option-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.2);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s, border-color .2s;
+      font-size: 12px;
+      color: transparent;
+    }
+    .option-card.selected .option-check {
+      background: var(--gold-1);
+      border-color: var(--gold-1);
+      color: #080808;
+    }
+    .option-card:hover .option-check {
+      border-color: var(--gold-1);
+    }
+
+    /* ─── REACTION TOAST ─── */
+    #reaction-toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      opacity: 0;
+      transition: opacity .3s, transform .3s;
+      z-index: 2000;
+      max-width: min(480px, calc(100vw - 32px));
+      width: 100%;
+      pointer-events: none;
+    }
+    #reaction-toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .toast-inner {
+      background: var(--dark-2);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--r);
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.6);
+    }
+    #rt-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      line-height: 1.3;
+    }
+    #rt-text {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+    #rt-text strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ─── RESULT SCREEN ─── */
+    #screen-result {
+      padding-bottom: 60px;
+    }
+    .result-inner {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 28px 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .result-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201,161,74,.1);
+      border: 1px solid var(--border-gold);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--gold-2);
+      text-transform: uppercase;
+      align-self: flex-start;
+    }
+    .result-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--white);
+    }
+    .result-sub {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.65;
+      margin-top: -10px;
+    }
+
+    /* Score card */
+    .score-card {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .score-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: var(--gold-1);
+      text-transform: uppercase;
+    }
+    .score-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .score-row-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    .score-row-name {
+      color: var(--text-dim);
+    }
+    .score-row-pct {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-mid);
+    }
+    .score-row-pct.gold { color: var(--gold-2); }
+    .score-track {
+      height: 8px;
+      background: rgba(255,255,255,.07);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .score-fill {
+      height: 100%;
+      border-radius: 100px;
+      width: 0%;
+      transition: width 1s .4s ease;
+    }
+    .score-fill.gray { background: rgba(255,255,255,.22); }
+    .score-fill.gold-grad { background: linear-gradient(90deg, var(--gold-1), var(--gold-3)); }
+    .score-disclaimer {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* Obstacle box */
+    .obstacle-box {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold-1);
+      border-radius: var(--r);
+      padding: 18px 20px;
+    }
+    .obstacle-box-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      color: var(--gold-1);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .obstacle-box p {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .obstacle-box p strong { color: var(--white); }
+
+    /* Before/after */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .ba-item {
+      position: relative;
+      border-radius: var(--r);
+      overflow: hidden;
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+    }
+    .ba-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .ba-placeholder {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .ba-placeholder span { font-size: 28px; }
+    .ba-placeholder small { font-size: 11px; color: var(--text-dim); }
+    .ba-pill {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .ba-pill.antes {
+      background: rgba(0,0,0,.65);
+      color: var(--text-dim);
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .ba-pill.depois {
+      background: var(--gold-1);
+      color: #080808;
+    }
+    .ba-caption {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: -6px;
+    }
+
+    /* Mini flow */
+    .flow-card {
+      background: var(--dark-1);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 22px 20px;
+    }
+    .flow-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: var(--gold-1);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .flow-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-1);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .flow-step.highlight .flow-num {
+      background: var(--gold-1);
+      color: #080808;
+      border-color: var(--gold-1);
+    }
+    .flow-step-text {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+    .flow-step.highlight .flow-step-text {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* Price card */
+    .price-card {
+      background: linear-gradient(135deg, rgba(201,161,74,.12), rgba(240,208,128,.06));
+      border: 1px solid var(--border-gold);
+      border-radius: var(--r-lg);
+      padding: 28px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .price-card-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: var(--gold-2);
+      text-transform: uppercase;
+    }
+    .price-big {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 10vw, 56px);
+      font-weight: 700;
+      color: var(--gold-2);
+      line-height: 1;
+    }
+    .price-big span {
+      font-size: 0.45em;
+      vertical-align: top;
+      margin-top: 10px;
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+    }
+    .price-sub {
+      font-size: 14px;
+      color: var(--text-mid);
+    }
+    .price-note {
+      font-size: 13px;
+      color: var(--gold-1);
+      font-weight: 500;
+    }
+
+    /* WA button */
+    .wa-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--green-wa);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .03em;
+      padding: 18px 24px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      width: 100%;
+      transition: transform .2s, box-shadow .2s, filter .2s;
+      box-shadow: 0 4px 24px rgba(37,211,102,.25);
+    }
+    .wa-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(37,211,102,.35);
+      filter: brightness(1.05);
+    }
+    .wa-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    /* Trust micro */
+    .micro-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--text-dim);
+      text-align: center;
+    }
+
+    /* Guarantee */
+    .guarantee-box {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .guarantee-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .guarantee-text {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .guarantee-text strong { color: var(--white); }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .intro-images img { height: 130px; }
+      .ba-item img { height: 160px; }
+      .ba-placeholder { height: 160px; }
+      .price-big { font-size: 44px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PROGRESS BAR -->
+  <div id="quiz-progress-bar">
+    <div id="quiz-progress-fill"></div>
+  </div>
+
+  <!-- TOPBAR -->
+  <div id="quiz-topbar">
+    <div id="quiz-logo">Nuance Studio</div>
+    <div id="quiz-step-counter"></div>
+  </div>
+
+  <!-- REACTION TOAST -->
+  <div id="reaction-toast" role="status" aria-live="polite">
+    <div class="toast-inner">
+      <div id="rt-icon">✓</div>
+      <div id="rt-text"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 0 — INTRO
+  ══════════════════════════════════════════ -->
+  <section id="screen-0" class="quiz-screen active">
+    <div class="intro-inner">
+      <div class="intro-badge">✦ Diagnóstico Gratuito · Para Advogados</div>
+
+      <h1 class="intro-h1">
+        Sua foto de perfil
+        <em>está custando clientes?</em>
+      </h1>
+
+      <p class="intro-sub">
+        Responda 7 perguntas rápidas e descubra gratuitamente o que sua imagem está comunicando antes de você falar uma palavra.
+      </p>
+
+      <!-- Before/After strip -->
+      <div class="intro-images-placeholder" id="intro-image-strip">
+        <div class="intro-img-slot">
+          <img src="fotos/antes-1.jpg" alt="Antes do ensaio" style="width:100%;height:160px;object-fit:cover;object-position:center top;border-radius:10px;" onerror="this.parentElement.innerHTML='<span>📷</span><small>ANTES</small>'" />
+        </div>
+        <div class="intro-img-slot">
+          <img src="fotos/depois-1.jpg" alt="Depois do ensaio" style="width:100%;height:160px;object-fit:cover;object-position:center top;border-radius:10px;" onerror="this.parentElement.innerHTML='<span>✨</span><small>DEPOIS</small>'" />
+        </div>
+        <div class="intro-img-slot">
+          <img src="fotos/depois-3.jpg" alt="Depois ensaio profissional" style="width:100%;height:160px;object-fit:cover;object-position:center top;border-radius:10px;" onerror="this.parentElement.innerHTML='<span>🏆</span><small>DEPOIS</small>'" />
+        </div>
+      </div>
+
+      <button class="intro-cta-btn" onclick="Quiz.start()">
+        Descobrir agora →
+      </button>
+
+      <div class="intro-social-proof">
+        <span class="stars">★★★★★</span>
+        <span>+847 advogados já fizeram este diagnóstico</span>
+      </div>
+
+      <div class="intro-meta">
+        <span>⚡ Menos de 90 segundos</span>
+        <span>🔒 Sem cadastro</span>
+        <span>✓ Resultado imediato</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 1 — Q1: Área de atuação
+  ══════════════════════════════════════════ -->
+  <section id="screen-1" class="quiz-screen">
+    <div class="question-inner">
+      <div class="q-label">Pergunta 1 de 7</div>
+      <h2 class="q-headline">Qual é a sua principal área de atuação?</h2>
+
+      <div class="options-grid">
+        <div class="option-card" onclick="Quiz.answer(1,'trabalhista','Trabalhista',this)">
+          <div class="option-icon">⚖️</div>
+          <div class="option-text">Trabalhista</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(1,'civel','Cível / Família',this)">
+          <div class="option-icon">🏛️</div>
+          <div class="option-text">Cível / Família</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(1,'empresarial','Empresarial / Tributário',this)">
+          <div class="option-icon">💼</div>
+          <div class="option-text">Empresarial / Tributário</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(1,'criminal','Criminal / Penal',this)">
+          <div class="option-icon">🔍</div>
+          <div class="option-text">Criminal / Penal</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(1,'outros','Outra área',this)">
+          <div class="option-icon">📌</div>
+          <div class="option-text">Outra área</div>
+          <div class="option-check">✓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 2 — Q2: Foto atual
+  ══════════════════════════════════════════ -->
+  <section id="screen-2" class="quiz-screen">
+    <div class="question-inner">
+      <div class="q-label">Pergunta 2 de 7</div>
+      <h2 class="q-headline">Como é sua foto de perfil profissional hoje?</h2>
+      <p class="q-sub">Seja honesto(a). A análise só é útil se for real.</p>
+
+      <div class="options-grid">
+        <div class="option-card" onclick="Quiz.answer(2,'selfie','Uma selfie ou foto tirada no celular',this)">
+          <div class="option-icon">📱</div>
+          <div class="option-text">Uma selfie ou foto tirada no celular</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(2,'evento','Foto de evento, confraternização ou viagem',this)">
+          <div class="option-icon">🎉</div>
+          <div class="option-text">Foto de evento, confraternização ou viagem</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(2,'antiga','Foto profissional, mas de mais de 2 anos atrás',this)">
+          <div class="option-icon">📷</div>
+          <div class="option-text">Foto profissional, mas de mais de 2 anos atrás</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(2,'sem-foto','Não tenho nenhuma foto profissional',this)">
+          <div class="option-icon">🚫</div>
+          <div class="option-text">Não tenho nenhuma foto profissional</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(2,'boa','Tenho foto profissional recente e estou satisfeito(a)',this)">
+          <div class="option-icon">✅</div>
+          <div class="option-text">Tenho foto profissional recente e estou satisfeito(a)</div>
+          <div class="option-check">✓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 3 — Q3: Canais digitais
+  ══════════════════════════════════════════ -->
+  <section id="screen-3" class="quiz-screen">
+    <div class="question-inner">
+      <div class="q-label">Pergunta 3 de 7</div>
+      <h2 class="q-headline">Em quantos canais digitais você usa essa foto?</h2>
+      <p class="q-sub">Quanto mais canais, maior o impacto — positivo ou negativo.</p>
+
+      <div class="options-grid">
+        <div class="option-card" onclick="Quiz.answer(3,'1','Só no LinkedIn',this)">
+          <div class="option-icon">📌</div>
+          <div class="option-text">Só no LinkedIn</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(3,'2','LinkedIn + WhatsApp Business',this)">
+          <div class="option-icon">📌</div>
+          <div class="option-text">LinkedIn + WhatsApp Business</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(3,'3','LinkedIn + WhatsApp + Instagram',this)">
+          <div class="option-icon">📌</div>
+          <div class="option-text">LinkedIn + WhatsApp + Instagram</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(3,'4+','Em todos: LinkedIn, Instagram, WhatsApp, site e materiais',this)">
+          <div class="option-icon">🌐</div>
+          <div class="option-text">Em todos: LinkedIn, Instagram, WhatsApp, site e materiais</div>
+          <div class="option-check">✓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 4 — Q4: Perspectiva do cliente
+  ══════════════════════════════════════════ -->
+  <section id="screen-4" class="quiz-screen">
+    <div class="question-inner">
+      <div class="q-label">Pergunta 4 de 7</div>
+      <h2 class="q-headline">Quando um cliente pesquisa seu nome antes de contratar — o que ele encontra?</h2>
+      <p class="q-sub">Coloque-se no lugar do seu cliente por um momento.</p>
+
+      <div class="options-grid">
+        <div class="option-card" onclick="Quiz.answer(4,'nao-representa','Uma foto que não representa meu nível profissional',this)">
+          <div class="option-icon">😬</div>
+          <div class="option-text">Uma foto que não representa meu nível profissional</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(4,'poderia-melhorar','Uma foto ok, mas que poderia transmitir muito mais autoridade',this)">
+          <div class="option-icon">😐</div>
+          <div class="option-text">Uma foto ok, mas que poderia transmitir muito mais autoridade</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(4,'invisivel','Às vezes nem encontra foto — sou invisível',this)">
+          <div class="option-icon">🔍</div>
+          <div class="option-text">Às vezes nem encontra foto — sou invisível</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(4,'bem-representado','Uma foto profissional que me representa com autoridade',this)">
+          <div class="option-icon">💪</div>
+          <div class="option-text">Uma foto profissional que me representa com autoridade</div>
+          <div class="option-check">✓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 5 — Q5: Vergonha/evitou
+  ══════════════════════════════════════════ -->
+  <section id="screen-5" class="quiz-screen">
+    <div class="question-inner">
+      <div class="q-label">Pergunta 5 de 7</div>
+      <h2 class="q-headline">Você já evitou compartilhar seu perfil profissional por causa da foto?</h2>
+      <p class="q-sub">Essa é a pergunta que poucos respondem com honestidade.</p>
+
+      <div class="options-grid">
+        <div class="option-card" onclick="Quiz.answer(5,'sim-evitei','Sim — já deixei de enviar meu LinkedIn por causa disso',this)">
+          <div class="option-icon">😔</div>
+          <div class="option-text">Sim — já deixei de enviar meu LinkedIn por causa disso</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(5,'pensei-nao-fiz','Não cheguei a evitar, mas sei que preciso melhorar e nunca fiz nada',this)">
+          <div class="option-icon">🤔</div>
+          <div class="option-text">Não cheguei a evitar, mas sei que preciso melhorar e nunca fiz nada</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(5,'nao-mas-poderia','Nunca evitei, mas reconheço que minha foto poderia ser muito melhor',this)">
+          <div class="option-icon">🙂</div>
+          <div class="option-text">Nunca evitei, mas reconheço que minha foto poderia ser muito melhor</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(5,'satisfeito','Não — estou satisfeito(a) com minha imagem atual',this)">
+          <div class="option-icon">✅</div>
+          <div class="option-text">Não — estou satisfeito(a) com minha imagem atual</div>
+          <div class="option-check">✓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 6 — Q6: Maior obstáculo
+  ══════════════════════════════════════════ -->
+  <section id="screen-6" class="quiz-screen">
+    <div class="question-inner">
+      <div class="q-label">Pergunta 6 de 7</div>
+      <h2 class="q-headline">O que mais te impede de ter fotos profissionais hoje?</h2>
+      <p class="q-sub">Vou mostrar exatamente como resolvemos cada uma dessas barreiras.</p>
+
+      <div class="options-grid">
+        <div class="option-card" onclick="Quiz.answer(6,'custo','O custo — ensaio presencial custa R$1.000 a R$2.000',this)">
+          <div class="option-icon">💸</div>
+          <div class="option-text">O custo — ensaio presencial custa R$1.000 a R$2.000</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(6,'tempo','Falta de tempo para organizar fotógrafo, locação e agenda',this)">
+          <div class="option-icon">⏰</div>
+          <div class="option-text">Falta de tempo para organizar fotógrafo, locação e agenda</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(6,'camara-shy','Não me sinto fotogênico(a) e não sei como seria o resultado',this)">
+          <div class="option-icon">😬</div>
+          <div class="option-text">Não me sinto fotogênico(a) e não sei como seria o resultado</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(6,'nunca-priorizei','Nunca coloquei isso como prioridade real',this)">
+          <div class="option-icon">🤷</div>
+          <div class="option-text">Nunca coloquei isso como prioridade real</div>
+          <div class="option-check">✓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 7 — Q7: Micro-comprometimento
+  ══════════════════════════════════════════ -->
+  <section id="screen-7" class="quiz-screen">
+    <div class="question-inner">
+      <div class="q-label">Pergunta 7 de 7</div>
+      <h2 class="q-headline">Se você pudesse ver o ensaio antes de pagar — você consideraria?</h2>
+      <p class="q-sub">Sem sair do escritório. Sem fotógrafo. Resultado em 24h. Você só paga se aprovar.</p>
+
+      <div class="options-grid">
+        <div class="option-card" onclick="Quiz.answer(7,'sim','Sim — definitivamente consideraria se o resultado for bom',this)">
+          <div class="option-icon">✅</div>
+          <div class="option-text">Sim — definitivamente consideraria se o resultado for bom</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(7,'talvez','Talvez — dependeria da qualidade do resultado',this)">
+          <div class="option-icon">🤔</div>
+          <div class="option-text">Talvez — dependeria da qualidade do resultado</div>
+          <div class="option-check">✓</div>
+        </div>
+        <div class="option-card" onclick="Quiz.answer(7,'duvidas','Tenho dúvidas se a qualidade seria realmente profissional',this)">
+          <div class="option-icon">❓</div>
+          <div class="option-text">Tenho dúvidas se a qualidade seria realmente profissional</div>
+          <div class="option-check">✓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN RESULT
+  ══════════════════════════════════════════ -->
+  <section id="screen-result" class="quiz-screen">
+    <div class="result-inner" id="result-content">
+      <!-- Built dynamically by Quiz.showResult() -->
+    </div>
+  </section>
+
+  <script>
+  // ──────────────────────────────────────────────
+  //   FACEBOOK PIXEL HELPER
+  // ──────────────────────────────────────────────
+  function trackCustom(event, params) {
+    try {
+      if (typeof fbq !== 'undefined') {
+        if (params) {
+          fbq('trackCustom', event, params);
+        } else {
+          fbq('trackCustom', event);
+        }
+      }
+    } catch(e) {}
+  }
+
+  // ──────────────────────────────────────────────
+  //   QUIZ ENGINE
+  // ──────────────────────────────────────────────
+  const Quiz = {
+    currentScreen: 0,
+    totalQuestions: 7,
+    answers: {},
+    waUrl: '',
+
+    start() {
+      trackCustom('QuizStart');
+      this.goTo(1);
+    },
+
+    answer(questionNum, value, label, el) {
+      this.answers[questionNum] = { value, label };
+
+      // Mark selected
+      el.closest('.options-grid').querySelectorAll('.option-card').forEach(function(c) {
+        c.classList.remove('selected');
+      });
+      el.classList.add('selected');
+
+      trackCustom('QuizAnswer', { question: questionNum, answer: value });
+
+      var reaction = this.getReaction(questionNum, value);
+      if (reaction) {
+        this.showReaction(reaction.icon, reaction.text, function() {
+          Quiz.advance(questionNum);
+        });
+      } else {
+        setTimeout(function() { Quiz.advance(questionNum); }, 300);
+      }
+    },
+
+    advance(n) {
+      if (n >= this.totalQuestions) {
+        this.showResult();
+      } else {
+        this.goTo(n + 1);
+      }
+    },
+
+    goTo(screen) {
+      this.currentScreen = screen;
+      document.querySelectorAll('.quiz-screen').forEach(function(s) {
+        s.classList.remove('active');
+      });
+      var el = document.getElementById('screen-' + screen);
+      if (el) el.classList.add('active');
+      window.scrollTo(0, 0);
+      this.updateUI();
+    },
+
+    updateUI() {
+      var s = this.currentScreen;
+      var pct = 0;
+      if (s >= 1 && s <= this.totalQuestions) {
+        pct = Math.round(((s - 1) / this.totalQuestions) * 100);
+      } else if (s === 'result') {
+        pct = 100;
+      }
+      document.getElementById('quiz-progress-fill').style.width = pct + '%';
+      var counter = document.getElementById('quiz-step-counter');
+      if (s >= 1 && s <= this.totalQuestions) {
+        counter.textContent = s + ' de ' + this.totalQuestions;
+      } else {
+        counter.textContent = '';
+      }
+    },
+
+    showReaction(icon, text, cb) {
+      var t = document.getElementById('reaction-toast');
+      document.getElementById('rt-icon').textContent = icon;
+      document.getElementById('rt-text').innerHTML = text;
+      t.classList.add('visible');
+      setTimeout(function() {
+        t.classList.remove('visible');
+        setTimeout(cb, 320);
+      }, 1600);
+    },
+
+    getReaction(q, v) {
+      var reactions = {
+        1: {
+          '_any': { icon: '✓', text: 'Entendido. Vou adaptar a análise para <strong>sua área</strong>.' }
+        },
+        2: {
+          'selfie': { icon: '📊', text: 'Selfies reduzem a percepção de autoridade em <strong>até 68%</strong> segundo estudos de imagem profissional.' },
+          'evento': { icon: '⚠️', text: 'Fotos de evento em perfis profissionais comunicam <strong>falta de atenção à imagem</strong> — mesmo que seu trabalho seja impecável.' },
+          'antiga': { icon: '⏳', text: 'Foto desatualizada cria <strong>desconfiança</strong> quando o cliente te vê pessoalmente e a imagem é diferente.' },
+          'sem-foto': { icon: '🚨', text: 'A ausência de foto é o <strong>maior erro de posicionamento digital</strong> que um profissional pode cometer.' },
+          'boa': { icon: '💡', text: 'Ótimo — você já entende o valor da imagem. Vamos ver se há espaço para <strong>elevar ainda mais</strong>.' }
+        },
+        3: {
+          '_any': { icon: '📈', text: 'Quanto mais canais, maior o alcance — e maior o impacto de uma imagem <strong>forte ou fraca</strong>.' }
+        },
+        4: {
+          'nao-representa': { icon: '💡', text: 'Esse desalinhamento entre sua competência e sua imagem é <strong>mais percebido do que você imagina</strong>.' },
+          'poderia-melhorar': { icon: '🎯', text: 'Quase toda foto \'ok\' está perdendo o potencial de transmitir <strong>autoridade de verdade</strong>.' },
+          'invisivel': { icon: '🚨', text: 'Invisibilidade digital tem um custo direto em <strong>oportunidades que você nunca vai saber que perdeu</strong>.' },
+          'bem-representado': { icon: '✦', text: 'Ótimo ponto de partida. Há diferença entre \'representado\' e <strong>ser referência</strong>.' }
+        },
+        5: {
+          'sim-evitei': { icon: '💬', text: 'Você não está sozinho(a). Mais de <strong>70% dos advogados</strong> já evitaram compartilhar um perfil por causa da foto.' },
+          'pensei-nao-fiz': { icon: '⚡', text: 'A maioria procrastina porque acredita que é caro ou complicado. <strong>Não é nenhum dos dois.</strong>' },
+          'nao-mas-poderia': { icon: '✦', text: 'Essa consciência já te coloca à frente. Agora vamos transformar em <strong>ação concreta</strong>.' },
+          'satisfeito': { icon: '💡', text: 'Bom ponto de partida. <strong>Há diferença entre satisfeito e referência</strong>.' }
+        },
+        6: {
+          'custo': { icon: '💡', text: 'O que você vai descobrir agora vai <strong>mudar completamente</strong> sua visão sobre custo.' },
+          'tempo': { icon: '⚡', text: '<strong>Todo o processo acontece pelo WhatsApp</strong>, sem sair do escritório. Você não organiza nada.' },
+          'camara-shy': { icon: '📸', text: 'Nosso processo foi feito exatamente para isso — <strong>você não precisa saber posar</strong>.' },
+          'nunca-priorizei': { icon: '🎯', text: 'E é exatamente por isso que esse diagnóstico existe. <strong>Agora você tem os dados para decidir.</strong>' }
+        },
+        7: {
+          '_any': { icon: '✦', text: '<strong>Perfeito. É exatamente assim que funciona.</strong> Gerando seu diagnóstico personalizado...' }
+        }
+      };
+
+      var qr = reactions[q];
+      if (!qr) return null;
+      if (qr[v]) return qr[v];
+      if (qr['_any']) return qr['_any'];
+      return null;
+    },
+
+    buildWaUrl() {
+      var areaAnswer = this.answers[1] ? this.answers[1].value : 'outros';
+      var messages = {
+        'trabalhista': 'Olá! Fiz o diagnóstico e sou advogado(a) trabalhista. Quero ver como ficaria meu ensaio profissional.',
+        'civel': 'Olá! Fiz o diagnóstico e sou advogado(a) cível. Quero ver como ficaria meu ensaio profissional.',
+        'empresarial': 'Olá! Fiz o diagnóstico e sou advogado(a) empresarial. Quero ver como ficaria meu ensaio profissional.',
+        'criminal': 'Olá! Fiz o diagnóstico e sou advogado(a) criminalista. Quero ver como ficaria meu ensaio profissional.',
+        'outros': 'Olá! Fiz o diagnóstico e sou advogado(a). Quero ver como ficaria meu ensaio profissional.'
+      };
+      var msg = messages[areaAnswer] || messages['outros'];
+      this.waUrl = 'https://wa.me/5511936229510?text=' + encodeURIComponent(msg);
+    },
+
+    showResult() {
+      this.buildWaUrl();
+
+      // Determine personalization from Q2
+      var photoType = this.answers[2] ? this.answers[2].value : 'selfie';
+      var obstacle = this.answers[6] ? this.answers[6].value : 'custo';
+
+      var resultData = {
+        'sem-foto': {
+          headline: 'Você está invisível. E isso está custando clientes todos os dias.',
+          sub: 'A cada dia que passa sem uma foto profissional, potenciais clientes pesquisam seu nome e não encontram nada que transmita credibilidade. Em um mercado jurídico competitivo, invisibilidade digital é perda concreta de receita.',
+          scoreCurrent: 8
+        },
+        'selfie': {
+          headline: 'Sua imagem está sabotando sua credibilidade antes de você falar uma palavra.',
+          sub: 'Estudos de percepção mostram que em apenas 3 segundos um potencial cliente já formou uma opinião sobre sua competência com base na sua foto. Uma selfie comunica amadorismo — mesmo que seu trabalho seja impecável.',
+          scoreCurrent: 22
+        },
+        'evento': {
+          headline: 'Sua imagem está sabotando sua credibilidade antes de você falar uma palavra.',
+          sub: 'Uma foto de evento ou confraternização em um perfil profissional comunica falta de cuidado com a própria imagem. O cliente associa isso ao cuidado que você teria com o caso dele.',
+          scoreCurrent: 22
+        },
+        'antiga': {
+          headline: 'Você tem o nível — mas sua imagem comunica uma versão desatualizada de você.',
+          sub: 'Quando o cliente te vê pessoalmente e sua foto tem mais de 2 anos, cria-se um gap de credibilidade. Ele sente que você esconde algo. Atualizar sua imagem é uma forma simples de reforçar confiança.',
+          scoreCurrent: 38
+        },
+        'boa': {
+          headline: 'Você já entende o valor da imagem — mas há diferença entre boa e autoridade.',
+          sub: 'Ter uma foto profissional já te coloca à frente de 80% dos advogados. Mas há um salto enorme entre "parecer profissional" e "transmitir autoridade de referência" — e é exatamente isso que o Nuance Studio entrega.',
+          scoreCurrent: 58
+        }
+      };
+
+      var obstacleTexts = {
+        'custo': 'Ensaio completo começa em <strong>R$89,90</strong> — contra R$1.000 a R$2.000 de ensaio presencial. E você só paga depois de ver e aprovar cada foto.',
+        'tempo': 'Todo o processo acontece pelo <strong>WhatsApp, sem sair do escritório</strong>. Você envia uma selfie e em até 24h recebe as prévias para avaliar com calma.',
+        'camara-shy': 'Sem pose, sem câmera na sua frente. Você manda uma foto simples — nossa equipe cria o ensaio completo. <strong>Você não precisa saber posar.</strong>',
+        'nunca-priorizei': 'O investimento é menor do que você imagina — e você <strong>só paga depois de ver e aprovar</strong> cada foto. Zero risco para começar.'
+      };
+
+      var data = resultData[photoType] || resultData['selfie'];
+      var obstacleText = obstacleTexts[obstacle] || obstacleTexts['custo'];
+
+      var container = document.getElementById('result-content');
+      container.innerHTML = '\
+        <div class="result-tag">✦ Seu diagnóstico</div>\
+        <h1 class="result-headline">' + this._esc(data.headline) + '</h1>\
+        <p class="result-sub">' + this._esc(data.sub) + '</p>\
+        \
+        <div class="score-card">\
+          <div class="score-label">Autoridade Visual Percebida</div>\
+          <div class="score-row">\
+            <div class="score-row-header">\
+              <span class="score-row-name">Foto atual</span>\
+              <span class="score-row-pct" id="score-pct-current">' + data.scoreCurrent + '%</span>\
+            </div>\
+            <div class="score-track"><div class="score-fill gray" id="score-bar-current"></div></div>\
+          </div>\
+          <div class="score-row">\
+            <div class="score-row-header">\
+              <span class="score-row-name">Com Nuance Studio</span>\
+              <span class="score-row-pct gold">96%</span>\
+            </div>\
+            <div class="score-track"><div class="score-fill gold-grad" id="score-bar-nuance"></div></div>\
+          </div>\
+          <p class="score-disclaimer">Estimativa baseada em pesquisas sobre percepção de imagem profissional.</p>\
+        </div>\
+        \
+        <div class="obstacle-box">\
+          <div class="obstacle-box-label">Sobre o que você mencionou</div>\
+          <p>' + obstacleText + '</p>\
+        </div>\
+        \
+        <div class="ba-grid">\
+          <div class="ba-item">\
+            <img src="fotos/antes-1.jpg" alt="Foto antes do ensaio Nuance Studio" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" />\
+            <div class="ba-placeholder" style="display:none"><span>📷</span><small>ANTES</small></div>\
+            <div class="ba-pill antes">Antes</div>\
+          </div>\
+          <div class="ba-item">\
+            <img src="fotos/depois-1.jpg" alt="Foto depois do ensaio Nuance Studio" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" />\
+            <div class="ba-placeholder" style="display:none"><span>✨</span><small>DEPOIS</small></div>\
+            <div class="ba-pill depois">Depois</div>\
+          </div>\
+        </div>\
+        <p class="ba-caption">Resultado real · Mesma pessoa · Ensaio Nuance Studio</p>\
+        \
+        <div class="flow-card">\
+          <div class="flow-title">Como você recebe suas fotos</div>\
+          <div class="flow-steps">\
+            <div class="flow-step">\
+              <div class="flow-num">1</div>\
+              <div class="flow-step-text">Você envia uma selfie pelo WhatsApp — sem pose, sem estúdio</div>\
+            </div>\
+            <div class="flow-step">\
+              <div class="flow-num">2</div>\
+              <div class="flow-step-text">Criamos seu ensaio completo em até 24 horas</div>\
+            </div>\
+            <div class="flow-step highlight">\
+              <div class="flow-num">3</div>\
+              <div class="flow-step-text">Você VÊ as fotos ANTES de pagar — prévia com marca d\'água</div>\
+            </div>\
+            <div class="flow-step">\
+              <div class="flow-num">4</div>\
+              <div class="flow-step-text">Aprovou? Paga. Não gostou? Não paga absolutamente nada</div>\
+            </div>\
+            <div class="flow-step">\
+              <div class="flow-num">5</div>\
+              <div class="flow-step-text">Recebe em alta resolução — prontas para LinkedIn, Instagram e site</div>\
+            </div>\
+          </div>\
+        </div>\
+        \
+        <div class="price-card">\
+          <div class="price-card-label">Ensaio Completo com 100+ Fotos</div>\
+          <div class="price-big"><span>R$</span> 89,90</div>\
+          <div class="price-sub">Você só paga depois de ver e aprovar</div>\
+          <div class="price-note">✦ Ou escolha fotos avulsas por R$9,90 cada</div>\
+        </div>\
+        \
+        <a href="' + this.waUrl + '" class="wa-btn" onclick="Quiz.trackAndOpen(event)">\
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">\
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>\
+          </svg>\
+          Ver como ficaria meu ensaio →\
+        </a>\
+        \
+        <div class="micro-trust">\
+          <span>🔒 Só paga se aprovar</span>\
+          <span>⚡ Resultado em até 24h</span>\
+          <span>📱 Tudo pelo WhatsApp</span>\
+        </div>\
+        \
+        <div class="guarantee-box">\
+          <div class="guarantee-icon">🛡️</div>\
+          <div class="guarantee-text">\
+            <strong>Garantia total, sem questionamento.</strong> Você recebe a prévia completa com marca d\'água. Só paga depois de aprovar. Se não gostar — não paga absolutamente nada. Sem questionamento.\
+          </div>\
+        </div>\
+      ';
+
+      // Show result screen
+      this.currentScreen = 'result';
+      document.querySelectorAll('.quiz-screen').forEach(function(s) { s.classList.remove('active'); });
+      document.getElementById('screen-result').classList.add('active');
+      window.scrollTo(0, 0);
+      this.updateUI();
+
+      // Animate score bars
+      setTimeout(function() {
+        var barCurrent = document.getElementById('score-bar-current');
+        var barNuance = document.getElementById('score-bar-nuance');
+        if (barCurrent) barCurrent.style.width = data.scoreCurrent + '%';
+        if (barNuance) barNuance.style.width = '96%';
+      }, 200);
+
+      // Track Lead
+      try {
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Lead', {
+            content_name: 'quiz_completed',
+            content_category: 'advogados',
+            value: 0,
+            currency: 'BRL'
+          });
+        }
+      } catch(e) {}
+      trackCustom('QuizCompleted', { photoType: photoType, obstacle: obstacle });
+    },
+
+    trackAndOpen(e) {
+      e.preventDefault();
+      try {
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Lead', {
+            content_name: 'quiz_wa_click',
+            content_category: 'advogados'
+          });
+        }
+      } catch(e2) {}
+      window.open(this.waUrl, '_blank', 'noopener');
+    },
+
+    _esc(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+  };
+
+  // Init
+  Quiz.updateUI();
+  </script>
+</body>
+</html>
