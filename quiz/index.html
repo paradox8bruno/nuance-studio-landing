@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico de Imagem Profissional | Nuance Studio</title>
+  <meta
+    name="description"
+    content="Quiz guiado para diagnosticar o que sua foto transmite hoje, elevar sua consciência sobre imagem profissional e indicar o próximo passo ideal."
+  />
+  <meta name="theme-color" content="#09111d" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1710893766988755');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=1710893766988755&amp;ev=PageView&amp;noscript=1"
+      alt=""
+    />
+  </noscript>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #09111d;
+      --bg-deep: #070d16;
+      --bg-elevated: #111c2b;
+      --bg-card: rgba(13, 21, 34, 0.84);
+      --bg-soft: rgba(255, 255, 255, 0.05);
+      --surface: rgba(255, 255, 255, 0.045);
+      --surface-strong: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.1);
+      --border-strong: rgba(197, 162, 93, 0.32);
+      --ink: #f7f2e8;
+      --text: rgba(247, 242, 232, 0.9);
+      --text-muted: rgba(247, 242, 232, 0.68);
+      --text-faint: rgba(247, 242, 232, 0.5);
+      --gold: #c5a25d;
+      --gold-strong: #e8cb8e;
+      --gold-soft: rgba(197, 162, 93, 0.12);
+      --blue: #284d8b;
+      --blue-soft: rgba(40, 77, 139, 0.18);
+      --green: #25d366;
+      --green-strong: #1eba58;
+      --danger: #8f3441;
+      --radius-sm: 16px;
+      --radius: 24px;
+      --radius-lg: 34px;
+      --shadow-soft: 0 20px 56px rgba(0, 0, 0, 0.34);
+      --shadow-deep: 0 30px 96px rgba(0, 0, 0, 0.44);
+      --max: 1160px;
+      --header-h: 126px;
+      --safe-bottom: max(18px, env(safe-area-inset-bottom));
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--bg);
+      scroll-behavior: smooth;
+      overscroll-behavior-y: contain;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(40, 77, 139, 0.28), transparent 30%),
+        radial-gradient(circle at 100% 10%, rgba(197, 162, 93, 0.14), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      color: var(--ink);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(64px);
+      opacity: .55;
+    }
+
+    body::before {
+      top: 110px;
+      left: -80px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(40, 77, 139, 0.32);
+    }
+
+    body::after {
+      right: -60px;
+      bottom: 20%;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(197, 162, 93, 0.18);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    a {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -56px;
+      left: 16px;
+      z-index: 1000;
+      min-height: 44px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: #fff;
+      color: #000;
+      font-weight: 800;
+      transition: top .18s ease;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    :where(a, button, input, [role="button"]):focus-visible {
+      outline: 2px solid var(--gold-strong);
+      outline-offset: 3px;
+    }
+
+    .quiz-title:focus,
+    .step-title:focus {
+      outline: none;
+    }
+
+    .gold-text {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-strong) 55%, #f6dfaa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .serif {
+      font-family: "EB Garamond", Georgia, serif;
+    }
+
+    .quiz-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      padding-top: max(12px, env(safe-area-inset-top));
+      background: linear-gradient(180deg, rgba(6, 10, 16, 0.94), rgba(6, 10, 16, 0.74));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .quiz-header-inner {
+      width: min(calc(100% - 20px), var(--max));
+      margin: 0 auto;
+      min-height: calc(var(--header-h) - max(12px, env(safe-area-inset-top)));
+      display: grid;
+      gap: 12px;
+      padding: 0 0 14px;
+    }
+
+    .header-top {
+      display: grid;
+      gap: 12px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-lockup {
+      display: inline-grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .brand {
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--gold-strong);
+    }
+
+    .brand-note {
+      font-size: 10px;
+      line-height: 1.35;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--text-faint);
+    }
+
+    .header-wa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(37, 211, 102, 0.34);
+      background: rgba(37, 211, 102, 0.12);
+      color: #9cf0bc;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+    }
+
+    .header-wa:hover {
+      transform: translateY(-1px);
+      background: rgba(37, 211, 102, 0.18);
+      border-color: rgba(37, 211, 102, 0.5);
+      color: #fff;
+    }
+
+    .header-status {
+      display: grid;
+      gap: 10px;
+      padding: 14px 14px 12px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background:
+        radial-gradient(circle at top right, rgba(197, 162, 93, 0.12), transparent 40%),
+        rgba(255, 255, 255, 0.03);
+    }
+
+    .header-status-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--text-faint);
+    }
+
+    .header-status-bottom {
+      display: grid;
+      gap: 10px;
+    }
+
+    .progress-track {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--gold), #f4dca4);
+      transition: width .28s var(--ease);
+    }
+
+    .progress-chips {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .progress-chip {
+      min-height: 54px;
+      padding: 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .progress-chip strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 14px;
+      color: var(--gold-strong);
+    }
+
+    .progress-chip span {
+      display: block;
+      font-size: 10px;
+      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-faint);
+    }
+
+    .quiz-main {
+      width: min(calc(100% - 20px), var(--max));
+      margin: 0 auto;
+      padding: 18px 0 calc(116px + var(--safe-bottom));
+    }
+
+    .quiz-panel {
+      display: none;
+      min-height: calc(100dvh - var(--header-h) - 22px);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .24s var(--ease), transform .24s var(--ease);
+    }
+
+    .quiz-panel.is-active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .panel-shell {
+      display: grid;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel-copy,
+    .panel-side {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.014)),
+        rgba(13, 21, 34, 0.8);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .panel-copy {
+      padding: 22px 18px;
+      background:
+        radial-gradient(circle at top right, rgba(197, 162, 93, 0.1), transparent 32%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012)),
+        rgba(13, 21, 34, 0.84);
+    }
+
+    .panel-side {
+      background:
+        radial-gradient(circle at 10% 10%, rgba(40, 77, 139, 0.18), transparent 30%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.01)),
+        rgba(11, 18, 29, 0.88);
+    }
+
+    .intro-shell .panel-side {
+      order: -1;
+    }
+
+    .panel-intro {
+      display: grid;
+      gap: 14px;
+    }
+
+    .eyebrow-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold-strong);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: rgba(232, 203, 142, 0.54);
+    }
+
+    .stage-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .quiz-title,
+    .step-title {
+      margin: 0;
+      font-family: "EB Garamond", Georgia, serif;
+      line-height: .94;
+      letter-spacing: -.045em;
+    }
+
+    .quiz-title {
+      font-size: clamp(42px, 15vw, 76px);
+      max-width: 10.5ch;
+    }
+
+    .step-title {
+      font-size: clamp(34px, 11vw, 58px);
+      max-width: 12.5ch;
+    }
+
+    .lead,
+    .step-subtitle {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .lead {
+      max-width: 35ch;
+    }
+
+    .step-subtitle {
+      max-width: 42ch;
+    }
+
+    .intent-bar {
+      display: grid;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .intent-card,
+    .stat-card,
+    .insight-card,
+    .note-card,
+    .summary-card,
+    .process-card,
+    .assurance-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .intent-grid,
+    .stats-grid,
+    .summary-grid,
+    .gallery-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .intent-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .intent-card,
+    .stat-card {
+      min-height: 90px;
+      padding: 14px;
+    }
+
+    .intent-card strong,
+    .stat-card strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 15px;
+    }
+
+    .intent-card span,
+    .stat-card span {
+      display: block;
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text-faint);
+    }
+
+    .panel-actions,
+    .footer-row {
+      display: grid;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .primary-button,
+    .secondary-button,
+    .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 56px;
+      padding: 0 18px;
+      border-radius: 18px;
+      border: 0;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 800;
+      transition: transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+
+    .primary-button {
+      background: linear-gradient(180deg, #31dd73 0%, var(--green-strong) 100%);
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(37, 211, 102, 0.22);
+    }
+
+    .primary-button:hover:not([disabled]) {
+      transform: translateY(-1px);
+      background: linear-gradient(180deg, #39e87d 0%, #1ca64d 100%);
+    }
+
+    .primary-button[disabled] {
+      opacity: .42;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .secondary-button {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--ink);
+    }
+
+    .secondary-button:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .ghost-button {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: transparent;
+      color: var(--text-muted);
+    }
+
+    .ghost-button:hover {
+      transform: translateY(-1px);
+      color: var(--ink);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .helper-note {
+      margin-top: 12px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-faint);
+    }
+
+    .option-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .option-card {
+      position: relative;
+      width: 100%;
+      min-height: 102px;
+      padding: 16px 16px 16px 58px;
+      text-align: left;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+        rgba(255, 255, 255, 0.025);
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .option-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(197, 162, 93, 0.38);
+      background:
+        linear-gradient(180deg, rgba(197, 162, 93, 0.08), rgba(255, 255, 255, 0.02)),
+        rgba(255, 255, 255, 0.04);
+    }
+
+    .option-card.is-selected {
+      border-color: rgba(197, 162, 93, 0.58);
+      background:
+        linear-gradient(180deg, rgba(197, 162, 93, 0.14), rgba(255, 255, 255, 0.03)),
+        rgba(255, 255, 255, 0.05);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.24);
+    }
+
+    .option-card::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 18px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: inset 0 0 0 0 rgba(197, 162, 93, 1);
+      transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .option-card[data-multi="true"]::before {
+      border-radius: 8px;
+    }
+
+    .option-card.is-selected::before {
+      border-color: rgba(197, 162, 93, 0.92);
+      background: rgba(197, 162, 93, 0.12);
+      box-shadow: inset 0 0 0 6px rgba(197, 162, 93, 0.96);
+    }
+
+    .option-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    .option-card span {
+      display: block;
+      font-size: 13px;
+      line-height: 1.58;
+      color: var(--text-muted);
+    }
+
+    .option-card em {
+      display: inline-block;
+      margin-top: 8px;
+      font-style: normal;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold-strong);
+      opacity: .9;
+    }
+
+    .media-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      min-height: 360px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .media-caption {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .caption-card {
+      padding: 16px;
+      border-radius: 22px;
+      border: 1px solid rgba(197, 162, 93, 0.26);
+      background: rgba(8, 13, 22, 0.84);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .caption-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .caption-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .side-stack,
+    .process-list,
+    .assurance-grid,
+    .pair-grid {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .pair-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 14px;
+    }
+
+    .pair-card,
+    .gallery-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(8, 12, 18, 0.9);
+    }
+
+    .pair-card img,
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .frame-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .frame-label.before {
+      background: rgba(6, 9, 14, 0.74);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .frame-label.after {
+      background: rgba(232, 203, 142, 0.92);
+      border: 1px solid rgba(232, 203, 142, 0.4);
+      color: #161109;
+    }
+
+    .insight-card,
+    .note-card,
+    .summary-card,
+    .assurance-card {
+      padding: 16px;
+    }
+
+    .insight-card strong,
+    .note-card strong,
+    .assurance-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .insight-list,
+    .note-list,
+    .summary-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .insight-list li,
+    .note-list li,
+    .summary-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 14px;
+      line-height: 1.58;
+      color: var(--text-muted);
+    }
+
+    .insight-list li::before,
+    .note-list li::before,
+    .summary-list li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      flex-shrink: 0;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: var(--gold-strong);
+      box-shadow: 0 0 0 4px rgba(232, 203, 142, 0.12);
+    }
+
+    .meter-card {
+      padding: 14px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .meter-card + .meter-card {
+      margin-top: 10px;
+    }
+
+    .meter-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .meter-track {
+      height: 10px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .meter-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--danger), var(--gold) 55%, var(--green));
+    }
+
+    .process-card {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 12px;
+      padding: 14px;
+      align-items: start;
+    }
+
+    .process-index {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(197, 162, 93, 0.98), rgba(232, 203, 142, 0.92));
+      color: #171209;
+      font-size: 17px;
+      font-weight: 900;
+      box-shadow: 0 12px 24px rgba(197, 162, 93, 0.14);
+    }
+
+    .process-copy strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+
+    .process-copy p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.62;
+      color: var(--text-muted);
+    }
+
+    .assurance-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .assurance-card {
+      background: rgba(197, 162, 93, 0.08);
+      border-color: rgba(197, 162, 93, 0.18);
+    }
+
+    .assurance-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.62;
+      color: var(--text);
+    }
+
+    .result-score {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 14px;
+      align-items: center;
+      margin-top: 22px;
+      padding: 16px;
+      border-radius: 26px;
+      border: 1px solid rgba(197, 162, 93, 0.22);
+      background:
+        radial-gradient(circle at top right, rgba(197, 162, 93, 0.18), transparent 42%),
+        linear-gradient(180deg, rgba(197, 162, 93, 0.1), rgba(255, 255, 255, 0.02));
+    }
+
+    .score-ring {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle, rgba(10, 15, 24, 1) 56%, transparent 57%),
+        conic-gradient(var(--gold-strong) calc(var(--score) * 1%), rgba(255, 255, 255, 0.08) 0);
+      box-shadow: inset 0 0 0 1px rgba(197, 162, 93, 0.18);
+    }
+
+    .score-ring span {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .score-copy strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 18px;
+    }
+
+    .score-copy p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.62;
+      color: var(--text-muted);
+    }
+
+    .summary-grid {
+      margin-top: 16px;
+    }
+
+    .summary-card h3 {
+      margin: 0 0 8px;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--gold-strong);
+    }
+
+    .summary-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .result-note {
+      margin-top: 12px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-faint);
+      text-align: center;
+    }
+
+    .quiz-footer {
+      margin-top: 22px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-faint);
+    }
+
+    @media (min-width: 720px) {
+      :root {
+        --header-h: 108px;
+      }
+
+      .header-top {
+        grid-template-columns: auto 1fr;
+        align-items: start;
+      }
+
+      .brand-row {
+        justify-content: flex-start;
+      }
+
+      .header-wa {
+        justify-self: end;
+      }
+
+      .intent-grid,
+      .summary-grid,
+      .footer-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .assurance-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .option-grid.option-grid-split {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 980px) {
+      :root {
+        --header-h: 92px;
+      }
+
+      .quiz-header-inner {
+        grid-template-columns: auto minmax(320px, 1fr) auto;
+        align-items: center;
+      }
+
+      .header-top {
+        display: contents;
+      }
+
+      .header-status {
+        padding: 12px 14px;
+      }
+
+      .progress-chips {
+        grid-template-columns: repeat(3, minmax(88px, 1fr));
+      }
+
+      .panel-shell {
+        grid-template-columns: minmax(0, 1fr) minmax(360px, 428px);
+        gap: 18px;
+      }
+
+      .panel-shell[data-layout="visual-left"] .panel-copy {
+        order: 2;
+      }
+
+      .panel-shell[data-layout="visual-left"] .panel-side {
+        order: 1;
+      }
+
+      .intro-shell .panel-side {
+        order: 2;
+      }
+
+      .panel-copy {
+        padding: 28px 26px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para o quiz</a>
+
+  <header class="quiz-header">
+    <div class="quiz-header-inner">
+      <div class="header-top">
+        <div class="brand-row">
+          <div class="brand-lockup">
+            <div class="brand">Nuance <span>Studio</span></div>
+            <div class="brand-note">Diagnóstico guiado de imagem profissional</div>
+          </div>
+        </div>
+
+        <div class="header-status" aria-live="polite">
+          <div class="header-status-top">
+            <span id="progressLabel">Início do diagnóstico</span>
+            <span id="progressCount">0/8</span>
+          </div>
+          <div class="header-status-bottom">
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-chips" aria-hidden="true">
+              <div class="progress-chip">
+                <strong>2 min</strong>
+                <span>para concluir</span>
+              </div>
+              <div class="progress-chip">
+                <strong>8 etapas</strong>
+                <span>microcompromissos</span>
+              </div>
+              <div class="progress-chip">
+                <strong>24h</strong>
+                <span>prévia</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a
+          class="header-wa"
+          href="https://wa.me/5511936229510?text=Ola%2C+quero+saber+mais+sobre+o+ensaio+profissional"
+          target="_blank"
+          rel="noreferrer"
+          data-wa-source="quiz-header"
+          aria-label="Falar no WhatsApp"
+        >
+          Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="quiz-main" id="main">
+    <section class="quiz-panel is-active" data-panel="intro" data-progress="0" data-label="Início do diagnóstico">
+      <div class="panel-shell intro-shell">
+        <div class="panel-copy">
+          <div class="eyebrow-row">
+            <p class="eyebrow">Leitura rápida, decisão melhor</p>
+            <span class="stage-pill">sem formulário longo</span>
+          </div>
+
+          <div class="panel-intro">
+            <h1 class="quiz-title">
+              Descubra se sua foto sustenta a <span class="gold-text">confiança</span> que o seu trabalho já exige.
+            </h1>
+            <p class="lead">
+              Este quiz foi pensado para elevar sua consciência em poucos minutos. Ele mostra onde a sua imagem pesa, o que está travando sua decisão e qual é o próximo passo mais inteligente para corrigir isso sem ensaio presencial.
+            </p>
+          </div>
+
+          <div class="intent-bar">
+            <div class="intent-grid" aria-label="Sinais rápidos do quiz">
+              <div class="intent-card">
+                <strong>Leitura objetiva</strong>
+                <span>Você entende o que sua imagem transmite hoje sem autoengano.</span>
+              </div>
+              <div class="intent-card">
+                <strong>Microcompromissos</strong>
+                <span>Uma decisão por tela, sem fadiga e sem excesso de informação.</span>
+              </div>
+              <div class="intent-card">
+                <strong>Resultado útil</strong>
+                <span>O final do quiz organiza dor, bloqueio e próximo passo.</span>
+              </div>
+              <div class="intent-card">
+                <strong>Saída prática</strong>
+                <span>O WhatsApp abre já com o resumo das respostas.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-actions">
+            <button class="primary-button" type="button" data-go="state">Começar diagnóstico</button>
+          </div>
+        </div>
+
+        <aside class="panel-side">
+          <div class="media-card">
+            <img
+              src="../fotos/hero-principal.jpg"
+              alt="Retrato profissional criado pelo Nuance Studio"
+              width="896"
+              height="1200"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <div class="media-caption">
+              <div class="caption-card">
+                <strong>O ponto não é “ter uma foto bonita”.</strong>
+                <p>É garantir que sua imagem transmita o mesmo nível de segurança, cuidado e autoridade que o seu trabalho já entrega.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-stack">
+            <div class="stats-grid">
+              <div class="stat-card">
+                <strong>1 dor</strong>
+                <span>para identificar com clareza</span>
+              </div>
+              <div class="stat-card">
+                <strong>8 etapas</strong>
+                <span>curtas e progressivas</span>
+              </div>
+              <div class="stat-card">
+                <strong>24h</strong>
+                <span>para ver a prévia</span>
+              </div>
+            </div>
+
+            <div class="insight-card">
+              <strong>O que este quiz mede</strong>
+              <ul class="insight-list">
+                <li>Primeira impressão, risco percebido e onde a sua imagem pesa mais.</li>
+                <li>Nível de prontidão para avançar sem comprar no escuro.</li>
+                <li>Formato de oferta que mais reduz sua resistência hoje.</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quiz-panel" data-panel="state" data-progress="1" data-label="Etapa 1 · Leitura atual">
+      <div class="panel-shell">
+        <div class="panel-copy">
+          <div class="eyebrow-row">
+            <p class="eyebrow">Etapa 1</p>
+            <span class="stage-pill">escolha 1</span>
+          </div>
+
+          <h2 class="step-title" tabindex="-1">Quando alguém vê sua foto hoje, qual leitura vem primeiro?</h2>
+          <p class="step-subtitle">
+            Não pense no que você gostaria que transmitisse. Pense no que ela comunica em segundos para alguém que ainda não te conhece.
+          </p>
+
+          <div class="option-grid" data-step-key="state" data-type="single">
+            <button class="option-card" type="button" data-value="improve" data-label="Já ajuda, mas ainda pode melhorar">
+              <strong>Já ajuda, mas ainda pode melhorar</strong>
+              <span>Existe algum profissionalismo, mas a imagem ainda não acompanha todo o peso do seu posicionamento.</span>
+              <em>há espaço claro para subir a percepção</em>
+            </button>
+            <button class="option-card" type="button" data-value="neutral" data-label="Ela é neutra e pouco memorável">
+              <strong>Ela é neutra e pouco memorável</strong>
+              <span>Não chega a sabotar abertamente, mas também não aumenta percepção de autoridade.</span>
+              <em>não machuca, mas também não ajuda</em>
+            </button>
+            <button class="option-card" type="button" data-value="amateur" data-label="Ela passa improviso ou amadorismo">
+              <strong>Ela passa improviso ou amadorismo</strong>
+              <span>Parece foto casual, antiga, desalinhada ou distante do padrão que o seu trabalho pede.</span>
+              <em>a imagem hoje está abaixo do nível exigido</em>
+            </button>
+            <button class="option-card" type="button" data-value="avoid" data-label="Eu evito usar porque não me representa">
+              <strong>Eu evito usar porque não me representa</strong>
+              <span>Você sente que a foto atual não te ajuda e prefere quase não se expor com ela.</span>
+              <em>há desconforto real com a imagem atual</em>
+            </button>
+          </div>
+
+          <p class="helper-note">Escolha uma opção. O quiz avança automaticamente.</p>
+        </div>
+
+        <aside class="panel-side">
+          <div class="pair-grid">
+            <figure class="pair-card">
+              <img src="../fotos/antes-1.jpg" alt="Foto original enviada pelo cliente" width="896" height="1200" loading="lazy" decoding="async" />
+              <span class="frame-label before">Antes</span>
+            </figure>
+            <figure class="pair-card">
+              <img src="../fotos/depois-1.jpg" alt="Resultado profissional criado pelo Nuance Studio" width="896" height="1200" loading="lazy" decoding="async" />
+              <span class="frame-label after">Depois</span>
+            </figure>
+          </div>
+
+          <div class="side-stack">
+            <div class="insight-card">
+              <strong>O rosto é o mesmo. A leitura muda completamente.</strong>
+              <ul class="insight-list">
+                <li>Mais presença para LinkedIn, site e WhatsApp Business.</li>
+                <li>Mais coerência entre a imagem e o nível do seu trabalho.</li>
+                <li>Menos improviso visual, mais retrato pronto para uso profissional.</li>
+              </ul>
+            </div>
+
+            <div class="meter-card">
+              <div class="meter-top">
+                <span>Autoridade percebida</span>
+                <span>↑</span>
+              </div>
+              <div class="meter-track"><div class="meter-fill" style="width:82%;"></div></div>
+            </div>
+            <div class="meter-card">
+              <div class="meter-top">
+                <span>Risco de parecer improvisado</span>
+                <span>↓</span>
+              </div>
+              <div class="meter-track"><div class="meter-fill" style="width:38%;"></div></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quiz-panel" data-panel="channels" data-progress="2" data-label="Etapa 2 · Onde isso pesa">
+      <div class="panel-shell" data-layout="visual-left">
+        <div class="panel-copy">
+          <div class="eyebrow-row">
+            <p class="eyebrow">Etapa 2</p>
+            <span class="stage-pill">selecione todos</span>
+          </div>
+
+          <h2 class="step-title" tabindex="-1">Onde sua imagem pesa mais hoje?</h2>
+          <p class="step-subtitle">
+            Escolha todos os lugares em que a sua foto influencia confiança, percepção profissional ou decisão de contato.
+          </p>
+
+          <div class="option-grid option-grid-split" data-step-key="channels" data-type="multi">
+            <button class="option-card" type="button" data-value="linkedin" data-label="LinkedIn ou perfil profissional">
+              <strong>LinkedIn ou perfil profissional</strong>
+              <span>Quando alguém pesquisa seu nome e a primeira impressão vem da sua imagem.</span>
+            </button>
+            <button class="option-card" type="button" data-value="site" data-label="Site ou página do escritório">
+              <strong>Site ou página do escritório</strong>
+              <span>Quando sua foto precisa sustentar credibilidade institucional e presença profissional.</span>
+            </button>
+            <button class="option-card" type="button" data-value="whatsapp" data-label="WhatsApp Business">
+              <strong>WhatsApp Business</strong>
+              <span>Quando a conversa já começa com sua foto ao lado do nome.</span>
+            </button>
+            <button class="option-card" type="button" data-value="instagram" data-label="Instagram profissional">
+              <strong>Instagram profissional</strong>
+              <span>Quando a imagem precisa parecer atual, boa e coerente com o posicionamento.</span>
+            </button>
+            <button class="option-card" type="button" data-value="materials" data-label="Bio, OAB, propostas ou apresentações">
+              <strong>Bio, OAB, propostas ou apresentações</strong>
+              <span>Quando a foto entra em biografia, material institucional, palestra ou proposta comercial.</span>
+            </button>
+          </div>
+
+          <div class="footer-row">
+            <button class="ghost-button" type="button" data-back>Voltar</button>
+            <button class="primary-button" type="button" data-next disabled>Continuar</button>
+          </div>
+        </div>
+
+        <aside class="panel-side">
+          <div class="gallery-grid">
+            <figure class="gallery-card"><img src="../fotos/galeria-1.jpg" alt="Resultado do ensaio profissional 1" width="896" height="1200" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery-card"><img src="../fotos/galeria-2.jpg" alt="Resultado do ensaio profissional 2" width="896" height="1200" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery-card"><img src="../fotos/galeria-4.jpg" alt="Resultado do ensaio profissional 3" width="896" height="1200" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery-card"><img src="../fotos/galeria-6.jpg" alt="Resultado do ensaio profissional 4" width="896" height="1200" loading="lazy" decoding="async" /></figure>
+          </div>
+
+          <div class="side-stack">
+            <div class="insight-card">
+              <strong>Quanto mais pontos de contato sua imagem ocupa, maior o custo de manter uma foto fraca.</strong>
+              <ul class="insight-list">
+                <li>Uma única foto ruim costuma contaminar vários canais ao mesmo tempo.</li>
+                <li>Quando a imagem oficial fica abaixo do seu nível, a primeira impressão já começa em desvantagem.</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quiz-panel" data-panel="pain" data-progress="3" data-label="Etapa 3 · Dor principal">
+      <div class="panel-shell">
+        <div class="panel-copy">
+          <div class="eyebrow-row">
+            <p class="eyebrow">Etapa 3</p>
+            <span class="stage-pill">escolha 1</span>
+          </div>
+
+          <h2 class="step-title" tabindex="-1">Qual dor está pesando mais agora?</h2>
+          <p class="step-subtitle">
+            Normalmente existe um ponto central travando a decisão: qualidade, autoridade, desconforto com a própria imagem ou incoerência com o momento profissional atual.
+          </p>
+
+          <div class="option-grid" data-step-key="pain" data-type="single">
+            <button class="option-card" type="button" data-value="casual" data-label="Minha foto parece casual demais">
+              <strong>Minha foto parece casual demais</strong>
+              <span>Ela não conversa com a seriedade do meu trabalho e parece tirada sem intenção.</span>
+              <em>a imagem atual diminui sua percepção</em>
+            </button>
+            <button class="option-card" type="button" data-value="authority" data-label="Ela não passa autoridade">
+              <strong>Ela não passa autoridade</strong>
+              <span>Quando alguém vê a foto, não sente o mesmo peso que sente ao me conhecer profissionalmente.</span>
+              <em>há desalinhamento entre imagem e competência</em>
+            </button>
+            <button class="option-card" type="button" data-value="best" data-label="Ela não me mostra na minha melhor versão profissional">
+              <strong>Ela não me mostra na minha melhor versão profissional</strong>
+              <span>Mesmo sendo eu, a imagem não me representa com presença, enquadramento e acabamento à altura.</span>
+              <em>o problema é representação, não identidade</em>
+            </button>
+            <button class="option-card" type="button" data-value="everything" data-label="Uso a mesma foto em tudo e ela já não sustenta meu posicionamento">
+              <strong>Uso a mesma foto em tudo e ela já não sustenta meu posicionamento</strong>
+              <span>Ela virou a imagem oficial, mas hoje está abaixo do padrão que eu preciso sustentar.</span>
+              <em>o custo da repetição aumentou</em>
+            </button>
+          </div>
+
+          <p class="helper-note">Escolha a dor principal. O quiz avança automaticamente.</p>
+        </div>
+
+        <aside class="panel-side">
+          <div class="side-stack">
+            <div class="note-card">
+              <strong>Quando a foto fica abaixo do nível certo, ela vira uma fricção silenciosa.</strong>
+              <ul class="note-list">
+                <li>Você sabe que a imagem não ajuda, mas adia a resolução porque não viu um caminho simples.</li>
+                <li>A exposição profissional cresce, mas a foto continua presa em uma versão antiga ou improvisada.</li>
+                <li>Isso reduz coerência justamente onde a confiança deveria subir primeiro.</li>
+              </ul>
+            </div>
+
+            <div class="meter-card">
+              <div class="meter-top">
+                <span>Potencial profissional</span>
+                <span>alto</span>
+              </div>
+              <div class="meter-track"><div class="meter-fill" style="width:87%;"></div></div>
+            </div>
+            <div class="meter-card">
+              <div class="meter-top">
+                <span>Coerência da imagem atual</span>
+                <span>baixa</span>
+              </div>
+              <div class="meter-track"><div class="meter-fill" style="width:42%;"></div></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quiz-panel" data-panel="proof" data-progress="4" data-label="Etapa 4 · Prova real">
+      <div class="panel-shell" data-layout="visual-left">
+        <div class="panel-copy">
+          <div class="eyebrow-row">
+            <p class="eyebrow">Etapa 4</p>
+            <span class="stage-pill">virada de consciência</span>
+          </div>
+
+          <h2 class="step-title" tabindex="-1">O problema não é ter uma foto. É ter uma foto que não sustenta o seu nível.</h2>
+          <p class="step-subtitle">
+            Aqui entra a virada de consciência: o objetivo não é parecer “mais bonito”. É parecer mais confiável, mais bem posicionado e mais pronto para ser escolhido.
+          </p>
+
+          <div class="panel-actions">
+            <button class="primary-button" type="button" data-go="blocker">Faz sentido, continuar</button>
+            <button class="ghost-button" type="button" data-back>Voltar</button>
+          </div>
+        </div>
+
+        <aside class="panel-side">
+          <div class="pair-grid">
+            <figure class="pair-card">
+              <img src="../fotos/antes-3.jpg" alt="Segunda foto original enviada pelo cliente" width="896" height="1200" loading="lazy" decoding="async" />
+              <span class="frame-label before">Antes</span>
+            </figure>
+            <figure class="pair-card">
+              <img src="../fotos/depois-3.jpg" alt="Segundo resultado profissional criado pelo Nuance Studio" width="896" height="1200" loading="lazy" decoding="async" />
+              <span class="frame-label after">Depois</span>
+            </figure>
+          </div>
+
+          <div class="side-stack">
+            <div class="insight-card">
+              <strong>A mudança começa na percepção.</strong>
+              <ul class="insight-list">
+                <li>Menos cara de improviso ou selfie adaptada.</li>
+                <li>Mais leitura de retrato profissional pronto para uso real.</li>
+                <li>Mais aderência ao nível de confiança que você quer comunicar.</li>
+              </ul>
+            </div>
+
+            <div class="assurance-grid">
+              <div class="assurance-card"><p>Mesma pessoa. Outra leitura profissional.</p></div>
+              <div class="assurance-card"><p>Presença mais forte sem parecer artificial.</p></div>
+              <div class="assurance-card"><p>Material pronto para usar em pontos de contato reais.</p></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quiz-panel" data-panel="blocker" data-progress="5" data-label="Etapa 5 · O que trava">
+      <div class="panel-shell">
+        <div class="panel-copy">
+          <div class="eyebrow-row">
+            <p class="eyebrow">Etapa 5</p>
+            <span class="stage-pill">escolha 1</span>
+          </div>
+
+          <h2 class="step-title" tabindex="-1">O que mais tem te impedido de resolver isso agora?</h2>
+          <p class="step-subtitle">
+            Essa resposta mostra qual argumento realmente destrava a decisão: praticidade, custo, naturalidade ou segurança pessoal com o processo.
+          </p>
+
+          <div class="option-grid" data-step-key="blocker" data-type="single">
+            <button class="option-card" type="button" data-value="time" data-label="Não tenho tempo para ensaio presencial">
+              <strong>Falta de tempo para ensaio presencial</strong>
+              <span>Agendar, se deslocar, separar roupa e parar a rotina parece fricção demais para agora.</span>
+              <em>objeção de praticidade</em>
+            </button>
+            <button class="option-card" type="button" data-value="cost" data-label="Ensaio presencial costuma ser caro demais">
+              <strong>Custo alto de fotógrafo e produção</strong>
+              <span>O investimento parece pesado demais comparado ao que você gostaria de resolver neste momento.</span>
+              <em>objeção de investimento</em>
+            </button>
+            <button class="option-card" type="button" data-value="fake" data-label="Tenho receio de ficar artificial ou com cara de IA">
+              <strong>Receio de ficar artificial</strong>
+              <span>Você não quer uma imagem que entregue filtro, montagem ou um rosto que não parece você.</span>
+              <em>objeção de fidelidade</em>
+            </button>
+            <button class="option-card" type="button" data-value="photogenic" data-label="Não me sinto fotogênico ou seguro na câmera">
+              <strong>Não me sinto fotogênico</strong>
+              <span>Posar, sorrir e sair bem em foto sempre foi um ponto de desconforto pessoal.</span>
+              <em>objeção de exposição</em>
+            </button>
+          </div>
+
+          <p class="helper-note">Escolha o principal bloqueio. O quiz avança automaticamente.</p>
+        </div>
+
+        <aside class="panel-side">
+          <div class="side-stack">
+            <div class="note-card">
+              <strong>Quase sempre o atraso não é falta de prioridade. É falta de um caminho fácil de decidir.</strong>
+              <ul class="note-list">
+                <li>Sem deslocamento ou agenda de estúdio.</li>
+                <li>Sem pagar antes de saber se a direção faz sentido.</li>
+                <li>Sem depender de “ser fotogênico” para a foto funcionar bem.</li>
+              </ul>
+            </div>
+
+            <div class="assurance-grid">
+              <div class="assurance-card"><p>Você manda a foto direto no WhatsApp.</p></div>
+              <div class="assurance-card"><p>Recebe a prévia antes de qualquer pagamento.</p></div>
+              <div class="assurance-card"><p>Decide com muito mais contexto do que em um orçamento comum.</p></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quiz-panel" data-panel="fit" data-progress="6" data-label="Etapa 6 · Ajuste de proposta">
+      <div class="panel-shell" data-layout="visual-left">
+        <div class="panel-copy">
+          <div class="eyebrow-row">
+            <p class="eyebrow">Etapa 6</p>
+            <span class="stage-pill">microcompromisso</span>
+          </div>
+
+          <h2 class="step-title" tabindex="-1">Se desse para resolver tudo pelo WhatsApp e com prévia antes de pagar, qual seria sua reação?</h2>
+          <p class="step-subtitle">
+            Este é o microcompromisso central. Não estamos falando de comprar agora. Estamos medindo se o formato certo reduz a sua resistência.
+          </p>
+
+          <div class="option-grid" data-step-key="fit" data-type="single">
+            <button class="option-card" type="button" data-value="ready" data-label="Eu quero ver minha prévia agora">
+              <strong>Eu quero ver minha prévia agora</strong>
+              <span>Se eu puder ver antes de pagar, isso já faz sentido para mim.</span>
+              <em>prontidão alta</em>
+            </button>
+            <button class="option-card" type="button" data-value="natural" data-label="Eu consideraria se o resultado parecer realmente natural">
+              <strong>Eu consideraria, se parecer realmente natural</strong>
+              <span>Meu critério principal é fidelidade. Se parecer profissional e crível, eu sigo.</span>
+              <em>foco em naturalidade</em>
+            </button>
+            <button class="option-card" type="button" data-value="proof" data-label="Quero entender melhor e ver mais exemplos">
+              <strong>Quero entender melhor e ver mais exemplos</strong>
+              <span>Preciso de mais prova para reduzir resistência e decidir com segurança.</span>
+              <em>falta prova antes da ação</em>
+            </button>
+          </div>
+
+          <p class="helper-note">Escolha uma opção. O quiz avança automaticamente.</p>
+        </div>
+
+        <aside class="panel-side">
+          <div class="side-stack">
+            <div class="insight-card">
+              <strong>O mecanismo inteiro foi desenhado para reduzir risco percebido.</strong>
+              <ul class="insight-list">
+                <li>Você manda a foto e recebe uma prévia em até 24 horas.</li>
+                <li>Você avalia com calma antes de liberar qualquer pagamento.</li>
+                <li>Se não fizer sentido para você, não paga nada.</li>
+              </ul>
+            </div>
+
+            <div class="assurance-grid">
+              <div class="assurance-card"><p>Sem ensaio presencial.</p></div>
+              <div class="assurance-card"><p>Sem compra no escuro.</p></div>
+              <div class="assurance-card"><p>Sem ficar preso a uma única opção.</p></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quiz-panel" data-panel="how" data-progress="7" data-label="Etapa 7 · Como funciona">
+      <div class="panel-shell">
+        <div class="panel-copy">
+          <div class="eyebrow-row">
+            <p class="eyebrow">Etapa 7</p>
+            <span class="stage-pill">fluxo simples</span>
+          </div>
+
+          <h2 class="step-title" tabindex="-1">O processo foi feito para facilitar a decisão, não para criar atrito.</h2>
+          <p class="step-subtitle">
+            Tudo acontece pelo WhatsApp. Sem formulário longo, sem estúdio e sem pagar para só depois descobrir se gostou.
+          </p>
+
+          <div class="panel-actions">
+            <button class="primary-button" type="button" data-go="offer">Entendi como funciona</button>
+            <button class="ghost-button" type="button" data-back>Voltar</button>
+          </div>
+        </div>
+
+        <aside class="panel-side">
+          <div class="process-list">
+            <div class="process-card">
+              <div class="process-index">1</div>
+              <div class="process-copy">
+                <strong>Você envia 1 ou 2 fotos suas</strong>
+                <p>Uma selfie boa já basta para começar. Sem produção complexa e sem sair da rotina.</p>
+              </div>
+            </div>
+            <div class="process-card">
+              <div class="process-index">2</div>
+              <div class="process-copy">
+                <strong>Recebe a prévia em até 24h</strong>
+                <p>Nós montamos a direção do ensaio e te mostramos a prévia para avaliação antes de cobrar.</p>
+              </div>
+            </div>
+            <div class="process-card">
+              <div class="process-index">3</div>
+              <div class="process-copy">
+                <strong>Aprova ou ajusta</strong>
+                <p>Você valida o caminho, pede ajuste se necessário e decide com muito mais contexto.</p>
+              </div>
+            </div>
+            <div class="process-card">
+              <div class="process-index">4</div>
+              <div class="process-copy">
+                <strong>Libera por foto ou leva o ensaio completo</strong>
+                <p>Você escolhe o formato mais coerente para o seu momento, sem pressão e sem pagar no escuro.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="assurance-grid">
+            <div class="assurance-card"><p>Você vê primeiro.</p></div>
+            <div class="assurance-card"><p>Decide com calma.</p></div>
+            <div class="assurance-card"><p>Só depois escolhe o que quer liberar.</p></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quiz-panel" data-panel="offer" data-progress="8" data-label="Etapa 8 · Próximo formato">
+      <div class="panel-shell" data-layout="visual-left">
+        <div class="panel-copy">
+          <div class="eyebrow-row">
+            <p class="eyebrow">Etapa 8</p>
+            <span class="stage-pill">preferência de compra</span>
+          </div>
+
+          <h2 class="step-title" tabindex="-1">Se a prévia vier no nível certo, o que faz mais sentido para você?</h2>
+          <p class="step-subtitle">
+            Ainda não é compra. É só uma definição de preferência para o próximo passo ficar mais alinhado ao seu momento.
+          </p>
+
+          <div class="option-grid" data-step-key="offer" data-type="single">
+            <button class="option-card" type="button" data-value="single" data-label="Quero escolher só algumas fotos primeiro">
+              <strong>Escolher só algumas fotos primeiro</strong>
+              <span>Quero uma entrada mais leve e pagar apenas pelas imagens que eu realmente quiser liberar.</span>
+              <em>entrada mais simples</em>
+            </button>
+            <button class="option-card" type="button" data-value="complete" data-label="Levar o ensaio completo se a prévia estiver boa">
+              <strong>Levar o ensaio completo se a prévia estiver boa</strong>
+              <span>Se o nível estiver certo, prefiro já receber tudo de uma vez e ampliar meu uso em vários canais.</span>
+              <em>mais valor por variedade</em>
+            </button>
+            <button class="option-card" type="button" data-value="examples" data-label="Quero ver mais exemplos e conversar antes de decidir">
+              <strong>Ver mais exemplos e conversar antes de decidir</strong>
+              <span>Ainda estou aquecendo a decisão e quero uma conversa guiada antes de seguir.</span>
+              <em>a conversa vem antes da compra</em>
+            </button>
+          </div>
+
+          <p class="helper-note">Escolha uma opção. O resultado final será personalizado com base nisso.</p>
+        </div>
+
+        <aside class="panel-side">
+          <div class="gallery-grid">
+            <figure class="gallery-card"><img src="../fotos/galeria-1.jpg" alt="Resultado do ensaio profissional 1" width="896" height="1200" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery-card"><img src="../fotos/galeria-2.jpg" alt="Resultado do ensaio profissional 2" width="896" height="1200" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery-card"><img src="../fotos/galeria-4.jpg" alt="Resultado do ensaio profissional 3" width="896" height="1200" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery-card"><img src="../fotos/galeria-6.jpg" alt="Resultado do ensaio profissional 4" width="896" height="1200" loading="lazy" decoding="async" /></figure>
+          </div>
+
+          <div class="side-stack">
+            <div class="insight-card">
+              <strong>Quando o resultado encaixa, normalmente uma única foto não resolve tudo.</strong>
+              <ul class="insight-list">
+                <li>LinkedIn, bio, site, WhatsApp Business e apresentações pedem variações diferentes.</li>
+                <li>Ter mais de uma imagem útil reduz a dependência de uma única foto oficial.</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quiz-panel" data-panel="result" data-progress="8" data-label="Seu diagnóstico">
+      <div class="panel-shell">
+        <div class="panel-copy">
+          <div class="eyebrow-row">
+            <p class="eyebrow">Seu diagnóstico</p>
+            <span class="stage-pill">resumo personalizado</span>
+          </div>
+
+          <h2 class="step-title" id="resultTitle" tabindex="-1">Seu diagnóstico está pronto.</h2>
+          <p class="step-subtitle" id="resultSubtitle">
+            Com base nas suas respostas, este é o próximo passo mais coerente para elevar sua imagem profissional sem aumentar risco.
+          </p>
+
+          <div class="result-score">
+            <div class="score-ring" id="scoreRing" style="--score: 74;">
+              <span id="scoreValue">74</span>
+            </div>
+            <div class="score-copy">
+              <strong id="scoreHeadline">Nível de prontidão alto.</strong>
+              <p id="scoreText">Você já enxerga a dor e está perto da decisão. O que falta agora é ver a prévia certa.</p>
+            </div>
+          </div>
+
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>Onde isso pesa</h3>
+              <p id="summaryChannels"></p>
+            </article>
+            <article class="summary-card">
+              <h3>O que está travando</h3>
+              <p id="summaryBlocker"></p>
+            </article>
+            <article class="summary-card">
+              <h3>Recomendação</h3>
+              <p id="summaryOffer"></p>
+            </article>
+            <article class="summary-card">
+              <h3>Próximo passo</h3>
+              <p id="summaryNext"></p>
+            </article>
+          </div>
+
+          <div class="panel-actions">
+            <a
+              class="primary-button"
+              id="resultCta"
+              href="https://wa.me/5511936229510"
+              target="_blank"
+              rel="noreferrer"
+              data-wa-source="quiz-result"
+            >
+              Quero meu diagnóstico no WhatsApp
+            </a>
+            <button class="secondary-button" type="button" data-restart>Refazer quiz</button>
+          </div>
+
+          <p class="result-note">
+            O WhatsApp já vai abrir com um resumo das suas respostas para acelerar o atendimento.
+          </p>
+        </div>
+
+        <aside class="panel-side">
+          <div class="pair-grid">
+            <figure class="pair-card">
+              <img src="../fotos/antes-1.jpg" alt="Foto original enviada pelo cliente" width="896" height="1200" loading="lazy" decoding="async" />
+              <span class="frame-label before">Antes</span>
+            </figure>
+            <figure class="pair-card">
+              <img src="../fotos/depois-1.jpg" alt="Resultado profissional criado pelo Nuance Studio" width="896" height="1200" loading="lazy" decoding="async" />
+              <span class="frame-label after">Depois</span>
+            </figure>
+          </div>
+
+          <div class="side-stack">
+            <div class="note-card">
+              <strong>Se a imagem atual já está abaixo do nível certo, continuar adiando também é uma decisão.</strong>
+              <ul class="note-list">
+                <li>Você já sabe onde sua foto pesa.</li>
+                <li>Já viu o mecanismo que reduz risco.</li>
+                <li>Agora faz sentido avançar com contexto e critério.</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="quiz-footer">
+      Quiz de alta intenção pensado para elevar consciência, reduzir objeção e preparar uma conversa de compra mais qualificada.
+    </footer>
+  </main>
+
+  <script>
+    const panels = Array.from(document.querySelectorAll('.quiz-panel'));
+    const progressFill = document.getElementById('progressFill');
+    const progressLabel = document.getElementById('progressLabel');
+    const progressCount = document.getElementById('progressCount');
+    const totalStages = 8;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const answers = {
+      state: '',
+      channels: [],
+      pain: '',
+      blocker: '',
+      fit: '',
+      offer: ''
+    };
+
+    const labels = {
+      blocker: {
+        time: 'Seu principal bloqueio hoje é falta de tempo para um ensaio presencial.',
+        cost: 'Seu principal bloqueio hoje é custo alto de fotógrafo e produção.',
+        fake: 'Seu principal bloqueio hoje é receio de ficar artificial ou com cara de IA.',
+        photogenic: 'Seu principal bloqueio hoje é não se sentir fotogênico ou confortável diante da câmera.'
+      },
+      channels: {
+        linkedin: 'LinkedIn ou perfil profissional',
+        site: 'site ou página do escritório',
+        whatsapp: 'WhatsApp Business',
+        instagram: 'Instagram profissional',
+        materials: 'bio, OAB, propostas ou apresentações'
+      }
+    };
+
+    const panelOrder = [
+      'intro',
+      'state',
+      'channels',
+      'pain',
+      'proof',
+      'blocker',
+      'fit',
+      'how',
+      'offer',
+      'result'
+    ];
+
+    let currentPanel = 'intro';
+    let suppressHistory = false;
+
+    function trackCustom(name, props = {}) {
+      if (typeof fbq !== 'undefined') {
+        fbq('trackCustom', name, props);
+      }
+    }
+
+    function trackLead(source) {
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead', {
+          content_name: 'quiz_whatsapp_click',
+          content_category: 'advogados',
+          source
+        });
+      }
+    }
+
+    function getPanel(panelName) {
+      return panels.find((panel) => panel.dataset.panel === panelName);
+    }
+
+    function nextPanelFrom(panelName) {
+      const idx = panelOrder.indexOf(panelName);
+      return panelOrder[Math.min(idx + 1, panelOrder.length - 1)];
+    }
+
+    function prevPanelFrom(panelName) {
+      const idx = panelOrder.indexOf(panelName);
+      return panelOrder[Math.max(idx - 1, 0)];
+    }
+
+    function focusHeading(panel) {
+      const heading = panel.querySelector('.step-title, .quiz-title');
+      if (heading) {
+        heading.focus({ preventScroll: true });
+      }
+    }
+
+    function updateUrl(panelName, replace = false) {
+      const hash = panelName === 'intro' ? '' : `#${panelName}`;
+      const url = `${window.location.pathname}${hash}`;
+      const method = replace ? 'replaceState' : 'pushState';
+      history[method]({ panel: panelName }, '', url);
+    }
+
+    function showPanel(panelName, options = {}) {
+      const { pushHistory = true, replaceHistory = false, trackStep = true } = options;
+      const targetPanel = getPanel(panelName);
+      if (!targetPanel) return;
+
+      currentPanel = panelName;
+
+      panels.forEach((panel) => {
+        panel.classList.toggle('is-active', panel.dataset.panel === panelName);
+      });
+
+      const progress = Number(targetPanel.dataset.progress || 0);
+      progressFill.style.width = `${(progress / totalStages) * 100}%`;
+      progressLabel.textContent = targetPanel.dataset.label || 'Diagnóstico';
+      progressCount.textContent = progress === 0 ? `0/${totalStages}` : `${progress}/${totalStages}`;
+
+      if (!suppressHistory && pushHistory) {
+        updateUrl(panelName, replaceHistory);
+      }
+
+      if (panelName === 'result') {
+        renderResult();
+        if (trackStep) {
+          trackCustom('QuizCompleted', {
+            channels_count: answers.channels.length,
+            offer: answers.offer || 'unknown'
+          });
+        }
+      } else if (progress > 0 && trackStep) {
+        trackCustom('QuizAdvanced', {
+          step: progress,
+          panel: panelName
+        });
+      }
+
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      requestAnimationFrame(() => focusHeading(targetPanel));
+    }
+
+    function listChannels() {
+      if (!answers.channels.length) {
+        return 'mais de um ponto de contato profissional ao mesmo tempo';
+      }
+
+      const items = answers.channels.map((value) => labels.channels[value]);
+      if (items.length === 1) return items[0];
+      if (items.length === 2) return `${items[0]} e ${items[1]}`;
+      return `${items.slice(0, -1).join(', ')} e ${items[items.length - 1]}`;
+    }
+
+    function updateMultiState(step) {
+      const nextButton = step.closest('.panel-copy').querySelector('[data-next]');
+      if (!nextButton) return;
+      nextButton.disabled = answers[step.dataset.stepKey].length === 0;
+    }
+
+    function setupOptionStep(step) {
+      const key = step.dataset.stepKey;
+      const type = step.dataset.type;
+      const options = Array.from(step.querySelectorAll('.option-card'));
+
+      if (type === 'multi') {
+        options.forEach((option) => option.dataset.multi = 'true');
+      }
+
+      options.forEach((option) => {
+        option.setAttribute('aria-pressed', 'false');
+        option.addEventListener('click', () => {
+          const value = option.dataset.value;
+
+          if (type === 'single') {
+            answers[key] = value;
+            options.forEach((item) => {
+              const selected = item === option;
+              item.classList.toggle('is-selected', selected);
+              item.setAttribute('aria-pressed', String(selected));
+            });
+
+            setTimeout(() => {
+              showPanel(nextPanelFrom(currentPanel));
+            }, prefersReducedMotion ? 0 : 160);
+            return;
+          }
+
+          const selected = new Set(answers[key]);
+          if (selected.has(value)) {
+            selected.delete(value);
+          } else {
+            selected.add(value);
+          }
+
+          answers[key] = Array.from(selected);
+          options.forEach((item) => {
+            const isSelected = answers[key].includes(item.dataset.value);
+            item.classList.toggle('is-selected', isSelected);
+            item.setAttribute('aria-pressed', String(isSelected));
+          });
+
+          updateMultiState(step);
+        });
+      });
+    }
+
+    function getScore() {
+      let score = 52;
+
+      if (answers.state === 'amateur' || answers.state === 'avoid') score += 12;
+      if (answers.state === 'improve') score += 6;
+      if (answers.state === 'neutral') score += 8;
+
+      score += Math.min(answers.channels.length * 4, 16);
+
+      if (answers.fit === 'ready') score += 12;
+      if (answers.fit === 'natural') score += 8;
+      if (answers.fit === 'proof') score += 4;
+
+      if (answers.offer === 'complete') score += 10;
+      if (answers.offer === 'single') score += 7;
+      if (answers.offer === 'examples') score += 3;
+
+      return Math.max(58, Math.min(96, score));
+    }
+
+    function renderResult() {
+      const score = getScore();
+      const scoreRing = document.getElementById('scoreRing');
+      const scoreValue = document.getElementById('scoreValue');
+      const scoreHeadline = document.getElementById('scoreHeadline');
+      const scoreText = document.getElementById('scoreText');
+      const resultTitle = document.getElementById('resultTitle');
+      const resultSubtitle = document.getElementById('resultSubtitle');
+      const summaryChannels = document.getElementById('summaryChannels');
+      const summaryBlocker = document.getElementById('summaryBlocker');
+      const summaryOffer = document.getElementById('summaryOffer');
+      const summaryNext = document.getElementById('summaryNext');
+      const resultCta = document.getElementById('resultCta');
+
+      scoreRing.style.setProperty('--score', score);
+      scoreValue.textContent = String(score);
+
+      if (score >= 82) {
+        scoreHeadline.textContent = 'Nível de prontidão alto.';
+        scoreText.textContent = 'Você já entendeu a dor, viu o mecanismo e está perto da decisão. O próximo passo natural agora é ver sua prévia.';
+      } else if (score >= 70) {
+        scoreHeadline.textContent = 'Nível de prontidão bom.';
+        scoreText.textContent = 'Você já enxerga a necessidade, mas ainda quer diminuir risco e ganhar mais prova antes de fechar.';
+      } else {
+        scoreHeadline.textContent = 'Nível de consciência em aquecimento.';
+        scoreText.textContent = 'Você já percebe o problema, mas ainda precisa de mais segurança para avançar sem hesitação.';
+      }
+
+      if (answers.state === 'amateur' || answers.state === 'avoid') {
+        resultTitle.textContent = 'Sua imagem hoje provavelmente está abaixo do nível que o seu trabalho já sustenta.';
+      } else if (answers.state === 'neutral') {
+        resultTitle.textContent = 'Sua foto atual não está trabalhando a seu favor como poderia.';
+      } else {
+        resultTitle.textContent = 'Sua imagem já ajuda, mas ainda deixa autoridade na mesa.';
+      }
+
+      resultSubtitle.textContent =
+        `Pelo que você respondeu, sua foto pesa principalmente em ${listChannels()} e o principal destrave agora é reduzir risco sem perder naturalidade.`;
+
+      summaryChannels.innerHTML =
+        `<strong>Hoje sua imagem pesa em:</strong> ${listChannels()}. Quanto mais esses pontos contam para contato e percepção, menos sentido faz manter uma foto fraca como imagem oficial.`;
+
+      summaryBlocker.innerHTML =
+        `<strong>${labels.blocker[answers.blocker] || 'Seu bloqueio principal hoje está ligado a risco e praticidade.'}</strong> O formato foi desenhado justamente para reduzir essa fricção.`;
+
+      let offerText = 'O melhor próximo passo agora é abrir o WhatsApp e pedir sua prévia sem pagar no escuro.';
+      if (answers.offer === 'single') {
+        offerText = 'A entrada mais coerente para você é começar leve: ver a prévia e escolher só algumas fotos, se fizer sentido.';
+      } else if (answers.offer === 'complete') {
+        offerText = 'Se a prévia vier no nível certo, seu perfil tende a aproveitar melhor o ensaio completo, porque amplia uso e reduz dependência de uma única imagem.';
+      } else if (answers.offer === 'examples') {
+        offerText = 'Você ainda está reduzindo resistência. O melhor caminho é abrir a conversa, ver exemplos e alinhar expectativa antes de decidir.';
+      }
+      summaryOffer.innerHTML = `<strong>Recomendação:</strong> ${offerText}`;
+
+      let nextText = 'Abrir o WhatsApp, mandar sua foto e receber a prévia em até 24 horas.';
+      if (answers.fit === 'proof') {
+        nextText = 'Abrir o WhatsApp, pedir mais exemplos e alinhar expectativa antes de enviar sua foto.';
+      } else if (answers.fit === 'natural') {
+        nextText = 'Abrir o WhatsApp e pedir uma prévia com foco total em naturalidade, fidelidade e leitura profissional.';
+      }
+      summaryNext.innerHTML = `<strong>Próximo passo:</strong> ${nextText}`;
+
+      const waMessage = [
+        'Olá, acabei de finalizar o diagnóstico de imagem da Nuance Studio.',
+        '',
+        `Diagnóstico: ${resultTitle.textContent}`,
+        `Onde pesa mais: ${listChannels()}`,
+        `Dor principal: ${answers.pain || 'não informado'}`,
+        `Bloqueio principal: ${answers.blocker || 'não informado'}`,
+        `Reação ao formato: ${answers.fit || 'não informado'}`,
+        `Preferência de formato: ${answers.offer || 'não informado'}`,
+        '',
+        'Quero seguir para o próximo passo.'
+      ].join('\n');
+
+      resultCta.href = `https://wa.me/5511936229510?text=${encodeURIComponent(waMessage)}`;
+      resultCta.textContent =
+        answers.fit === 'proof'
+          ? 'Quero ver exemplos e entender melhor'
+          : 'Quero meu diagnóstico no WhatsApp';
+    }
+
+    function resetQuiz() {
+      answers.state = '';
+      answers.channels = [];
+      answers.pain = '';
+      answers.blocker = '';
+      answers.fit = '';
+      answers.offer = '';
+
+      document.querySelectorAll('.option-card').forEach((item) => {
+        item.classList.remove('is-selected');
+        item.setAttribute('aria-pressed', 'false');
+      });
+
+      document.querySelectorAll('[data-next]').forEach((button) => {
+        button.disabled = true;
+      });
+    }
+
+    document.querySelectorAll('[data-step-key]').forEach(setupOptionStep);
+
+    document.querySelectorAll('[data-go]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const target = button.dataset.go;
+        if (currentPanel === 'intro') {
+          trackCustom('QuizStarted');
+        }
+        showPanel(target);
+      });
+    });
+
+    document.querySelectorAll('[data-next]').forEach((button) => {
+      button.addEventListener('click', () => {
+        showPanel(nextPanelFrom(currentPanel));
+      });
+    });
+
+    document.querySelectorAll('[data-back]').forEach((button) => {
+      button.addEventListener('click', () => {
+        showPanel(prevPanelFrom(currentPanel));
+      });
+    });
+
+    document.querySelector('[data-restart]').addEventListener('click', () => {
+      resetQuiz();
+      showPanel('intro');
+    });
+
+    document.querySelectorAll('[data-wa-source]').forEach((link) => {
+      link.addEventListener('click', () => trackLead(link.dataset.waSource));
+    });
+
+    window.addEventListener('popstate', (event) => {
+      const panel = event.state?.panel || (location.hash ? location.hash.slice(1) : 'intro');
+      suppressHistory = true;
+      showPanel(panel, { pushHistory: false, trackStep: false });
+      suppressHistory = false;
+    });
+
+    const initialPanelRaw = location.hash ? location.hash.slice(1) : 'intro';
+    const initialPanel = getPanel(initialPanelRaw) ? initialPanelRaw : 'intro';
+    updateUrl(initialPanel, true);
+    showPanel(getPanel(initialPanel) ? initialPanel : 'intro', {
+      pushHistory: false,
+      replaceHistory: true,
+      trackStep: false
+    });
+  </script>
+</body>
+</html>
