@@ -1,7 +1,0 @@
-interface:
-  display_name: "Planejador de Fotos"
-  short_description: "Planeja ensaios e prompts JSON"
-  default_prompt: "Use $planejador-de-fotos para planejar um ensaio e gerar JSON Nano Banana fiel a pessoa da referência."
-
-policy:
-  allow_implicit_invocation: true
