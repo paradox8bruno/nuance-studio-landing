@@ -688,91 +688,222 @@
        QUALIDADE — comparação lado a lado
     ====================================================== */
     .quality-section { background: var(--dark-2); }
+    .quality-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 760px;
+      margin: 0 auto 24px;
+    }
+    .quality-point {
+      padding: 18px 18px 16px;
+      border-radius: var(--r);
+      border: 1px solid rgba(201,161,74,.16);
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+    }
+    .quality-point strong {
+      display: block;
+      font-size: 13px;
+      color: var(--gold-2);
+      margin-bottom: 6px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .quality-point p {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
     .compare-table {
-      max-width: 680px;
+      max-width: 760px;
       margin: 0 auto;
       border: 1px solid var(--border);
       border-radius: var(--r-lg);
       overflow: hidden;
+      background: rgba(8,8,8,.32);
     }
     .ct-head {
-      display: grid; grid-template-columns: 1fr 1fr;
+      display: grid;
+      grid-template-columns: 172px 1fr 1fr;
+      border-bottom: 1px solid var(--border);
     }
-    .ct-col-bad  { background: rgba(180,40,40,.08); padding: 20px 24px; border-right: 1px solid var(--border); }
-    .ct-col-good { background: rgba(201,161,74,.06); padding: 20px 24px; }
+    .ct-head .ct-col-bad,
+    .ct-head .ct-col-good,
+    .ct-head .ct-col-labelbar {
+      padding: 18px 20px;
+    }
+    .ct-col-labelbar {
+      background: rgba(255,255,255,.02);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: flex-end;
+    }
+    .ct-col-labelbar span {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 700;
+    }
+    .ct-col-bad {
+      background: rgba(180,40,40,.08);
+      border-right: 1px solid var(--border);
+    }
+    .ct-col-good {
+      background: rgba(201,161,74,.06);
+    }
     .ct-col-label {
-      font-size: 10px; font-weight: 800; letter-spacing: 2px;
-      text-transform: uppercase; margin-bottom: 4px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
     }
     .bad-label  { color: #e05555; }
     .good-label { color: var(--gold-2); }
-    .ct-col h4  { font-size: 15px; font-weight: 700; }
-    .ct-body { }
+    .ct-head h4 {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
     .ct-row {
-      display: grid; grid-template-columns: 1fr 1fr;
+      display: grid;
+      grid-template-columns: 172px 1fr 1fr;
       border-top: 1px solid var(--border);
     }
+    .ct-topic,
     .ct-cell {
-      padding: 14px 24px;
-      font-size: 13.5px;
-      display: flex; align-items: center; gap: 10px;
-      color: var(--text-mid);
+      padding: 16px 20px;
     }
-    .ct-cell:first-child { border-right: 1px solid var(--border); }
-    .ct-cell .ci { font-size: 15px; flex-shrink: 0; }
+    .ct-topic {
+      border-right: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+    .ct-topic strong {
+      display: block;
+      font-size: 13px;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .ct-topic span {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .ct-cell {
+      font-size: 13.5px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .ct-cell:nth-child(2) { border-right: 1px solid var(--border); }
+    .ct-cell .ci {
+      font-size: 15px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .quality-note {
+      max-width: 760px;
+      margin: 16px auto 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+    .quality-note strong { color: var(--text-mid); }
 
     /* ======================================================
        COMO FUNCIONA
     ====================================================== */
     .steps-section { background: var(--black); }
     .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      max-width: var(--max);
+      max-width: 760px;
       margin: 0 auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
-    @media (max-width: 600px) { .steps-grid { grid-template-columns: 1fr; } }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 18px;
+      bottom: 18px;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(201,161,74,.45), rgba(201,161,74,.08));
+    }
     .step-card {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 18px;
+      align-items: start;
       background: var(--dark-2);
       border: 1px solid var(--border);
       border-radius: var(--r-lg);
-      padding: 28px;
+      padding: 22px 22px 22px 0;
       position: relative;
       overflow: hidden;
-      transition: border-color .3s, transform .3s;
+      transition: border-color .3s, transform .3s, background .3s;
     }
-    .step-card:hover { border-color: var(--border-gold); transform: translateY(-3px); }
-    .step-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold-1), transparent);
-      opacity: 0;
-      transition: opacity .3s;
+    .step-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-2px);
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
     }
-    .step-card:hover::before { opacity: 1; }
     .step-num {
-      width: 44px; height: 44px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
       color: #000;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 900;
-      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 900;
       box-shadow: 0 0 20px rgba(201,161,74,.25);
+      position: relative;
+      z-index: 1;
     }
-    .step-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-    .step-card p  { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
+    .step-copy h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .step-copy p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 44ch;
+    }
     .step-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      margin-top: 2px;
       background: rgba(201,161,74,.1);
       border: 1px solid rgba(201,161,74,.2);
       color: var(--gold-2);
-      font-size: 11px; font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
     }
+    .steps-footnote {
+      max-width: 760px;
+      margin: 18px auto 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+    .steps-footnote strong { color: var(--text-mid); }
 
     /* ======================================================
        GUIA DE FOTOS
@@ -1110,10 +1241,13 @@
       .sec-head h2 { font-size: clamp(22px, 5vw, 32px); }
 
       /* Tabela de comparação: empilha verticalmente */
+      .quality-points { grid-template-columns: 1fr; }
       .ct-head { grid-template-columns: 1fr; }
+      .ct-col-labelbar,
       .ct-col-bad { border-right: none; border-bottom: 1px solid var(--border); }
       .ct-row { grid-template-columns: 1fr; }
-      .ct-cell:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+      .ct-topic,
+      .ct-cell:nth-child(2) { border-right: none; border-bottom: 1px solid var(--border); }
 
       /* Depoimentos */
       .test-card { padding: 20px; }
@@ -1131,7 +1265,16 @@
       .pc-body { padding: 22px; }
 
       /* Steps */
-      .step-card { padding: 20px 18px; }
+      .steps-grid::before { left: 28px; }
+      .step-card {
+        grid-template-columns: 56px 1fr;
+        padding: 20px 18px 20px 0;
+      }
+      .step-badge {
+        grid-column: 2;
+        justify-self: start;
+        margin-top: 10px;
+      }
     }
 
     /* — Mobile (≤ 640px) — */
@@ -1170,6 +1313,18 @@
 
       /* CTA micro: coluna */
       .cta-micro { flex-direction: column; gap: 6px; align-items: center; }
+
+      .steps-grid::before { left: 24px; }
+      .step-card {
+        gap: 14px;
+      }
+      .step-copy h3 { font-size: 16px; }
+      .step-copy p { font-size: 13px; }
+      .ct-topic strong,
+      .ct-head h4 { font-size: 15px; }
+      .ct-topic span,
+      .ct-cell,
+      .quality-point p { font-size: 13px; }
 
       /* Hero badges */
       .hero-proof { gap: 14px; }
@@ -1454,47 +1609,83 @@
     <div class="sec-head reveal">
       <div class="gold-line"></div>
       <span class="label">A diferença que muda tudo</span>
-      <h2 class="serif">Não é qualquer "foto com IA".<br/>É uma outra categoria.</h2>
-      <p>Tem muita coisa ruim no mercado. O nosso trabalho é diferente — e você vai ver isso <strong style="color:var(--gold-2)">antes de pagar</strong>.</p>
+      <h2 class="serif">A diferença não está no efeito.<br/>Está na credibilidade.</h2>
+      <p>O ponto não é parecer “bonito”. É parecer você, só que no nível de imagem que sua atuação profissional exige.</p>
+    </div>
+    <div class="quality-points reveal">
+      <div class="quality-point">
+        <strong>Fidelidade</strong>
+        <p>O rosto continua sendo reconhecivelmente seu, sem virar outra pessoa.</p>
+      </div>
+      <div class="quality-point">
+        <strong>Acabamento</strong>
+        <p>Expressão, roupa, luz e enquadramento ficam prontos para uso profissional real.</p>
+      </div>
+      <div class="quality-point">
+        <strong>Segurança</strong>
+        <p>Você vê a prévia antes de pagar, então a decisão não acontece no escuro.</p>
+      </div>
     </div>
     <div class="compare-table reveal">
       <div class="ct-head">
+        <div class="ct-col-labelbar">
+          <span>O que importa</span>
+        </div>
         <div class="ct-col-bad">
           <p class="ct-col-label bad-label">❌ IA genérica</p>
-          <h4>O que você provavelmente já viu</h4>
+          <h4>O que passa insegurança</h4>
         </div>
         <div class="ct-col-good">
           <p class="ct-col-label good-label">✦ Nuance Studio</p>
-          <h4>O que você vai receber</h4>
+          <h4>O que sustenta sua imagem profissional</h4>
         </div>
       </div>
       <div class="ct-body">
         <div class="ct-row">
-          <div class="ct-cell"><span class="ci">❌</span> Rosto distorcido ou artificial</div>
-          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Rosto fiel — é você, com naturalidade</div>
+          <div class="ct-topic">
+            <strong>Rosto</strong>
+            <span>É a primeira coisa que precisa convencer.</span>
+          </div>
+          <div class="ct-cell"><span class="ci">❌</span> Traços mudam, o rosto parece artificial ou “quase você”.</div>
+          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Seus traços continuam reconhecíveis, com aparência natural e profissional.</div>
         </div>
         <div class="ct-row">
-          <div class="ct-cell"><span class="ci">❌</span> Expressão robótica, sem vida</div>
-          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Expressão confiante e profissional</div>
+          <div class="ct-topic">
+            <strong>Expressão</strong>
+            <span>Confiança sem cara travada ou artificial.</span>
+          </div>
+          <div class="ct-cell"><span class="ci">❌</span> Expressão dura, olhar vazio ou pose com cara de montagem.</div>
+          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Expressão segura, postura limpa e presença compatível com perfil profissional.</div>
         </div>
         <div class="ct-row">
-          <div class="ct-cell"><span class="ci">❌</span> Proporções erradas, corpo deformado</div>
-          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Corpo e proporções fiéis ao original</div>
+          <div class="ct-topic">
+            <strong>Acabamento</strong>
+            <span>Roupa, luz e proporção precisam fechar a conta.</span>
+          </div>
+          <div class="ct-cell"><span class="ci">❌</span> Proporções erradas, tecido estranho, luz incoerente e aspecto amador.</div>
+          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Luz, roupa e enquadramento com leitura de ensaio profissional pronto para uso.</div>
         </div>
         <div class="ct-row">
-          <div class="ct-cell"><span class="ci">❌</span> Obviamente gerado — todos percebem</div>
-          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Imperceptível — qualidade de estúdio</div>
+          <div class="ct-topic">
+            <strong>Percepção</strong>
+            <span>O resultado precisa parecer sério, não experimental.</span>
+          </div>
+          <div class="ct-cell"><span class="ci">❌</span> A imagem denuncia que foi gerada e perde autoridade na hora.</div>
+          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> A leitura é de retrato profissional, não de teste com IA.</div>
         </div>
         <div class="ct-row">
-          <div class="ct-cell"><span class="ci">❌</span> Qualidade baixa, pixelado</div>
-          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Alta resolução para qualquer uso</div>
-        </div>
-        <div class="ct-row">
-          <div class="ct-cell"><span class="ci">❌</span> Paga antes, arrisca o resultado</div>
-          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Vê o resultado. Só paga se aprovar.</div>
+          <div class="ct-topic">
+            <strong>Risco</strong>
+            <span>Você não deveria pagar para descobrir se funciona.</span>
+          </div>
+          <div class="ct-cell"><span class="ci">❌</span> Você paga primeiro e torce para o resultado servir.</div>
+          <div class="ct-cell"><span class="ci" style="color:var(--gold-2)">✦</span> Você recebe a prévia, avalia com calma e só paga se aprovar.</div>
         </div>
       </div>
     </div>
+    <p class="quality-note reveal">
+      <strong>É isso que separa um retrato que só chama atenção</strong> de uma imagem que realmente passa confiança.
+    </p>
   </div>
 </section>
 
@@ -1506,35 +1697,46 @@
     <div class="sec-head reveal">
       <div class="gold-line"></div>
       <span class="label">Processo</span>
-      <h2 class="serif">Mais simples do que<br/>agendar uma reunião.</h2>
-      <p>Do envio da foto ao ensaio completo em suas mãos, tudo pelo WhatsApp.</p>
+      <h2 class="serif">Você manda a foto.<br/>O resto acontece no WhatsApp.</h2>
+      <p>Sem ligação, sem formulário longo e sem ensaio presencial. O processo inteiro é curto, claro e sem risco.</p>
     </div>
     <div class="steps-grid">
       <div class="step-card reveal">
         <div class="step-num">1</div>
-        <h3>Envie sua foto pelo WhatsApp</h3>
-        <p>Uma selfie boa já funciona. Não precisa de pose, iluminação especial ou estúdio. Pode ser tirada agora mesmo. Enviamos um guia rápido para você.</p>
-        <span class="step-badge">📱 Pode ser tirada agora</span>
+        <div class="step-copy">
+          <h3>Envie 1 ou 2 fotos suas</h3>
+          <p>Uma selfie boa já resolve. Se puder mandar uma sorrindo e outra sem sorriso, melhor ainda. Não precisa estúdio, câmera profissional ou pose pronta.</p>
+        </div>
+        <span class="step-badge">📱 Pode ser agora</span>
       </div>
       <div class="step-card reveal reveal-delay-1">
         <div class="step-num">2</div>
-        <h3>Receba as prévias em até 24h</h3>
-        <p>Nossa equipe cria seu ensaio com poses de autoridade, fundos profissionais e estilos diferentes. Você recebe tudo com marca d'água para avaliar antes de decidir.</p>
-        <span class="step-badge">👁️ Você vê antes de pagar</span>
+        <div class="step-copy">
+          <h3>Receba sua prévia em até 24h</h3>
+          <p>Nós montamos seu ensaio com poses, fundos e variações de uso profissional. Você recebe a prévia com marca d'água para ver exatamente como ficou antes de qualquer cobrança.</p>
+        </div>
+        <span class="step-badge">👁️ Vê antes de pagar</span>
       </div>
       <div class="step-card reveal reveal-delay-2">
         <div class="step-num">3</div>
-        <h3>Aprova e escolhe as fotos</h3>
-        <p>Gostou? Escolha quais fotos quer ou leve o ensaio completo. Não gostou de nada? Não paga. Simples assim. Pagamento via PIX, cartão ou débito.</p>
-        <span class="step-badge">🔒 Só paga se aprovar</span>
+        <div class="step-copy">
+          <h3>Aprove, peça ajuste ou encerre</h3>
+          <p>Se quiser ajustar algum detalhe, pedimos antes da liberação. Se aprovou, você escolhe entre pagar por foto ou levar o ensaio completo. Se não fizer sentido para você, não paga nada.</p>
+        </div>
+        <span class="step-badge">🔒 Zero risco</span>
       </div>
       <div class="step-card reveal reveal-delay-3">
         <div class="step-num">4</div>
-        <h3>Receba em alta resolução</h3>
-        <p>Fotos em alta qualidade, sem marca d'água, prontas para LinkedIn, Instagram, WhatsApp Business, site e qualquer material — impresso ou digital.</p>
-        <span class="step-badge">✦ LinkedIn · Instagram · Site · Print</span>
+        <div class="step-copy">
+          <h3>Receba as fotos finais liberadas</h3>
+          <p>As imagens são entregues em alta resolução, sem marca d'água, prontas para LinkedIn, site, Instagram, WhatsApp Business e apresentação institucional.</p>
+        </div>
+        <span class="step-badge">✦ Prontas para usar</span>
       </div>
     </div>
+    <p class="steps-footnote reveal">
+      <strong>Em resumo:</strong> você manda a foto, vê a prévia, decide com calma e só então libera o pagamento.
+    </p>
   </div>
 </section>
 
