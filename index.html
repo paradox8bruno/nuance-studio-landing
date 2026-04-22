@@ -1355,6 +1355,29 @@
       color: rgba(255,255,255,.35);
       margin-bottom: 8px;
     }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,.68);
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: var(--gold-2);
+    }
+    .footer-note {
+      max-width: 720px;
+      margin: 0 auto 12px;
+      color: rgba(255,255,255,.38);
+    }
+    .footer-note strong {
+      color: rgba(255,255,255,.62);
+    }
 
     /* ======================================================
        FLOATING WA
@@ -2258,13 +2281,21 @@
 <footer>
   <p class="f-logo">NUANCE STUDIO</p>
   <p style="margin-bottom:10px;">Ensaio fotográfico profissional sem ensaio presencial — para advogados e profissionais liberais.</p>
-  <p>
+  <p class="footer-note">
+    <strong>Privacidade e LGPD:</strong> as fotos enviadas pelos clientes nao sao usadas em portfolio, anuncios, exemplos ou qualquer divulgacao sem autorizacao previa, expressa e especifica.
+  </p>
+  <div class="footer-links">
     <a href="https://wa.me/5511936229510?text=Ol%C3%A1%2C+quero+fazer+meu+ensaio+profissional"
-       data-wa-source="footer" target="_blank" rel="noopener"
-       style="color:rgba(37,211,102,.7);text-decoration:none;font-weight:600;">
+       data-wa-source="footer" target="_blank" rel="noopener">
       Falar no WhatsApp
     </a>
-    &nbsp;·&nbsp; © <span id="year"></span> Nuance Studio. Todos os direitos reservados.
+    <span>·</span>
+    <a href="/politica-de-privacidade.html">Politica de Privacidade</a>
+    <span>·</span>
+    <a href="/termos-de-uso.html">Termos de Uso</a>
+  </div>
+  <p>
+    © <span id="year"></span> Nuance Studio. Todos os direitos reservados.
   </p>
 </footer>
 
