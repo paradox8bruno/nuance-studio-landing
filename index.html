@@ -254,141 +254,184 @@
     @media (max-width: 500px) { .nav-wa { display: none; } }
 
     /* ======================================================
-       HERO
+       HERO — editorial split, mobile-first
     ====================================================== */
     .hero {
-      position: relative;
-      min-height: 92vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      padding: 100px 24px 80px;
-    }
-    /* Fundo animado sutil */
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,161,74,.07) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 80% at 80% 20%, rgba(201,161,74,.05) 0%, transparent 60%),
-        linear-gradient(180deg, #0e0e0e 0%, #080808 100%);
-      z-index: 0;
-    }
-    /* Grid de linhas finas como um estúdio */
-    .hero-grid {
-      position: absolute; inset: 0; z-index: 0; overflow: hidden; opacity: .04;
-      background-image:
-        linear-gradient(rgba(201,161,74,1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,161,74,1) 1px, transparent 1px);
-      background-size: 80px 80px;
-    }
-    .hero-content {
-      position: relative; z-index: 1;
-      max-width: var(--max);
-      margin: 0 auto;
-      width: 100%;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
+      min-height: 100svh;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
     }
-    @media (max-width: 760px) {
-      .hero-content { grid-template-columns: 1fr; gap: 48px; }
-      .hero-right { order: -1; }
+
+    /* LEFT: painel de texto */
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 52px 64px;
+      position: relative;
+      z-index: 1;
     }
-    .hero-left .label { margin-bottom: 20px; }
-    .hero-left h1 {
+    .hero-text::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; top: 50%;
+      background: radial-gradient(ellipse 90% 70% at 20% 100%, rgba(201,161,74,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-text .label { margin-bottom: 22px; }
+    .hero-h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(32px, 4.5vw, 52px);
+      font-size: clamp(30px, 3.6vw, 52px);
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: -.5px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
-    .hero-left p {
-      font-size: 16px;
+    .hero-sub {
+      font-size: 15px;
       color: var(--text-mid);
-      line-height: 1.75;
-      margin-bottom: 36px;
-      max-width: 420px;
+      line-height: 1.8;
+      margin-bottom: 32px;
+      max-width: 380px;
     }
 
-    /* HERO PHOTO SLOT */
-    .hero-photo-slot {
-      position: relative;
-      aspect-ratio: 3/4;
-      max-height: 520px;
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      border: 1px solid var(--border-gold);
-      box-shadow:
-        0 0 0 1px rgba(201,161,74,.08),
-        0 40px 100px rgba(0,0,0,.7),
-        0 0 80px rgba(201,161,74,.06);
+    /* Stats */
+    .hero-stats {
+      display: flex;
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
     }
-    .hero-photo-slot img { width: 100%; height: 100%; object-fit: cover; }
-    /* Placeholder */
+    .hero-stat {
+      flex: 1;
+      padding-right: 18px;
+      border-right: 1px solid var(--border);
+      margin-right: 18px;
+    }
+    .hero-stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--gold-2); line-height: 1;
+    }
+    .hero-stat-label { font-size: 10px; color: var(--text-dim); margin-top: 5px; line-height: 1.4; }
+
+    /* RIGHT: painel de foto — full-height, sem borda, sem padding */
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    /* Gradiente esquerdo — funde com o painel escuro */
+    .hero-photo::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(90deg, var(--black) 0%, rgba(8,8,8,.2) 30%, transparent 55%);
+    }
+    /* Gradiente inferior sutil */
+    .hero-photo::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, transparent 60%, rgba(8,8,8,.5) 100%);
+    }
+
+    /* Badge sobre a foto */
+    .hero-badge {
+      position: absolute;
+      bottom: 24px; right: 24px; z-index: 3;
+      background: rgba(8,8,8,.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hb-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--gold-2);
+      box-shadow: 0 0 8px var(--gold-1);
+      flex-shrink: 0;
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+    .hb-label { font-size: 11px; color: var(--text-mid); }
+    .hb-label strong { display: block; font-size: 12px; color: #fff; margin-bottom: 1px; }
+
+    /* Placeholder (legado, mantido para outros slots) */
     .photo-placeholder {
       width: 100%; height: 100%;
       background: linear-gradient(160deg, #1a1a1a 0%, #111 50%, #0e0e0e 100%);
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      gap: 12px;
-      color: rgba(255,255,255,.15);
-      text-align: center;
-      padding: 24px;
+      gap: 12px; color: rgba(255,255,255,.15);
+      text-align: center; padding: 24px;
     }
     .photo-placeholder .ph-icon {
       width: 64px; height: 64px;
       border: 2px dashed rgba(201,161,74,.3);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 26px;
-      color: rgba(201,161,74,.4);
+      font-size: 26px; color: rgba(201,161,74,.4);
     }
     .photo-placeholder .ph-label {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(201,161,74,.35);
-      font-weight: 700;
+      font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(201,161,74,.35); font-weight: 700;
     }
-    .photo-placeholder .ph-sub {
-      font-size: 12px;
-      color: rgba(255,255,255,.12);
-      line-height: 1.5;
-    }
-    /* Badge flutuante no canto */
-    .hero-photo-badge {
-      position: absolute;
-      bottom: 20px; left: 20px;
-      background: rgba(8,8,8,.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-gold);
-      border-radius: 10px;
-      padding: 12px 16px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .hpb-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold-2); box-shadow: 0 0 8px var(--gold-1); }
-    .hpb-text { font-size: 12px; color: var(--text-mid); }
-    .hpb-text strong { display: block; font-size: 13px; color: var(--white); }
+    .photo-placeholder .ph-sub { font-size: 12px; color: rgba(255,255,255,.12); line-height: 1.5; }
 
-    /* Stats row no hero */
-    .hero-stats {
-      display: flex;
-      gap: 28px;
-      margin-top: 40px;
-      padding-top: 28px;
-      border-top: 1px solid var(--border);
-      flex-wrap: wrap;
+    /* MOBILE: empilhado — foto em cima, texto embaixo */
+    @media (max-width: 760px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      /* Foto aparece primeiro */
+      .hero-photo {
+        order: -1;
+        height: 60vh;
+        min-height: 270px;
+        max-height: 440px;
+      }
+      /* No mobile: gradiente vem de baixo para fundir com o texto */
+      .hero-photo::before {
+        background: linear-gradient(180deg, rgba(8,8,8,.15) 0%, transparent 30%, rgba(8,8,8,.85) 85%, var(--black) 100%);
+      }
+      .hero-photo::after { display: none; }
+      .hero-badge { bottom: 16px; right: 16px; padding: 10px 14px; }
+      .hb-label strong { font-size: 11px; }
+      .hb-label { font-size: 10px; }
+
+      /* Texto: sem padding top, começa logo abaixo da foto */
+      .hero-text {
+        padding: 24px 20px 48px;
+        justify-content: flex-start;
+      }
+      .hero-text::before { display: none; }
+      .hero-h1 { font-size: clamp(24px, 7.5vw, 34px); margin-bottom: 14px; }
+      .hero-sub { font-size: 14px; max-width: 100%; margin-bottom: 24px; }
+      .hero-stats { margin-top: 24px; padding-top: 20px; }
+      .hero-stat { padding-right: 12px; margin-right: 12px; }
+      .hero-stat-num { font-size: 20px; }
+      .hero-stat-label { font-size: 9px; }
     }
-    .stat .s-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--gold-2);
-      line-height: 1;
+
+    @media (max-width: 400px) {
+      .hero-photo { height: 55vh; min-height: 240px; }
+      .hero-text { padding: 20px 16px 44px; }
+      .hero-h1 { font-size: 23px; }
+      .hero-sub { font-size: 13px; }
     }
-    .stat .s-label { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
 
     /* ======================================================
        PROOF STRIP
@@ -898,11 +941,16 @@
 
     /* — Tablet/Mobile grande (≤ 760px) — */
     @media (max-width: 760px) {
-      /* Hero: foto acima do texto, menos altura */
-      .hero { min-height: auto; padding: 60px 20px 52px; }
-      .hero-left p { max-width: 100%; }
+      /* Hero: foto em cima, texto embaixo */
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-photo { order: -1; height: 60vh; min-height: 270px; max-height: 440px; }
+      .hero-photo::before { background: linear-gradient(180deg, rgba(8,8,8,.15) 0%, transparent 30%, rgba(8,8,8,.85) 85%, var(--black) 100%); }
+      .hero-photo::after { display: none; }
+      .hero-text { padding: 24px 20px 48px; justify-content: flex-start; }
+      .hero-h1 { font-size: clamp(24px, 7.5vw, 34px); }
+      .hero-sub { max-width: 100%; }
       .hero-stats { gap: 16px; margin-top: 28px; padding-top: 20px; }
-      .stat .s-num { font-size: 22px; }
+      .hero-stat-num { font-size: 20px; }
 
       /* Seções: padding menor */
       .section { padding: 60px 20px; }
@@ -965,7 +1013,7 @@
       }
 
       /* Hero foto: menor no mobile */
-      .hero-photo-slot { max-height: 320px; }
+      .hero-photo { max-height: 380px; }
 
       /* Botão WA: full width confortável */
       .btn-wa { font-size: 15px; padding: 17px 24px; }
@@ -983,13 +1031,14 @@
 
     /* — Mobile pequeno (≤ 400px) — */
     @media (max-width: 400px) {
-      .hero { padding: 52px 16px 44px; }
+      .hero-photo { height: 55vh; min-height: 240px; }
+      .hero-text { padding: 20px 16px 44px; }
       .section { padding: 52px 16px; }
       .ba-section { padding: 52px 16px; }
       .container { padding: 0 16px; }
       nav { padding: 12px 16px; }
       .logo { font-size: 15px; letter-spacing: 3px; }
-      .hero-left h1 { font-size: 24px; }
+      .hero-h1 { font-size: 22px; }
       .sec-head h2 { font-size: 20px; }
       #pricing-grid { max-width: 100%; }
       .ba-pair { max-width: 100%; }
@@ -1022,75 +1071,57 @@
      HERO
 ============================================================ -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
 
-    <!-- LEFT: TEXT -->
-    <div class="hero-left reveal">
-      <span class="label">Nuance Studio · Para Advogados</span>
-      <h1>
-        Ensaio fotográfico<br/>
-        de <span class="gold-text serif">autoridade</span><br/>
-        sem sair do escritório.
-      </h1>
-      <p>
-        Transformamos uma foto comum em um ensaio profissional de estúdio — com poses, fundos e qualidade imperceptível de IA. Resultado em até 24h. Você só paga se aprovar.
-      </p>
-      <div class="cta-stack">
-        <a href="https://wa.me/5511936229510?text=Ol%C3%A1%2C+quero+fazer+meu+ensaio+profissional"
-           class="btn-wa"
-           onclick="trackWA('hero')"
-           target="_blank" rel="noopener">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Quero meu ensaio profissional →
-        </a>
-        <div class="cta-micro">
-          <span>⚡ Entrega em 24h</span>
-          <span>🛡️ Só paga se aprovar</span>
-          <span>📸 Sem fotógrafo</span>
-        </div>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <p class="s-num">24h</p>
-          <p class="s-label">Resultado em suas mãos</p>
-        </div>
-        <div class="stat">
-          <p class="s-num">1º</p>
-          <p class="s-label">Você VÊ — depois paga</p>
-        </div>
-        <div class="stat">
-          <p class="s-num">R$0</p>
-          <p class="s-label">Se não aprovar</p>
-        </div>
+  <!-- LEFT: TEXT -->
+  <div class="hero-text reveal">
+    <span class="label">Nuance Studio · Para Advogados</span>
+    <h1 class="hero-h1">
+      Ensaio fotográfico<br/>
+      de <span class="gold-text">autoridade</span><br/>
+      sem sair do escritório.
+    </h1>
+    <p class="hero-sub">
+      Transformamos uma foto comum em ensaio profissional de estúdio — poses, fundos e qualidade imperceptível. Resultado em até 24h. Você só paga se aprovar.
+    </p>
+    <div class="cta-stack">
+      <a href="https://wa.me/5511936229510?text=Ol%C3%A1%2C+quero+fazer+meu+ensaio+profissional"
+         class="btn-wa"
+         onclick="trackWA('hero')"
+         target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Quero meu ensaio profissional →
+      </a>
+      <div class="cta-micro">
+        <span>⚡ Entrega em 24h</span>
+        <span>🛡️ Só paga se aprovar</span>
+        <span>📸 Sem fotógrafo</span>
       </div>
     </div>
-
-    <!-- RIGHT: PHOTO -->
-    <div class="hero-right reveal reveal-delay-2">
-      <div class="hero-photo-slot">
-        <!--
-          ╔══════════════════════════════════════════════════╗
-          ║  FOTO PRINCIPAL DO HERO                          ║
-          ║  Substituir o bloco .photo-placeholder por:      ║
-          ║  <img src="fotos/hero-principal.jpg" alt="..." />║
-          ║  Proporção ideal: 3:4 (ex: 900×1200px)           ║
-          ╚══════════════════════════════════════════════════╝
-        -->
-        <img src="fotos/hero-principal.jpg" alt="Ensaio profissional Nuance Studio" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
-        <!-- Badge flutuante -->
-        <div class="hero-photo-badge">
-          <div class="hpb-dot"></div>
-          <div class="hpb-text">
-            <strong>Ensaio profissional</strong>
-            Resultado real do cliente
-          </div>
-        </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <p class="hero-stat-num">24h</p>
+        <p class="hero-stat-label">Resultado em suas mãos</p>
+      </div>
+      <div class="hero-stat">
+        <p class="hero-stat-num">1º</p>
+        <p class="hero-stat-label">Você VÊ — depois paga</p>
+      </div>
+      <div class="hero-stat">
+        <p class="hero-stat-num">R$0</p>
+        <p class="hero-stat-label">Se não aprovar</p>
       </div>
     </div>
-
   </div>
+
+  <!-- RIGHT: PHOTO -->
+  <div class="hero-photo">
+    <img src="fotos/hero-principal.jpg" alt="Ensaio profissional Nuance Studio" />
+    <div class="hero-badge">
+      <div class="hb-dot"></div>
+      <div class="hb-label"><strong>Resultado real</strong>Ensaio Nuance Studio</div>
+    </div>
+  </div>
+
 </section>
 
 <!-- PROOF STRIP -->
