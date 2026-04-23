@@ -656,11 +656,14 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      max-width: 420px;
+      max-width: 460px;
       margin: 0 auto;
     }
     @media (min-width: 601px) {
       .gallery-strip { grid-template-columns: repeat(3, 1fr); max-width: 760px; }
+    }
+    @media (min-width: 961px) {
+      .gallery-strip { grid-template-columns: repeat(4, 1fr); max-width: 980px; }
     }
     .gallery-frame {
       aspect-ratio: 2/3;
@@ -687,17 +690,12 @@
       padding: 100px 24px;
     }
     /* Shell */
-    .qs-shell { max-width: 900px; margin: 0 auto; }
+    .qs-shell { max-width: 860px; margin: 0 auto; }
 
-    /* Header split */
+    /* ── Centred editorial header ── */
     .qs-header {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-      margin-bottom: 72px;
-    }
-    @media (min-width: 700px) {
-      .qs-header { grid-template-columns: 1fr 1fr; gap: 56px; align-items: end; }
+      text-align: center;
+      margin-bottom: 64px;
     }
     .qs-eyebrow {
       display: inline-flex;
@@ -708,74 +706,80 @@
       letter-spacing: .22em;
       text-transform: uppercase;
       color: var(--gold-2);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
-    .qs-eyebrow::before {
+    .qs-eyebrow::before, .qs-eyebrow::after {
       content: '';
       display: block;
-      width: 28px; height: 1px;
+      width: 24px; height: 1px;
       background: var(--gold-1);
-      opacity: .7;
+      opacity: .6;
     }
-    .qs-header-left h2 {
+    .qs-header h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 4.5vw, 44px);
+      font-size: clamp(28px, 5vw, 48px);
       font-weight: 700;
       line-height: 1.1;
-      letter-spacing: -.3px;
+      letter-spacing: -.4px;
+      margin-bottom: 20px;
     }
-    .qs-header-right p {
-      font-size: 15px;
+    .qs-header-sub {
+      font-size: 16px;
       color: var(--text-mid);
-      line-height: 1.8;
+      line-height: 1.75;
+      max-width: 540px;
+      margin: 0 auto;
     }
-    .qs-header-right p + p { margin-top: 14px; }
-    .qs-header-right p strong { color: var(--off-white); }
+    .qs-header-sub strong { color: var(--off-white); }
 
-    /* Pillars */
+    /* ── Pillars — flat strip, no cards ── */
     .qs-pillars {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 0;
       margin-bottom: 64px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      border-bottom: 1px solid rgba(255,255,255,.07);
     }
     @media (min-width: 600px) {
-      .qs-pillars { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+      .qs-pillars {
+        grid-template-columns: repeat(3, 1fr);
+        border-bottom: none;
+      }
     }
     .qs-pillar {
-      background: rgba(255,255,255,.025);
-      border: 1px solid rgba(201,161,74,.14);
-      border-radius: 18px;
-      padding: 24px 22px;
+      padding: 36px 32px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      transition: border-color .3s, transform .3s, background .3s;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      transition: background .25s;
     }
-    .qs-pillar:hover {
-      border-color: rgba(201,161,74,.32);
-      transform: translateY(-3px);
-      background: rgba(201,161,74,.04);
+    @media (min-width: 600px) {
+      .qs-pillar {
+        border-bottom: none;
+        border-right: 1px solid rgba(255,255,255,.07);
+      }
+      .qs-pillar:last-child { border-right: none; }
     }
+    .qs-pillar:hover { background: rgba(201,161,74,.03); }
     .qs-pillar-icon {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      background: rgba(201,161,74,.1);
-      border: 1px solid rgba(201,161,74,.25);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
+      font-size: 26px;
+      line-height: 1;
+      margin-bottom: 4px;
     }
     .qs-pillar-title {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
-      color: var(--white);
-      line-height: 1.3;
+      color: var(--gold-2);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      line-height: 1.2;
     }
     .qs-pillar-desc {
-      font-size: 13px;
-      color: var(--text-dim);
-      line-height: 1.7;
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.75;
     }
 
     /* Compare table */
@@ -1760,6 +1764,15 @@
       <div class="gallery-frame"><img src="fotos/galeria-2.jpg" alt="Variação ensaio 2" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
       <div class="gallery-frame"><img src="fotos/galeria-4.jpg" alt="Variação ensaio 3" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
       <div class="gallery-frame"><img src="fotos/galeria-6.jpg" alt="Variação ensaio 4" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="gallery-frame"><img src="fotos/galeria-7.jpeg" alt="Variação ensaio 5" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="gallery-frame"><img src="fotos/galeria-8.jpeg" alt="Variação ensaio 6" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="gallery-frame"><img src="fotos/galeria-9.jpeg" alt="Variação ensaio 7" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="gallery-frame"><img src="fotos/galeria-10.jpeg" alt="Variação ensaio 8" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="gallery-frame"><img src="fotos/galeria-11.jpeg" alt="Variação ensaio 9" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="gallery-frame"><img src="fotos/galeria-12.jpeg" alt="Variação ensaio 10" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="gallery-frame"><img src="fotos/galeria-13.jpeg" alt="Variação ensaio 11" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="gallery-frame"><img src="fotos/galeria-14.jpeg" alt="Variação ensaio 12" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="gallery-frame"><img src="fotos/galeria-15.jpeg" alt="Variação ensaio 13" width="896" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" /></div>
     </div>
 
     <!-- CTA pós-galeria -->
@@ -1819,19 +1832,14 @@
   <div class="container">
     <div class="qs-shell">
 
-      <!-- Header split -->
+      <!-- Centred editorial header -->
       <div class="qs-header reveal">
-        <div class="qs-header-left">
-          <div class="qs-eyebrow">A diferença que muda tudo</div>
-          <h2 id="qs-heading">A diferença não está<br/>no efeito.<br/><span class="gold-text">Está na credibilidade.</span></h2>
-        </div>
-        <div class="qs-header-right">
-          <p><strong>O cliente não está julgando beleza.</strong> Ele está lendo sinais de preparo, seriedade e consistência. Quando a imagem parece improvisada ou artificial, a confiança cai antes da conversa começar.</p>
-          <p>A pergunta certa não é <em style="font-style:normal;color:var(--off-white)">"ficou bonito?"</em> — é se a foto sustenta a percepção de autoridade que você já construiu.</p>
-        </div>
+        <div class="qs-eyebrow">A diferença que muda tudo</div>
+        <h2 id="qs-heading">A diferença não está no efeito.<br/><span class="gold-text">Está na credibilidade.</span></h2>
+        <p class="qs-header-sub"><strong>O cliente não está julgando beleza.</strong> Ele está lendo sinais de preparo, seriedade e consistência. Quando a imagem parece improvisada, a confiança cai antes da conversa começar.</p>
       </div>
 
-      <!-- Trust pillars -->
+      <!-- Pillars — flat strip -->
       <div class="qs-pillars reveal">
         <div class="qs-pillar">
           <div class="qs-pillar-icon">🎭</div>
@@ -1841,12 +1849,12 @@
         <div class="qs-pillar">
           <div class="qs-pillar-icon">✦</div>
           <div class="qs-pillar-title">Acabamento</div>
-          <div class="qs-pillar-desc">Luz, postura, roupa e enquadramento se alinham para uma leitura profissional imediata.</div>
+          <div class="qs-pillar-desc">Luz, postura, roupa e enquadramento se alinham para leitura profissional imediata.</div>
         </div>
         <div class="qs-pillar">
           <div class="qs-pillar-icon">🔒</div>
           <div class="qs-pillar-title">Segurança</div>
-          <div class="qs-pillar-desc">Você analisa a prévia antes de pagar. A decisão acontece com clareza, não no escuro.</div>
+          <div class="qs-pillar-desc">Você vê a prévia antes de pagar. A decisão acontece com clareza, não no escuro.</div>
         </div>
       </div>
 
