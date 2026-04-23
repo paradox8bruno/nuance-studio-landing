@@ -10,6 +10,232 @@
     />
     <meta name="theme-color" content="#06090f" />
 
+    <script>
+      (function () {
+        const PIXEL_ID = "1710893766988755";
+        const GA_ID = "G-11WXXV8Q03";
+        const STORAGE_PREFIX = "nuance_tracking_v2";
+        const ATTR_KEYS = [
+          "utm_source",
+          "utm_medium",
+          "utm_campaign",
+          "utm_content",
+          "utm_term",
+          "fbclid",
+        ];
+        const now = Date.now();
+
+        function safeRead(storage, key) {
+          try {
+            const raw = storage.getItem(key);
+            return raw ? JSON.parse(raw) : null;
+          } catch (error) {
+            return null;
+          }
+        }
+
+        function safeWrite(storage, key, value) {
+          try {
+            storage.setItem(key, JSON.stringify(value));
+          } catch (error) {
+            // Ignore storage failures in private mode or blocked environments.
+          }
+        }
+
+        function getCookie(name) {
+          const match = document.cookie.match(
+            new RegExp("(^|;\\s*)" + name + "=([^;]*)"),
+          );
+          return match ? decodeURIComponent(match[2]) : "";
+        }
+
+        function setCookie(name, value, maxAgeSeconds) {
+          document.cookie =
+            name +
+            "=" +
+            encodeURIComponent(value) +
+            "; path=/; max-age=" +
+            String(maxAgeSeconds) +
+            "; SameSite=Lax";
+        }
+
+        function getHost(value) {
+          try {
+            return value ? new URL(value).hostname : "";
+          } catch (error) {
+            return "";
+          }
+        }
+
+        function sanitize(obj) {
+          const cleaned = {};
+          Object.entries(obj || {}).forEach(([key, value]) => {
+            if (value === undefined || value === null || value === "") return;
+            if (Array.isArray(value)) {
+              if (value.length) cleaned[key] = value.join("|").slice(0, 500);
+              return;
+            }
+            if (typeof value === "boolean") {
+              cleaned[key] = value ? "true" : "false";
+              return;
+            }
+            cleaned[key] = String(value).slice(0, 500);
+          });
+          return cleaned;
+        }
+
+        const search = new URLSearchParams(window.location.search);
+        const query = {};
+        ATTR_KEYS.forEach((key) => {
+          const value = search.get(key);
+          if (value) query[key] = value.trim();
+        });
+
+        const firstTouchKey = STORAGE_PREFIX + ":first_touch";
+        const lastTouchKey = STORAGE_PREFIX + ":last_touch";
+        const sessionTouchKey = STORAGE_PREFIX + ":session_touch";
+        const referrer = document.referrer || "";
+        const referrerHost = getHost(referrer) || "(direct)";
+
+        const touchPoint = sanitize({
+          captured_at: new Date(now).toISOString(),
+          landing_page: window.location.pathname,
+          landing_url: window.location.href,
+          referrer,
+          referrer_host: referrerHost,
+          ...query,
+        });
+
+        const existingFirstTouch = safeRead(localStorage, firstTouchKey);
+        const existingLastTouch = safeRead(localStorage, lastTouchKey);
+        const existingSessionTouch = safeRead(sessionStorage, sessionTouchKey);
+        const hasCampaignParams = ATTR_KEYS.some((key) => key in query);
+
+        const firstTouch = existingFirstTouch || touchPoint;
+        const lastTouch =
+          hasCampaignParams || !existingLastTouch
+            ? { ...(existingLastTouch || {}), ...touchPoint }
+            : existingLastTouch;
+        const sessionTouch =
+          hasCampaignParams || !existingSessionTouch
+            ? { ...(existingSessionTouch || {}), ...touchPoint }
+            : existingSessionTouch;
+
+        const fbp = getCookie("_fbp") || "";
+        const existingFbc = getCookie("_fbc") || "";
+        const derivedFbc = query.fbclid ? "fb.1." + now + "." + query.fbclid : "";
+        if (!existingFbc && derivedFbc) setCookie("_fbc", derivedFbc, 7776000);
+        const fbc =
+          existingFbc ||
+          derivedFbc ||
+          sessionTouch?.fbc ||
+          lastTouch?.fbc ||
+          firstTouch?.fbc ||
+          "";
+
+        if (fbc) {
+          lastTouch.fbc = fbc;
+          sessionTouch.fbc = fbc;
+        }
+
+        safeWrite(localStorage, firstTouchKey, firstTouch);
+        safeWrite(localStorage, lastTouchKey, lastTouch);
+        safeWrite(sessionStorage, sessionTouchKey, sessionTouch);
+
+        const attribution = sanitize({
+          utm_source:
+            query.utm_source ||
+            sessionTouch?.utm_source ||
+            lastTouch?.utm_source ||
+            firstTouch?.utm_source ||
+            "",
+          utm_medium:
+            query.utm_medium ||
+            sessionTouch?.utm_medium ||
+            lastTouch?.utm_medium ||
+            firstTouch?.utm_medium ||
+            "",
+          utm_campaign:
+            query.utm_campaign ||
+            sessionTouch?.utm_campaign ||
+            lastTouch?.utm_campaign ||
+            firstTouch?.utm_campaign ||
+            "",
+          utm_content:
+            query.utm_content ||
+            sessionTouch?.utm_content ||
+            lastTouch?.utm_content ||
+            firstTouch?.utm_content ||
+            "",
+          utm_term:
+            query.utm_term ||
+            sessionTouch?.utm_term ||
+            lastTouch?.utm_term ||
+            firstTouch?.utm_term ||
+            "",
+          fbclid:
+            query.fbclid ||
+            sessionTouch?.fbclid ||
+            lastTouch?.fbclid ||
+            firstTouch?.fbclid ||
+            "",
+          fbp,
+          fbc,
+          referrer_host:
+            sessionTouch?.referrer_host ||
+            lastTouch?.referrer_host ||
+            firstTouch?.referrer_host ||
+            referrerHost,
+          landing_page: firstTouch?.landing_page || window.location.pathname,
+          first_touch_source:
+            firstTouch?.utm_source || firstTouch?.referrer_host || "(direct)",
+          first_touch_campaign: firstTouch?.utm_campaign || "",
+        });
+
+        window.NUANCE_TRACKING = {
+          pixelId: PIXEL_ID,
+          gaId: GA_ID,
+          pageType: "quiz",
+          whatsappNumber: "5511936229510",
+          attribution,
+          sanitize,
+          getEventProps(extra) {
+            return sanitize({
+              page_type: this.pageType,
+              page_path: window.location.pathname,
+              page_location: window.location.href,
+              page_title: document.title,
+              ...this.attribution,
+              ...extra,
+            });
+          },
+          buildEventId(prefix) {
+            return [
+              prefix,
+              this.pageType,
+              Date.now(),
+              Math.random().toString(36).slice(2, 10),
+            ].join("_");
+          },
+          sendServerEvent(payload) {
+            const body = JSON.stringify(payload);
+            const url = "/api/meta-events";
+            if (navigator.sendBeacon) {
+              const blob = new Blob([body], { type: "application/json" });
+              navigator.sendBeacon(url, blob);
+              return;
+            }
+            fetch(url, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body,
+              keepalive: true,
+            }).catch(() => {});
+          },
+        };
+      })();
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-11WXXV8Q03"></script>
     <script>
@@ -54,7 +280,13 @@
         "https://connect.facebook.net/en_US/fbevents.js",
       );
       fbq("init", "1710893766988755");
-      fbq("track", "PageView");
+      fbq(
+        "track",
+        "PageView",
+        window.NUANCE_TRACKING.getEventProps({
+          page_group: "quiz",
+        }),
+      );
     </script>
     <noscript
       ><img
@@ -1630,16 +1862,71 @@
       };
 
       /* ── TRACKING ─────────────────────────────────────────── */
-      function track(name, props = {}) {
-        if (typeof fbq !== "undefined") fbq("trackCustom", name, props);
+      const tracking = window.NUANCE_TRACKING;
+
+      function trackMetaCustom(name, props = {}, options = {}) {
+        if (typeof fbq === "undefined") return;
+        fbq("trackCustom", name, tracking.getEventProps(props), options);
       }
+
+      function trackMetaStandard(name, props = {}, options = {}) {
+        if (typeof fbq === "undefined") return;
+        fbq("track", name, tracking.getEventProps(props), options);
+      }
+
+      function trackGaEvent(name, props = {}) {
+        if (typeof gtag === "undefined") return;
+        gtag("event", name, tracking.getEventProps(props));
+      }
+
+      function trackEvent(name, props = {}) {
+        trackMetaCustom(name, props);
+        trackGaEvent(name, props);
+      }
+
+      function sendMetaServerEvent(eventName, eventId, customData = {}) {
+        tracking.sendServerEvent({
+          event_name: eventName,
+          event_id: eventId,
+          action_source: "website",
+          event_source_url: window.location.href,
+          page_type: tracking.pageType,
+          user_data: {
+            fbp: tracking.attribution.fbp || "",
+            fbc: tracking.attribution.fbc || "",
+          },
+          custom_data: tracking.getEventProps(customData),
+        });
+      }
+
+      function getQuizContext(extra = {}) {
+        return {
+          quiz_state: answers.state || "",
+          quiz_channels_count: answers.channels.length,
+          quiz_channels: answers.channels,
+          quiz_pain: answers.pain || "",
+          quiz_blocker: answers.blocker || "",
+          quiz_fit: answers.fit || "",
+          quiz_offer: answers.offer || "",
+          quiz_score: current === "result" ? getScore() : "",
+          ...extra,
+        };
+      }
+
       function trackLead(src) {
-        if (typeof fbq !== "undefined")
-          fbq("track", "Lead", {
-            content_name: "quiz_whatsapp",
-            content_category: "quiz",
-            source: src,
-          });
+        const eventId = tracking.buildEventId("whatsapp");
+        const props = getQuizContext({
+          content_name: "quiz_whatsapp",
+          content_category: "quiz",
+          cta_source: src,
+          conversion_target: "whatsapp",
+          lead_stage: "click_to_whatsapp",
+        });
+
+        trackMetaCustom("whatsapp_click", props, { eventID: eventId });
+        trackMetaStandard("Lead", props, { eventID: eventId });
+        trackGaEvent("whatsapp_click", props);
+        sendMetaServerEvent("Lead", eventId, props);
       }
 
       /* ── HELPERS ──────────────────────────────────────────── */
@@ -1715,12 +2002,20 @@
         if (name === "result") {
           renderResult();
           if (doTrack)
-            track("QuizCompleted", {
-              channels: answers.channels.length,
-              offer: answers.offer,
-            });
+            trackEvent(
+              "quiz_completed",
+              getQuizContext({
+                step_number: step,
+              }),
+            );
         } else if (step > 0 && doTrack) {
-          track("QuizAdvanced", { step, panel: name });
+          trackEvent(
+            "quiz_step_viewed",
+            getQuizContext({
+              step_number: step,
+              panel_name: name,
+            }),
+          );
         }
 
         window.scrollTo({ top: 0, behavior: PRM ? "auto" : "smooth" });
@@ -1903,7 +2198,17 @@
 
       document.querySelectorAll("[data-go]").forEach((btn) => {
         btn.addEventListener("click", () => {
-          if (current === "intro") track("QuizStarted");
+          if (current === "intro") {
+            trackEvent(
+              "quiz_started",
+              getQuizContext({
+                entry_channel:
+                  tracking.attribution.utm_source ||
+                  tracking.attribution.referrer_host ||
+                  "(direct)",
+              }),
+            );
+          }
           showPanel(btn.dataset.go);
         });
       });
@@ -1938,6 +2243,14 @@
         "",
         `${location.pathname}${initPanel === "intro" ? "" : "#" + initPanel}`,
       );
+      trackEvent("quiz_viewed", {
+        page_group: "quiz",
+        initial_panel: initPanel,
+        entry_channel:
+          tracking.attribution.utm_source ||
+          tracking.attribution.referrer_host ||
+          "(direct)",
+      });
       showPanel(initPanel, {
         push: false,
         replace: true,

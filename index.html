@@ -9,6 +9,232 @@
   <link rel="canonical" href="https://nuance-studio-landing.vercel.app/" />
   <meta property="og:url" content="https://nuance-studio-landing.vercel.app/" />
 
+  <script>
+    (function () {
+      const PIXEL_ID = "1710893766988755";
+      const GA_ID = "G-11WXXV8Q03";
+      const STORAGE_PREFIX = "nuance_tracking_v2";
+      const ATTR_KEYS = [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_content",
+        "utm_term",
+        "fbclid",
+      ];
+      const now = Date.now();
+
+      function safeRead(storage, key) {
+        try {
+          const raw = storage.getItem(key);
+          return raw ? JSON.parse(raw) : null;
+        } catch (error) {
+          return null;
+        }
+      }
+
+      function safeWrite(storage, key, value) {
+        try {
+          storage.setItem(key, JSON.stringify(value));
+        } catch (error) {
+          // Ignore storage failures in private mode or blocked environments.
+        }
+      }
+
+      function getCookie(name) {
+        const match = document.cookie.match(
+          new RegExp("(^|;\\s*)" + name + "=([^;]*)"),
+        );
+        return match ? decodeURIComponent(match[2]) : "";
+      }
+
+      function setCookie(name, value, maxAgeSeconds) {
+        document.cookie =
+          name +
+          "=" +
+          encodeURIComponent(value) +
+          "; path=/; max-age=" +
+          String(maxAgeSeconds) +
+          "; SameSite=Lax";
+      }
+
+      function getHost(value) {
+        try {
+          return value ? new URL(value).hostname : "";
+        } catch (error) {
+          return "";
+        }
+      }
+
+      function sanitize(obj) {
+        const cleaned = {};
+        Object.entries(obj || {}).forEach(([key, value]) => {
+          if (value === undefined || value === null || value === "") return;
+          if (Array.isArray(value)) {
+            if (value.length) cleaned[key] = value.join("|").slice(0, 500);
+            return;
+          }
+          if (typeof value === "boolean") {
+            cleaned[key] = value ? "true" : "false";
+            return;
+          }
+          cleaned[key] = String(value).slice(0, 500);
+        });
+        return cleaned;
+      }
+
+      const search = new URLSearchParams(window.location.search);
+      const query = {};
+      ATTR_KEYS.forEach((key) => {
+        const value = search.get(key);
+        if (value) query[key] = value.trim();
+      });
+
+      const firstTouchKey = STORAGE_PREFIX + ":first_touch";
+      const lastTouchKey = STORAGE_PREFIX + ":last_touch";
+      const sessionTouchKey = STORAGE_PREFIX + ":session_touch";
+      const referrer = document.referrer || "";
+      const referrerHost = getHost(referrer) || "(direct)";
+
+      const touchPoint = sanitize({
+        captured_at: new Date(now).toISOString(),
+        landing_page: window.location.pathname,
+        landing_url: window.location.href,
+        referrer,
+        referrer_host: referrerHost,
+        ...query,
+      });
+
+      const existingFirstTouch = safeRead(localStorage, firstTouchKey);
+      const existingLastTouch = safeRead(localStorage, lastTouchKey);
+      const existingSessionTouch = safeRead(sessionStorage, sessionTouchKey);
+      const hasCampaignParams = ATTR_KEYS.some((key) => key in query);
+
+      const firstTouch = existingFirstTouch || touchPoint;
+      const lastTouch =
+        hasCampaignParams || !existingLastTouch
+          ? { ...(existingLastTouch || {}), ...touchPoint }
+          : existingLastTouch;
+      const sessionTouch =
+        hasCampaignParams || !existingSessionTouch
+          ? { ...(existingSessionTouch || {}), ...touchPoint }
+          : existingSessionTouch;
+
+      const fbp = getCookie("_fbp") || "";
+      const existingFbc = getCookie("_fbc") || "";
+      const derivedFbc = query.fbclid ? "fb.1." + now + "." + query.fbclid : "";
+      if (!existingFbc && derivedFbc) setCookie("_fbc", derivedFbc, 7776000);
+      const fbc =
+        existingFbc ||
+        derivedFbc ||
+        sessionTouch?.fbc ||
+        lastTouch?.fbc ||
+        firstTouch?.fbc ||
+        "";
+
+      if (fbc) {
+        lastTouch.fbc = fbc;
+        sessionTouch.fbc = fbc;
+      }
+
+      safeWrite(localStorage, firstTouchKey, firstTouch);
+      safeWrite(localStorage, lastTouchKey, lastTouch);
+      safeWrite(sessionStorage, sessionTouchKey, sessionTouch);
+
+      const attribution = sanitize({
+        utm_source:
+          query.utm_source ||
+          sessionTouch?.utm_source ||
+          lastTouch?.utm_source ||
+          firstTouch?.utm_source ||
+          "",
+        utm_medium:
+          query.utm_medium ||
+          sessionTouch?.utm_medium ||
+          lastTouch?.utm_medium ||
+          firstTouch?.utm_medium ||
+          "",
+        utm_campaign:
+          query.utm_campaign ||
+          sessionTouch?.utm_campaign ||
+          lastTouch?.utm_campaign ||
+          firstTouch?.utm_campaign ||
+          "",
+        utm_content:
+          query.utm_content ||
+          sessionTouch?.utm_content ||
+          lastTouch?.utm_content ||
+          firstTouch?.utm_content ||
+          "",
+        utm_term:
+          query.utm_term ||
+          sessionTouch?.utm_term ||
+          lastTouch?.utm_term ||
+          firstTouch?.utm_term ||
+          "",
+        fbclid:
+          query.fbclid ||
+          sessionTouch?.fbclid ||
+          lastTouch?.fbclid ||
+          firstTouch?.fbclid ||
+          "",
+        fbp,
+        fbc,
+        referrer_host:
+          sessionTouch?.referrer_host ||
+          lastTouch?.referrer_host ||
+          firstTouch?.referrer_host ||
+          referrerHost,
+        landing_page: firstTouch?.landing_page || window.location.pathname,
+        first_touch_source:
+          firstTouch?.utm_source || firstTouch?.referrer_host || "(direct)",
+        first_touch_campaign: firstTouch?.utm_campaign || "",
+      });
+
+      window.NUANCE_TRACKING = {
+        pixelId: PIXEL_ID,
+        gaId: GA_ID,
+        pageType: "landing",
+        whatsappNumber: "5511936229510",
+        attribution,
+        sanitize,
+        getEventProps(extra) {
+          return sanitize({
+            page_type: this.pageType,
+            page_path: window.location.pathname,
+            page_location: window.location.href,
+            page_title: document.title,
+            ...this.attribution,
+            ...extra,
+          });
+        },
+        buildEventId(prefix) {
+          return [
+            prefix,
+            this.pageType,
+            Date.now(),
+            Math.random().toString(36).slice(2, 10),
+          ].join("_");
+        },
+        sendServerEvent(payload) {
+          const body = JSON.stringify(payload);
+          const url = "/api/meta-events";
+          if (navigator.sendBeacon) {
+            const blob = new Blob([body], { type: "application/json" });
+            navigator.sendBeacon(url, blob);
+            return;
+          }
+          fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body,
+            keepalive: true,
+          }).catch(() => {});
+        },
+      };
+    })();
+  </script>
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-11WXXV8Q03"></script>
   <script>
@@ -32,7 +258,9 @@
     t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1710893766988755');
-    fbq('track', 'PageView');
+    fbq('track', 'PageView', window.NUANCE_TRACKING.getEventProps({
+      page_group: 'sales'
+    }));
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1710893766988755&ev=PageView&noscript=1"/></noscript>
@@ -654,238 +882,6 @@
       height: 100%;
       background: linear-gradient(160deg, #181206, #0e0a02);
     }
-
-    /* ======================================================
-       QUALIDADE v2 — redesign completo
-    ====================================================== */
-    .quality-section {
-      background:
-        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,161,74,.07) 0%, transparent 60%),
-        linear-gradient(180deg, #0d0d0d 0%, #0a0a0a 100%);
-      padding: 100px 24px;
-    }
-    /* Shell */
-    .qs-shell { max-width: 860px; margin: 0 auto; }
-
-    /* ── Centred editorial header ── */
-    .qs-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-    .qs-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--gold-2);
-      margin-bottom: 18px;
-    }
-    .qs-eyebrow::before, .qs-eyebrow::after {
-      content: '';
-      display: block;
-      width: 24px; height: 1px;
-      background: var(--gold-1);
-      opacity: .6;
-    }
-    .qs-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 5vw, 48px);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -.4px;
-      margin-bottom: 20px;
-    }
-    .qs-header-sub {
-      font-size: 16px;
-      color: var(--text-mid);
-      line-height: 1.75;
-      max-width: 540px;
-      margin: 0 auto;
-    }
-    .qs-header-sub strong { color: var(--off-white); }
-
-    /* ── Pillars — flat strip, no cards ── */
-    .qs-pillars {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-      margin-bottom: 64px;
-      border-top: 1px solid rgba(255,255,255,.07);
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    @media (min-width: 600px) {
-      .qs-pillars {
-        grid-template-columns: repeat(3, 1fr);
-        border-bottom: none;
-      }
-    }
-    .qs-pillar {
-      padding: 36px 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-      transition: background .25s;
-    }
-    @media (min-width: 600px) {
-      .qs-pillar {
-        border-bottom: none;
-        border-right: 1px solid rgba(255,255,255,.07);
-      }
-      .qs-pillar:last-child { border-right: none; }
-    }
-    .qs-pillar:hover { background: rgba(201,161,74,.03); }
-    .qs-pillar-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gold-2);
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      line-height: 1.2;
-    }
-    .qs-pillar-desc {
-      font-size: 14px;
-      color: var(--text-mid);
-      line-height: 1.75;
-    }
-
-    /* Compare cards */
-    .qs-compare {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-bottom: 36px;
-    }
-    .qs-criterion {
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.08);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
-        rgba(7,7,7,.84);
-      overflow: hidden;
-      box-shadow: 0 18px 60px rgba(0,0,0,.28);
-    }
-    .qs-criterion-head {
-      padding: 18px 18px 14px;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      background: rgba(255,255,255,.02);
-    }
-    .qs-criterion-title {
-      display: block;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.35;
-      margin-bottom: 4px;
-    }
-    .qs-criterion-sub {
-      display: block;
-      font-size: 12px;
-      color: rgba(255,255,255,.38);
-      line-height: 1.55;
-    }
-    .qs-criterion-body {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-    .qs-side {
-      padding: 16px 16px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .qs-side.bad {
-      background: linear-gradient(180deg, rgba(160,30,30,.06), rgba(160,30,30,.03));
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .qs-side.good {
-      background: linear-gradient(180deg, rgba(201,161,74,.07), rgba(201,161,74,.03));
-    }
-    .qs-side-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      width: fit-content;
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-    .qs-side.bad .qs-side-label {
-      background: rgba(160,30,30,.16);
-      border: 1px solid rgba(224,96,96,.18);
-      color: #e06060;
-    }
-    .qs-side.good .qs-side-label {
-      background: rgba(201,161,74,.14);
-      border: 1px solid rgba(201,161,74,.24);
-      color: var(--gold-2);
-    }
-    .qs-copy {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-    .qs-side.bad .qs-copy {
-      color: rgba(246,242,234,.58);
-    }
-    .qs-side.good .qs-copy {
-      color: rgba(246,242,234,.84);
-    }
-    .qs-copy .ci {
-      flex-shrink: 0;
-      margin-top: 1px;
-      font-size: 13px;
-    }
-    .qs-side.bad .qs-copy .ci { color: #e06060; }
-    .qs-side.good .qs-copy .ci { color: var(--gold-2); }
-    @media (min-width: 761px) {
-      .qs-criterion-body {
-        grid-template-columns: 1fr 1fr;
-      }
-      .qs-side.bad {
-        border-bottom: none;
-        border-right: 1px solid rgba(255,255,255,.06);
-      }
-      .qs-side {
-        padding: 18px 18px 20px;
-      }
-    }
-
-    /* Closing statement */
-    .qs-close {
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 32px 28px;
-      border-radius: 20px;
-      background: rgba(201,161,74,.04);
-      border: 1px solid rgba(201,161,74,.14);
-    }
-    .qs-close p {
-      font-size: 15px;
-      color: var(--text-mid);
-      line-height: 1.8;
-    }
-    .qs-close strong { color: var(--off-white); }
-
-    /* quality-note kept for backward compat */
-    .quality-note {
-      max-width: 760px;
-      margin: 18px auto 0;
-      text-align: center;
-      font-size: 13px;
-      color: var(--text-dim);
-      line-height: 1.7;
-    }
-    .quality-note strong { color: var(--text-mid); }
 
     /* ======================================================
        COMO FUNCIONA v2 — horizontal timeline
@@ -1936,114 +1932,6 @@
 </section>
 
 <!-- ============================================================
-     SEÇÃO: QUALIDADE v2 — a diferença que muda tudo
-============================================================ -->
-<section class="quality-section" aria-labelledby="qs-heading">
-  <div class="container">
-    <div class="qs-shell">
-
-      <!-- Centred editorial header -->
-      <div class="qs-header reveal">
-        <div class="qs-eyebrow">Critérios de decisão</div>
-        <h2 id="qs-heading">O ponto não é ficar “bonito”.<br/><span class="gold-text">É parecer confiável.</span></h2>
-        <p class="qs-header-sub"><strong>Quem procura um advogado lê sinais de preparo, coerência e seriedade.</strong> Uma imagem forte não chama atenção pelo efeito. Ela sustenta credibilidade quando alguém olha de perto.</p>
-      </div>
-
-      <div class="qs-pillars reveal">
-        <div class="qs-pillar">
-          <div class="qs-pillar-title">Fidelidade</div>
-          <div class="qs-pillar-desc">O rosto continua reconhecivelmente seu, sem distorcer traços nem inventar outra pessoa.</div>
-        </div>
-        <div class="qs-pillar">
-          <div class="qs-pillar-title">Acabamento</div>
-          <div class="qs-pillar-desc">Luz, postura, roupa e enquadramento se alinham para leitura profissional imediata.</div>
-        </div>
-        <div class="qs-pillar">
-          <div class="qs-pillar-title">Segurança</div>
-          <div class="qs-pillar-desc">Você avalia a prévia, pede ajuste se necessário e só libera o pagamento quando aprovar.</div>
-        </div>
-      </div>
-
-      <div class="qs-compare reveal">
-        <article class="qs-criterion">
-          <div class="qs-criterion-head">
-            <span class="qs-criterion-title">Identidade facial</span>
-            <span class="qs-criterion-sub">O rosto precisa continuar sendo reconhecivelmente seu.</span>
-          </div>
-          <div class="qs-criterion-body">
-            <div class="qs-side bad">
-              <span class="qs-side-label">Genérico</span>
-              <div class="qs-copy"><span class="ci">✕</span><span>Traços mudam, o rosto fica plastificado e a imagem passa sensação de montagem.</span></div>
-            </div>
-            <div class="qs-side good">
-              <span class="qs-side-label">✦ Nuance Studio</span>
-              <div class="qs-copy"><span class="ci">✦</span><span>Seus traços continuam reconhecíveis, com presença natural e leitura profissional.</span></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="qs-criterion">
-          <div class="qs-criterion-head">
-            <span class="qs-criterion-title">Expressão e postura</span>
-            <span class="qs-criterion-sub">Autoridade não vem de rigidez nem de pose forçada.</span>
-          </div>
-          <div class="qs-criterion-body">
-            <div class="qs-side bad">
-              <span class="qs-side-label">Genérico</span>
-              <div class="qs-copy"><span class="ci">✕</span><span>Olhar vazio, sorriso estranho ou pose dura demais denunciam artificialidade.</span></div>
-            </div>
-            <div class="qs-side good">
-              <span class="qs-side-label">✦ Nuance Studio</span>
-              <div class="qs-copy"><span class="ci">✦</span><span>Expressão firme, postura limpa e presença compatível com perfil profissional real.</span></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="qs-criterion">
-          <div class="qs-criterion-head">
-            <span class="qs-criterion-title">Acabamento visual</span>
-            <span class="qs-criterion-sub">Roupa, luz, textura e proporção precisam conversar entre si.</span>
-          </div>
-          <div class="qs-criterion-body">
-            <div class="qs-side bad">
-              <span class="qs-side-label">Genérico</span>
-              <div class="qs-copy"><span class="ci">✕</span><span>Proporções estranhas, roupa falsa, brilho incoerente e aspecto amador.</span></div>
-            </div>
-            <div class="qs-side good">
-              <span class="qs-side-label">✦ Nuance Studio</span>
-              <div class="qs-copy"><span class="ci">✦</span><span>Luz coerente, tecido convincente e enquadramento pronto para uso imediato.</span></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="qs-criterion">
-          <div class="qs-criterion-head">
-            <span class="qs-criterion-title">Percepção de autoridade</span>
-            <span class="qs-criterion-sub">A imagem parece profissional ou parece experimento?</span>
-          </div>
-          <div class="qs-criterion-body">
-            <div class="qs-side bad">
-              <span class="qs-side-label">Genérico</span>
-              <div class="qs-copy"><span class="ci">✕</span><span>Chama atenção pelo efeito, mas não sustenta confiança quando alguém olha de perto.</span></div>
-            </div>
-            <div class="qs-side good">
-              <span class="qs-side-label">✦ Nuance Studio</span>
-              <div class="qs-copy"><span class="ci">✦</span><span>Retrato profissional pronto para representar você em qualquer canal real.</span></div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="qs-close reveal">
-        <p><strong>É isso que separa uma imagem chamativa de uma imagem que realmente sustenta confiança.</strong> Parecer você, no nível do profissional que o cliente espera encontrar.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
      SEÇÃO: COMO FUNCIONA v2
 ============================================================ -->
 <section class="section steps-section" aria-labelledby="cf-heading">
@@ -2352,41 +2240,84 @@
      SCRIPTS
 ============================================================ -->
 <script>
-  /* ── Facebook Pixel: rastreia clique no WhatsApp como Lead ── */
-  function trackWA(origin) {
-    if (typeof fbq !== 'undefined') {
-      fbq('track', 'Lead', {
-        content_name: 'whatsapp_click',
-        content_category: 'advogados',
-        source: origin
-      });
-    }
-    if (typeof gtag !== 'undefined') {
-      gtag('event', origin, {
-        event_category: 'whatsapp',
-        event_label: origin,
-        destination: 'whatsapp',
-        page_path: window.location.pathname
-      });
-    }
+  const tracking = window.NUANCE_TRACKING;
+
+  function trackMetaCustom(name, props = {}, options = {}) {
+    if (typeof fbq === 'undefined') return;
+    fbq('trackCustom', name, tracking.getEventProps(props), options);
   }
+
+  function trackMetaStandard(name, props = {}, options = {}) {
+    if (typeof fbq === 'undefined') return;
+    fbq('track', name, tracking.getEventProps(props), options);
+  }
+
+  function trackGaEvent(name, props = {}) {
+    if (typeof gtag === 'undefined') return;
+    gtag('event', name, tracking.getEventProps(props));
+  }
+
+  function sendMetaServerEvent(eventName, eventId, customData = {}) {
+    tracking.sendServerEvent({
+      event_name: eventName,
+      event_id: eventId,
+      action_source: 'website',
+      event_source_url: window.location.href,
+      page_type: tracking.pageType,
+      user_data: {
+        fbp: tracking.attribution.fbp || '',
+        fbc: tracking.attribution.fbc || ''
+      },
+      custom_data: tracking.getEventProps(customData)
+    });
+  }
+
+  function trackLandingView() {
+    const props = {
+      page_group: 'sales',
+      entry_channel:
+        tracking.attribution.utm_source ||
+        tracking.attribution.referrer_host ||
+        '(direct)'
+    };
+    trackMetaCustom('landing_viewed', props);
+    trackGaEvent('landing_viewed', props);
+  }
+
+  function trackWA(origin) {
+    const eventId = tracking.buildEventId('whatsapp');
+    const props = {
+      content_name: 'whatsapp_click',
+      content_category: 'advogados',
+      cta_source: origin,
+      conversion_target: 'whatsapp',
+      lead_stage: 'click_to_whatsapp'
+    };
+
+    trackMetaCustom('whatsapp_click', props, { eventID: eventId });
+    trackMetaStandard('Lead', props, { eventID: eventId });
+    trackGaEvent('whatsapp_click', props);
+    sendMetaServerEvent('Lead', eventId, props);
+  }
+
+  trackLandingView();
 
   document.querySelectorAll('[data-wa-source]').forEach((link) => {
     link.addEventListener('click', () => trackWA(link.dataset.waSource));
   });
 
   const priceSection = document.querySelector('.price-section');
-  if (priceSection && typeof gtag !== 'undefined' && 'IntersectionObserver' in window) {
+  if (priceSection && 'IntersectionObserver' in window) {
     const priceObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          gtag('event', 'pricing_section_view', {
-            event_category: 'engagement',
-            event_label: 'price_section',
-            page_path: window.location.pathname
-          });
-          priceObserver.disconnect();
-        }
+        if (!entry.isIntersecting) return;
+        const props = {
+          section_name: 'pricing',
+          visibility_threshold: '0.45'
+        };
+        trackMetaCustom('pricing_section_view', props);
+        trackGaEvent('pricing_section_view', props);
+        priceObserver.disconnect();
       });
     }, { threshold: 0.45 });
     priceObserver.observe(priceSection);
@@ -2394,14 +2325,12 @@
 
   document.querySelectorAll('.faq-list details').forEach((item) => {
     item.addEventListener('toggle', () => {
-      if (item.open && typeof gtag !== 'undefined') {
-        const label = item.querySelector('summary')?.textContent.trim() || 'faq_item';
-        gtag('event', 'faq_expand', {
-          event_category: 'engagement',
-          event_label: label,
-          page_path: window.location.pathname
-        });
-      }
+      if (!item.open) return;
+      const label = item.querySelector('summary')?.textContent.trim() || 'faq_item';
+      trackGaEvent('faq_expand', {
+        faq_label: label,
+        section_name: 'faq'
+      });
     });
   });
 
