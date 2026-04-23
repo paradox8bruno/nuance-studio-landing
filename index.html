@@ -782,109 +782,111 @@
       line-height: 1.75;
     }
 
-    /* Compare table */
-    .qs-compare-wrap {
-      border-radius: 24px;
-      border: 1px solid rgba(201,161,74,.18);
-      overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,.4);
+    /* Compare cards */
+    .qs-compare {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
       margin-bottom: 36px;
     }
-    .qs-table-head {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      background: rgba(255,255,255,.04);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+    .qs-criterion {
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
+        rgba(7,7,7,.84);
+      overflow: hidden;
+      box-shadow: 0 18px 60px rgba(0,0,0,.28);
     }
-    @media (max-width: 560px) {
-      .qs-table-head { grid-template-columns: 1.1fr 1fr 1fr; }
+    .qs-criterion-head {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
     }
-    .qs-th {
-      padding: 16px 20px;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-    .qs-th:first-child { color: rgba(255,255,255,.35); }
-    .qs-th.bad-col {
-      color: #e06060;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      border-left: 1px solid rgba(255,255,255,.06);
-    }
-    .qs-th.good-col {
-      color: var(--gold-2);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      border-left: 1px solid rgba(201,161,74,.12);
-      background: rgba(201,161,74,.04);
-    }
-    .qs-row {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      border-top: 1px solid rgba(255,255,255,.05);
-      transition: background .2s;
-    }
-    @media (max-width: 560px) {
-      .qs-row { grid-template-columns: 1.1fr 1fr 1fr; }
-    }
-    .qs-row:hover { background: rgba(255,255,255,.02); }
-    .qs-cell {
-      padding: 20px;
-      font-size: 13px;
-      line-height: 1.6;
-      display: flex;
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .qs-cell:nth-child(2) {
-      border-left: 1px solid rgba(255,255,255,.05);
-      color: rgba(246,242,234,.5);
-    }
-    .qs-cell:nth-child(3) {
-      border-left: 1px solid rgba(201,161,74,.1);
-      background: rgba(201,161,74,.025);
-      color: rgba(246,242,234,.85);
-    }
-    .qs-cell-topic {
-      font-size: 13px;
+    .qs-criterion-title {
+      display: block;
+      font-size: 15px;
       font-weight: 700;
       color: var(--white);
-      line-height: 1.3;
-      margin-bottom: 2px;
+      line-height: 1.35;
+      margin-bottom: 4px;
     }
-    .qs-cell-sub {
-      font-size: 11.5px;
-      color: rgba(255,255,255,.3);
-      line-height: 1.5;
+    .qs-criterion-sub {
+      display: block;
+      font-size: 12px;
+      color: rgba(255,255,255,.38);
+      line-height: 1.55;
     }
-    .qs-cell-bad {
+    .qs-criterion-body {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .qs-side {
+      padding: 16px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .qs-side.bad {
+      background: linear-gradient(180deg, rgba(160,30,30,.06), rgba(160,30,30,.03));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .qs-side.good {
+      background: linear-gradient(180deg, rgba(201,161,74,.07), rgba(201,161,74,.03));
+    }
+    .qs-side-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      width: fit-content;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .qs-side.bad .qs-side-label {
+      background: rgba(160,30,30,.16);
+      border: 1px solid rgba(224,96,96,.18);
+      color: #e06060;
+    }
+    .qs-side.good .qs-side-label {
+      background: rgba(201,161,74,.14);
+      border: 1px solid rgba(201,161,74,.24);
+      color: var(--gold-2);
+    }
+    .qs-copy {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
-      font-size: 12.5px;
-      color: rgba(246,242,234,.48);
-      line-height: 1.6;
+      gap: 9px;
+      font-size: 13px;
+      line-height: 1.7;
     }
-    .qs-cell-bad .ci { color: #e06060; flex-shrink: 0; margin-top: 1px; font-size: 13px; }
-    .qs-cell-good {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 12.5px;
-      color: rgba(246,242,234,.85);
-      line-height: 1.6;
+    .qs-side.bad .qs-copy {
+      color: rgba(246,242,234,.58);
     }
-    .qs-cell-good .ci { color: var(--gold-2); flex-shrink: 0; margin-top: 1px; font-size: 13px; }
-    @media (max-width: 480px) {
-      .qs-cell { padding: 14px 12px; }
-      .qs-th { padding: 14px 12px; }
-      .qs-cell-bad, .qs-cell-good { font-size: 11.5px; }
-      .qs-cell-topic { font-size: 12px; }
+    .qs-side.good .qs-copy {
+      color: rgba(246,242,234,.84);
+    }
+    .qs-copy .ci {
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 13px;
+    }
+    .qs-side.bad .qs-copy .ci { color: #e06060; }
+    .qs-side.good .qs-copy .ci { color: var(--gold-2); }
+    @media (min-width: 761px) {
+      .qs-criterion-body {
+        grid-template-columns: 1fr 1fr;
+      }
+      .qs-side.bad {
+        border-bottom: none;
+        border-right: 1px solid rgba(255,255,255,.06);
+      }
+      .qs-side {
+        padding: 18px 18px 20px;
+      }
     }
 
     /* Closing statement */
@@ -916,10 +918,190 @@
     .quality-note strong { color: var(--text-mid); }
 
     /* ======================================================
-       COMO FUNCIONA
+       COMO FUNCIONA v2 — horizontal timeline
     ====================================================== */
-    ====================================================== */
-    .steps-section { background: var(--black); }
+    .steps-section {
+      background:
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(201,161,74,.05) 0%, transparent 60%),
+        var(--black);
+    }
+
+    /* Timeline wrapper */
+    .cf-timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      max-width: 860px;
+      margin: 0 auto 52px;
+    }
+
+    /* Vertical connector line — mobile */
+    .cf-timeline::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 44px;
+      bottom: 44px;
+      width: 1px;
+      background: linear-gradient(180deg,
+        rgba(201,161,74,.5) 0%,
+        rgba(201,161,74,.12) 100%
+      );
+    }
+
+    @media (min-width: 680px) {
+      .cf-timeline {
+        grid-template-columns: repeat(5, 1fr);
+        align-items: start;
+        gap: 0;
+      }
+      /* Horizontal connector line — desktop */
+      .cf-timeline::before {
+        left: 10%;
+        right: 10%;
+        top: 27px;
+        bottom: auto;
+        width: auto;
+        height: 1px;
+        background: linear-gradient(90deg,
+          transparent 0%,
+          rgba(201,161,74,.4) 15%,
+          rgba(201,161,74,.4) 85%,
+          transparent 100%
+        );
+      }
+    }
+
+    /* Each step */
+    .cf-step {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 18px 16px 28px 0;
+      padding-left: 64px;
+    }
+    @media (min-width: 680px) {
+      .cf-step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 12px;
+        gap: 16px;
+      }
+    }
+
+    /* Number circle */
+    .cf-num {
+      position: absolute;
+      left: 0;
+      top: 18px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--dark-3);
+      border: 1px solid rgba(201,161,74,.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+      flex-shrink: 0;
+      z-index: 1;
+      transition: border-color .3s, background .3s;
+    }
+    @media (min-width: 680px) {
+      .cf-num {
+        position: relative;
+        left: auto;
+        top: auto;
+      }
+    }
+    .cf-step:hover .cf-num {
+      border-color: rgba(201,161,74,.7);
+      background: rgba(201,161,74,.08);
+    }
+    .cf-num-icon {
+      font-size: 18px;
+      line-height: 1;
+    }
+    .cf-num-n {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      color: rgba(201,161,74,.5);
+      text-transform: uppercase;
+    }
+
+    /* Step text */
+    .cf-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-top: 20px;
+    }
+    @media (min-width: 680px) {
+      .cf-body { padding-top: 0; align-items: center; }
+    }
+    .cf-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .cf-sub {
+      font-size: 12.5px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      max-width: 20ch;
+    }
+    @media (min-width: 680px) {
+      .cf-sub { text-align: center; }
+    }
+
+    /* Last step accent */
+    .cf-step.accent .cf-num {
+      background: rgba(201,161,74,.12);
+      border-color: rgba(201,161,74,.55);
+      box-shadow: 0 0 24px rgba(201,161,74,.15);
+    }
+    .cf-step.accent .cf-title { color: var(--gold-2); }
+
+    /* Zero risk callout */
+    .cf-guarantee {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 28px 32px;
+      border-radius: 18px;
+      border: 1px solid rgba(201,161,74,.2);
+      background:
+        linear-gradient(135deg, rgba(201,161,74,.06) 0%, transparent 60%),
+        rgba(255,255,255,.02);
+    }
+    .cf-guarantee-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .cf-guarantee-text strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold-2);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .cf-guarantee-text p {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
     .steps-grid {
       max-width: 760px;
       margin: 0 auto;
@@ -1858,78 +2040,92 @@
         </div>
       </div>
 
-      <!-- Comparison table -->
-      <div class="qs-compare-wrap reveal">
-        <div class="qs-table-head">
-          <div class="qs-th">Critério</div>
-          <div class="qs-th bad-col"><span>✕</span> IA Genérica</div>
-          <div class="qs-th good-col"><span>✦</span> Nuance Studio</div>
-        </div>
+      <!-- Comparison cards -->
+      <div class="qs-compare reveal">
+        <article class="qs-criterion">
+          <div class="qs-criterion-head">
+            <span class="qs-criterion-title">Identidade facial</span>
+            <span class="qs-criterion-sub">É a primeira coisa que precisa convencer.</span>
+          </div>
+          <div class="qs-criterion-body">
+            <div class="qs-side bad">
+              <span class="qs-side-label">✕ IA Genérica</span>
+              <div class="qs-copy"><span class="ci">✕</span><span>Traços mudam, o rosto fica plastificado e a imagem passa sensação de montagem.</span></div>
+            </div>
+            <div class="qs-side good">
+              <span class="qs-side-label">✦ Nuance Studio</span>
+              <div class="qs-copy"><span class="ci">✦</span><span>Seus traços continuam reconhecíveis, com presença natural e leitura profissional.</span></div>
+            </div>
+          </div>
+        </article>
 
-        <div class="qs-row">
-          <div class="qs-cell">
-            <span class="qs-cell-topic">Identidade facial</span>
-            <span class="qs-cell-sub">É a primeira coisa que precisa convencer.</span>
+        <article class="qs-criterion">
+          <div class="qs-criterion-head">
+            <span class="qs-criterion-title">Expressão e postura</span>
+            <span class="qs-criterion-sub">Autoridade não vem de rigidez.</span>
           </div>
-          <div class="qs-cell">
-            <div class="qs-cell-bad"><span class="ci">✕</span><span>Traços mudam, o rosto fica plastificado e a imagem passa sensação de montagem.</span></div>
+          <div class="qs-criterion-body">
+            <div class="qs-side bad">
+              <span class="qs-side-label">✕ IA Genérica</span>
+              <div class="qs-copy"><span class="ci">✕</span><span>Olhar vazio, sorriso estranho ou pose dura demais denunciam artificialidade.</span></div>
+            </div>
+            <div class="qs-side good">
+              <span class="qs-side-label">✦ Nuance Studio</span>
+              <div class="qs-copy"><span class="ci">✦</span><span>Expressão firme, postura limpa e presença compatível com perfil profissional real.</span></div>
+            </div>
           </div>
-          <div class="qs-cell">
-            <div class="qs-cell-good"><span class="ci">✦</span><span>Seus traços continuam reconhecíveis, com presença natural e leitura profissional.</span></div>
-          </div>
-        </div>
+        </article>
 
-        <div class="qs-row">
-          <div class="qs-cell">
-            <span class="qs-cell-topic">Expressão e postura</span>
-            <span class="qs-cell-sub">Autoridade não vem de rigidez.</span>
+        <article class="qs-criterion">
+          <div class="qs-criterion-head">
+            <span class="qs-criterion-title">Acabamento visual</span>
+            <span class="qs-criterion-sub">Roupa, luz e proporção precisam fechar juntos.</span>
           </div>
-          <div class="qs-cell">
-            <div class="qs-cell-bad"><span class="ci">✕</span><span>Olhar vazio, sorriso estranho ou pose dura demais denunciam artificialidade.</span></div>
+          <div class="qs-criterion-body">
+            <div class="qs-side bad">
+              <span class="qs-side-label">✕ IA Genérica</span>
+              <div class="qs-copy"><span class="ci">✕</span><span>Proporções estranhas, roupa falsa, brilho incoerente e aspecto amador.</span></div>
+            </div>
+            <div class="qs-side good">
+              <span class="qs-side-label">✦ Nuance Studio</span>
+              <div class="qs-copy"><span class="ci">✦</span><span>Luz coerente, tecido convincente e enquadramento pronto para uso imediato.</span></div>
+            </div>
           </div>
-          <div class="qs-cell">
-            <div class="qs-cell-good"><span class="ci">✦</span><span>Expressão firme, postura limpa e presença compatível com perfil profissional real.</span></div>
-          </div>
-        </div>
+        </article>
 
-        <div class="qs-row">
-          <div class="qs-cell">
-            <span class="qs-cell-topic">Acabamento visual</span>
-            <span class="qs-cell-sub">Roupa, luz e proporção precisam fechar juntos.</span>
+        <article class="qs-criterion">
+          <div class="qs-criterion-head">
+            <span class="qs-criterion-title">Percepção de autoridade</span>
+            <span class="qs-criterion-sub">A foto parece séria ou parece experimento?</span>
           </div>
-          <div class="qs-cell">
-            <div class="qs-cell-bad"><span class="ci">✕</span><span>Proporções estranhas, roupa falsa, brilho incoerente e aspecto amador.</span></div>
+          <div class="qs-criterion-body">
+            <div class="qs-side bad">
+              <span class="qs-side-label">✕ IA Genérica</span>
+              <div class="qs-copy"><span class="ci">✕</span><span>Chama atenção pelo efeito, mas não sustenta confiança quando alguém olha de perto.</span></div>
+            </div>
+            <div class="qs-side good">
+              <span class="qs-side-label">✦ Nuance Studio</span>
+              <div class="qs-copy"><span class="ci">✦</span><span>Retrato profissional pronto para representar você em qualquer canal real.</span></div>
+            </div>
           </div>
-          <div class="qs-cell">
-            <div class="qs-cell-good"><span class="ci">✦</span><span>Luz coerente, tecido convincente e enquadramento pronto para uso imediato.</span></div>
-          </div>
-        </div>
+        </article>
 
-        <div class="qs-row">
-          <div class="qs-cell">
-            <span class="qs-cell-topic">Percepção de autoridade</span>
-            <span class="qs-cell-sub">A foto parece séria ou parece experimento?</span>
+        <article class="qs-criterion">
+          <div class="qs-criterion-head">
+            <span class="qs-criterion-title">Risco da decisão</span>
+            <span class="qs-criterion-sub">Você não deveria pagar para descobrir.</span>
           </div>
-          <div class="qs-cell">
-            <div class="qs-cell-bad"><span class="ci">✕</span><span>Chama atenção pelo efeito, mas não sustenta confiança quando alguém olha de perto.</span></div>
+          <div class="qs-criterion-body">
+            <div class="qs-side bad">
+              <span class="qs-side-label">✕ IA Genérica</span>
+              <div class="qs-copy"><span class="ci">✕</span><span>Você paga primeiro, recebe depois e torce para aproveitar alguma imagem.</span></div>
+            </div>
+            <div class="qs-side good">
+              <span class="qs-side-label">✦ Nuance Studio</span>
+              <div class="qs-copy"><span class="ci">✦</span><span>Você vê a prévia, avalia com calma, pede ajuste se necessário e só paga se aprovar.</span></div>
+            </div>
           </div>
-          <div class="qs-cell">
-            <div class="qs-cell-good"><span class="ci">✦</span><span>Retrato profissional pronto para representar você em qualquer canal real.</span></div>
-          </div>
-        </div>
-
-        <div class="qs-row">
-          <div class="qs-cell">
-            <span class="qs-cell-topic">Risco da decisão</span>
-            <span class="qs-cell-sub">Você não deveria pagar para descobrir.</span>
-          </div>
-          <div class="qs-cell">
-            <div class="qs-cell-bad"><span class="ci">✕</span><span>Você paga primeiro, recebe depois e torce para aproveitar alguma imagem.</span></div>
-          </div>
-          <div class="qs-cell">
-            <div class="qs-cell-good"><span class="ci">✦</span><span>Você vê a prévia, avalia com calma, pede ajuste se necessário e só paga se aprovar.</span></div>
-          </div>
-        </div>
+        </article>
       </div>
 
       <!-- Closing statement -->
@@ -1943,53 +2139,85 @@
 
 
 <!-- ============================================================
-     SEÇÃO: COMO FUNCIONA
+     SEÇÃO: COMO FUNCIONA v2
 ============================================================ -->
-<section class="section steps-section">
+<section class="section steps-section" aria-labelledby="cf-heading">
   <div class="container">
+
     <div class="sec-head reveal">
       <div class="gold-line"></div>
-      <span class="label">Processo</span>
-      <h2 class="serif">Você manda a foto.<br/>O resto acontece no WhatsApp.</h2>
-      <p>Sem ligação, sem formulário longo e sem perder tempo. O processo inteiro foi desenhado para ser rápido, claro e fácil de aprovar.</p>
+      <span class="label">Como funciona</span>
+      <h2 id="cf-heading" class="serif">Simples assim.<br/>Do WhatsApp à foto pronta.</h2>
+      <p>Sem estúdio, sem fotógrafo, sem burocracia. Você envia uma foto e nós entregamos o ensaio — você só paga se aprovar.</p>
     </div>
-    <div class="steps-grid">
-      <div class="step-card reveal">
-        <div class="step-num">1</div>
-        <div class="step-copy">
-          <h3>Envie 1 ou 2 fotos suas</h3>
-          <p>Uma selfie boa já resolve. Se puder mandar uma sorrindo e outra sem sorriso, melhor ainda. Não precisa estúdio, câmera profissional ou pose pronta.</p>
+
+    <div class="cf-timeline reveal">
+
+      <div class="cf-step">
+        <div class="cf-num">
+          <span class="cf-num-icon">📱</span>
+          <span class="cf-num-n">01</span>
         </div>
-        <span class="step-badge">📱 Pode ser agora</span>
+        <div class="cf-body">
+          <span class="cf-title">Você envia sua foto</span>
+          <span class="cf-sub">Selfie ou foto comum. Sem estúdio.</span>
+        </div>
       </div>
-      <div class="step-card reveal reveal-delay-1">
-        <div class="step-num">2</div>
-        <div class="step-copy">
-          <h3>Receba sua prévia em até 24h</h3>
-          <p>Nós montamos seu ensaio com poses, fundos e variações de uso profissional. Você recebe a prévia com marca d'água para avaliar o resultado real antes de qualquer cobrança.</p>
+
+      <div class="cf-step">
+        <div class="cf-num">
+          <span class="cf-num-icon">⚡</span>
+          <span class="cf-num-n">02</span>
         </div>
-        <span class="step-badge">👁️ Vê antes de pagar</span>
+        <div class="cf-body">
+          <span class="cf-title">Criamos seu ensaio em 24h</span>
+          <span class="cf-sub">Poses, fundos e estilos profissionais.</span>
+        </div>
       </div>
-      <div class="step-card reveal reveal-delay-2">
-        <div class="step-num">3</div>
-        <div class="step-copy">
-          <h3>Aprove, peça ajuste ou encerre</h3>
-          <p>Se quiser ajustar algum detalhe, ajustamos antes da liberação. Se aprovou, você escolhe entre pagar por foto ou levar o ensaio completo. Se não fizer sentido para você, não paga nada.</p>
+
+      <div class="cf-step">
+        <div class="cf-num">
+          <span class="cf-num-icon">👁️</span>
+          <span class="cf-num-n">03</span>
         </div>
-        <span class="step-badge">🔒 Zero risco</span>
+        <div class="cf-body">
+          <span class="cf-title">Você vê o resultado</span>
+          <span class="cf-sub">Prévia completa antes de pagar.</span>
+        </div>
       </div>
-      <div class="step-card reveal reveal-delay-3">
-        <div class="step-num">4</div>
-        <div class="step-copy">
-          <h3>Receba as fotos finais liberadas</h3>
-          <p>As imagens são entregues em alta resolução, sem marca d'água, prontas para Instagram, WhatsApp Business, redes sociais, site e apresentações institucionais.</p>
+
+      <div class="cf-step">
+        <div class="cf-num">
+          <span class="cf-num-icon">✅</span>
+          <span class="cf-num-n">04</span>
         </div>
-        <span class="step-badge">✦ Prontas para usar</span>
+        <div class="cf-body">
+          <span class="cf-title">Aprovou? Aí paga.</span>
+          <span class="cf-sub">PIX ou cartão. Só se gostar.</span>
+        </div>
+      </div>
+
+      <div class="cf-step accent">
+        <div class="cf-num">
+          <span class="cf-num-icon">🏆</span>
+          <span class="cf-num-n">05</span>
+        </div>
+        <div class="cf-body">
+          <span class="cf-title">Fotos em alta resolução</span>
+          <span class="cf-sub">Prontas para qualquer canal.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cf-guarantee reveal">
+      <span class="cf-guarantee-icon">🔒</span>
+      <div class="cf-guarantee-text">
+        <strong>Não gostou? Não paga. Ponto final.</strong>
+        <p>Você vê a prévia completa antes de qualquer cobrança. Se não gostar do resultado — por qualquer motivo — é só dizer. Sem pergunta, sem burocracia, sem constrangimento.</p>
       </div>
     </div>
-    <p class="steps-footnote reveal">
-      <strong>Em resumo:</strong> você manda a foto, vê a prévia, decide com calma e só então libera o pagamento.
-    </p>
+
   </div>
 </section>
 
