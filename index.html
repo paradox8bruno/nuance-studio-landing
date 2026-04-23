@@ -496,68 +496,192 @@
        FLOW STRIP — fluxo sem risco
     ====================================================== */
     .flow-strip {
-      background: var(--dark-1);
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201,161,74,.05) 0%, transparent 70%),
+        linear-gradient(180deg, #111111 0%, #0d0d0d 100%);
       border-bottom: 1px solid rgba(201,161,74,.12);
-      padding: 32px 20px;
+      padding: 56px 20px;
+    }
+    .flow-shell {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .flow-head {
       text-align: center;
+      max-width: 700px;
+      margin: 0 auto 32px;
     }
     .flow-label {
-      font-size: 10px; font-weight: 800; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--gold-2);
-      margin-bottom: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-2);
+      margin-bottom: 16px;
+    }
+    .flow-label::before,
+    .flow-label::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: rgba(201,161,74,.55);
+    }
+    .flow-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      margin-bottom: 14px;
+    }
+    .flow-head p {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.75;
     }
     .flow-steps {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 860px;
-      margin: 0 auto 20px;
-      gap: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 0 auto 18px;
     }
     .flow-step {
-      display: flex; flex-direction: row; min-width: auto;
-      width: 100%; max-width: 300px; margin: 0 auto;
-      padding: 10px 12px; gap: 14px; align-items: center;
+      position: relative;
+      padding: 20px 18px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
+        rgba(8,8,8,.76);
+      box-shadow: 0 14px 34px rgba(0,0,0,.22);
+      overflow: hidden;
     }
-    .flow-icon {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: rgba(201,161,74,.1);
-      border: 1px solid rgba(201,161,74,.3);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; flex-shrink: 0;
+    .flow-step::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(201,161,74,.38), rgba(201,161,74,0));
     }
-    .flow-icon.gold-accent {
+    .flow-step-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .flow-step-num {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: rgba(201,161,74,.12);
+      border: 1px solid rgba(201,161,74,.32);
+      color: var(--gold-2);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .flow-step.featured {
+      border-color: rgba(201,161,74,.28);
+      background:
+        linear-gradient(180deg, rgba(201,161,74,.08), rgba(255,255,255,.02)),
+        rgba(10,10,10,.82);
+      box-shadow: 0 22px 46px rgba(0,0,0,.3);
+    }
+    .flow-step.featured .flow-step-num {
       background: rgba(201,161,74,.18);
-      border-color: rgba(201,161,74,.6);
-      box-shadow: 0 0 24px rgba(201,161,74,.2);
+      border-color: rgba(201,161,74,.48);
+      box-shadow: 0 0 26px rgba(201,161,74,.12);
     }
-    .flow-icon.green-accent {
-      background: rgba(37,211,102,.1);
-      border-color: rgba(37,211,102,.3);
+    .flow-step.featured .flow-step-title {
+      color: var(--gold-2);
     }
-    .flow-title { font-size: 13px; font-weight: 700; color: #fff; line-height: 1.4; text-align: left; }
-    .flow-title.gold { color: var(--gold-2); font-weight: 800; }
-    .flow-sub { display: none; }
-    .flow-sub.gold { color: rgba(201,161,74,.7); }
-    .flow-arrow { display: none; }
-
+    .flow-step-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.38);
+    }
+    .flow-step-title {
+      display: block;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .flow-step-desc {
+      display: block;
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
     .flow-note {
-      font-size: 13px; color: rgba(255,255,255,.4);
-      max-width: 420px; margin: 4px auto 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 18px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(201,161,74,.18);
+      background: rgba(201,161,74,.05);
+      font-size: 13px;
+      color: rgba(255,255,255,.56);
+      line-height: 1.7;
     }
-    .flow-note strong { color: rgba(255,255,255,.7); }
+    .flow-note-icon {
+      font-size: 20px;
+      line-height: 1;
+      color: var(--gold-2);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .flow-note strong { color: rgba(255,255,255,.86); }
 
     @media (min-width: 641px) {
-      .flow-strip { padding: 44px 24px; }
-      .flow-step {
-        flex-direction: column; min-width: 120px;
-        width: auto; max-width: none; margin: 0;
-        padding: 10px 8px; gap: 10px;
+      .flow-strip { padding: 68px 24px; }
+      .flow-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      .flow-title { text-align: center; }
-      .flow-sub { display: block; font-size: 11px; color: rgba(255,255,255,.4); line-height: 1.3; }
-      .flow-arrow { display: block; font-size: 18px; color: rgba(201,161,74,.4); padding: 0 4px; margin-bottom: 28px; }
+    }
+    @media (min-width: 961px) {
+      .flow-steps {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+      .flow-step {
+        min-height: 100%;
+        padding: 24px 18px 20px;
+      }
+      .flow-step::after {
+        content: '';
+        position: absolute;
+        top: 40px;
+        left: calc(100% - 10px);
+        width: 24px;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(201,161,74,.3), rgba(201,161,74,0));
+      }
+      .flow-step:last-child::after {
+        display: none;
+      }
+      .flow-step-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
     }
 
     /* ======================================================
@@ -1802,39 +1926,65 @@
 
 <!-- FAIXA: FLUXO DE APROVAÇÃO -->
 <div class="flow-strip">
-  <p class="flow-label">Como funciona</p>
-  <div class="flow-steps">
-    <div class="flow-step">
-      <div class="flow-icon">📱</div>
-      <p class="flow-title">Você envia<br/>sua foto</p>
-      <p class="flow-sub">Selfie ou foto comum</p>
+  <div class="flow-shell">
+    <div class="flow-head">
+      <p class="flow-label">Fluxo sem risco</p>
+      <h2 class="serif">Você vê antes. Decide depois.</h2>
+      <p>Sem aposta, sem pagamento no escuro e sem pressão. O processo foi desenhado para você avaliar a qualidade primeiro e só seguir se fizer sentido.</p>
     </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-      <div class="flow-icon">⚡</div>
-      <p class="flow-title">Criamos seu<br/>ensaio em 24h</p>
-      <p class="flow-sub">Poses + fundos + estilos</p>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-step-meta">
+          <span class="flow-step-num">01</span>
+          <span class="flow-step-kicker">Envio inicial</span>
+        </div>
+        <span class="flow-step-title">Você envia 1 ou 2 fotos suas</span>
+        <span class="flow-step-desc">Pode ser selfie ou foto comum. O importante é o rosto estar nítido para preservar sua identidade com fidelidade.</span>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-meta">
+          <span class="flow-step-num">02</span>
+          <span class="flow-step-kicker">Produção</span>
+        </div>
+        <span class="flow-step-title">Montamos seu ensaio profissional</span>
+        <span class="flow-step-desc">Criamos poses, fundos e variações com leitura de autoridade, prontas para uso real em canais profissionais.</span>
+      </div>
+
+      <div class="flow-step featured">
+        <div class="flow-step-meta">
+          <span class="flow-step-num">03</span>
+          <span class="flow-step-kicker">Prévia</span>
+        </div>
+        <span class="flow-step-title">Você recebe a prévia completa</span>
+        <span class="flow-step-desc">O resultado chega com marca d'água para você avaliar com calma antes de qualquer cobrança.</span>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-meta">
+          <span class="flow-step-num">04</span>
+          <span class="flow-step-kicker">Aprovação</span>
+        </div>
+        <span class="flow-step-title">Aprovou? Aí paga.</span>
+        <span class="flow-step-desc">Se fizer sentido para você, seguimos com PIX ou cartão. Se não aprovar, paramos ali mesmo.</span>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-meta">
+          <span class="flow-step-num">05</span>
+          <span class="flow-step-kicker">Entrega final</span>
+        </div>
+        <span class="flow-step-title">Você recebe tudo em alta resolução</span>
+        <span class="flow-step-desc">As fotos finais são liberadas prontas para WhatsApp, Instagram, LinkedIn, site e materiais profissionais.</span>
+      </div>
     </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-      <div class="flow-icon gold-accent">👁️</div>
-      <p class="flow-title gold">Você VÊ<br/>o resultado</p>
-      <p class="flow-sub gold">Prévia com marca d'água</p>
-    </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-      <div class="flow-icon green-accent">✅</div>
-      <p class="flow-title">Aprovou?<br/>Aí paga.</p>
-      <p class="flow-sub">PIX ou cartão</p>
-    </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-      <div class="flow-icon">🏆</div>
-      <p class="flow-title">Fotos em alta<br/>resolução</p>
-      <p class="flow-sub">Prontas para usar</p>
+
+    <div class="flow-note">
+      <span class="flow-note-icon">🛡️</span>
+      <span>Não gostou do resultado? <strong>Não paga nada.</strong> Sem pergunta, sem burocracia e sem insistência.</span>
     </div>
   </div>
-  <p class="flow-note">Não gostou do resultado? <strong>Não paga nada. Zero. Sem pergunta, sem burocracia.</strong></p>
 </div>
 
 <!-- ============================================================
