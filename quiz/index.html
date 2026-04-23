@@ -99,12 +99,12 @@
         padding: 0;
       }
       html {
-        background: var(--bg);
+        background: #050505;
         scroll-behavior: smooth;
       }
       body {
         font-family: "Inter", system-ui, sans-serif;
-        background: var(--bg);
+        background: #050505;
         color: var(--text);
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
@@ -124,40 +124,6 @@
       a {
         color: inherit;
         text-decoration: none;
-      }
-
-      /* ─── AMBIENT ORBS ───────────────────────────────────── */
-      body::before {
-        content: "";
-        position: fixed;
-        top: -240px;
-        left: -240px;
-        width: 720px;
-        height: 720px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(40, 90, 180, 0.13),
-          transparent 70%
-        );
-        pointer-events: none;
-        z-index: 0;
-      }
-      body::after {
-        content: "";
-        position: fixed;
-        bottom: -160px;
-        right: -160px;
-        width: 560px;
-        height: 560px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(200, 169, 110, 0.09),
-          transparent 70%
-        );
-        pointer-events: none;
-        z-index: 0;
       }
 
       /* ─── PROGRESS BAR ───────────────────────────────────── */
@@ -190,10 +156,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: rgba(6, 9, 15, 0.88);
+        background: rgba(5, 5, 5, 0.95);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
       .brand {
         font-family: "EB Garamond", Georgia, serif;
@@ -479,15 +445,17 @@
 
       /* ─── OPTION CARDS ───────────────────────────────────── */
       .options {
-        display: grid;
-        gap: 10px;
-        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
       }
       .options.two-col {
-        gap: 10px;
+        gap: 12px;
       }
       @media (min-width: 560px) {
         .options.two-col {
+          display: grid;
           grid-template-columns: 1fr 1fr;
         }
       }
@@ -495,98 +463,48 @@
       .option {
         position: relative;
         width: 100%;
-        padding: 18px 18px 18px 52px;
-        text-align: left;
-        border-radius: 20px;
-        border: 1px solid var(--border);
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.025),
-          rgba(255, 255, 255, 0.012)
-        );
-        color: var(--text);
+        padding: 22px 24px;
+        text-align: center;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
+        color: rgba(255, 255, 255, 0.75);
         cursor: pointer;
         transition:
           border-color 0.2s ease,
           background 0.2s ease,
+          color 0.2s ease,
           transform 0.2s var(--ease),
           box-shadow 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
       .option:hover {
-        border-color: rgba(200, 169, 110, 0.45);
-        background: rgba(200, 169, 110, 0.08);
+        border-color: rgba(200, 169, 110, 0.4);
+        background: rgba(200, 169, 110, 0.05);
+        color: rgba(255, 255, 255, 0.95);
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(200, 169, 110, 0.08);
       }
       .option.selected {
-        border-color: rgba(200, 169, 110, 0.65);
-        background: linear-gradient(
-          180deg,
-          rgba(200, 169, 110, 0.12),
-          rgba(200, 169, 110, 0.05)
-        );
-        box-shadow:
-          0 0 0 1px rgba(200, 169, 110, 0.2),
-          0 18px 42px rgba(0, 0, 0, 0.22);
+        border-color: rgba(200, 169, 110, 0.9);
+        background: rgba(200, 169, 110, 0.12);
+        color: #fff;
         transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(200, 169, 110, 0.15);
       }
-
-      /* Radio circle */
-      .option::before {
-        content: "";
-        position: absolute;
-        left: 16px;
-        top: 18px;
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        border: 1.5px solid rgba(255, 255, 255, 0.18);
-        background: rgba(255, 255, 255, 0.03);
-        transition:
-          border-color 0.2s ease,
-          background 0.2s ease,
-          box-shadow 0.2s ease;
-      }
-      .option.multi::before {
-        border-radius: 7px;
-      }
-      .option.selected::before {
-        border-color: var(--gold);
-        background: var(--gold);
-        box-shadow: 0 0 0 4px rgba(200, 169, 110, 0.18);
-      }
-      /* Check mark */
-      .option.selected::after {
-        content: "";
-        position: absolute;
-        left: 20px;
-        top: 22px;
-        width: 14px;
-        height: 14px;
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 7.5l3 3 6-6' stroke='%23130d00' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")
-          no-repeat center;
-      }
-
       .option-title {
-        font-size: 15px;
-        font-weight: 700;
-        line-height: 1.38;
-        margin-bottom: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.4;
       }
       .option-desc {
         font-size: 13px;
-        line-height: 1.62;
-        color: var(--text-2);
-      }
-      .option-tag {
-        display: inline-block;
-        margin-top: 9px;
-        font-size: 10px;
-        font-weight: 800;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--gold);
-        opacity: 0.9;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 4px;
+        display: none; /* Hidden by default in clean layout, enabled if needed */
       }
 
       /* ─── HELPER TEXT ────────────────────────────────────── */
@@ -1015,59 +933,17 @@
           </p>
 
           <div class="options" data-step-key="state" data-type="single">
-            <button
-              class="option"
-              type="button"
-              data-value="improve"
-              data-label="Já ajuda, mas ainda pode melhorar"
-            >
-              <div class="option-title">Já ajuda, mas ainda pode melhorar</div>
-              <div class="option-desc">
-                Existe algum profissionalismo, mas a imagem não acompanha todo o
-                peso do meu posicionamento.
-              </div>
-              <span class="option-tag">há espaço claro para subir</span>
+            <button class="option" type="button" data-value="improve" data-label="Já ajuda, mas não acompanha meu nível atual">
+              <div class="option-title">Já ajuda, mas não acompanha meu nível atual.</div>
             </button>
-            <button
-              class="option"
-              type="button"
-              data-value="neutral"
-              data-label="Neutra e pouco memorável"
-            >
-              <div class="option-title">Ela é neutra e pouco memorável</div>
-              <div class="option-desc">
-                Não chega a sabotar abertamente, mas também não aumenta
-                percepção de autoridade.
-              </div>
-              <span class="option-tag">não machuca, mas não ajuda</span>
+            <button class="option" type="button" data-value="neutral" data-label="Neutra. Não ajuda, mas também não atrapalha">
+              <div class="option-title">Neutra. Não ajuda, mas também não atrapalha.</div>
             </button>
-            <button
-              class="option"
-              type="button"
-              data-value="amateur"
-              data-label="Passa improviso ou amadorismo"
-            >
-              <div class="option-title">Ela passa improviso ou amadorismo</div>
-              <div class="option-desc">
-                Parece foto casual, antiga ou desalinhada com o padrão que meu
-                trabalho já pede.
-              </div>
-              <span class="option-tag">abaixo do nível exigido</span>
+            <button class="option" type="button" data-value="amateur" data-label="Passa improviso ou amadorismo">
+              <div class="option-title">Passa improviso ou amadorismo.</div>
             </button>
-            <button
-              class="option"
-              type="button"
-              data-value="avoid"
-              data-label="Evito usar porque não me representa"
-            >
-              <div class="option-title">
-                Evito usar porque não me representa
-              </div>
-              <div class="option-desc">
-                Prefiro quase não me expor com ela — a foto atual gera
-                desconforto e não me ajuda.
-              </div>
-              <span class="option-tag">desconforto real com a imagem</span>
+            <button class="option" type="button" data-value="avoid" data-label="Evito usar porque não me representa">
+              <div class="option-title">Evito usar porque não me representa.</div>
             </button>
           </div>
 
