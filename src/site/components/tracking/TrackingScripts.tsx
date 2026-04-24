@@ -218,9 +218,9 @@ const handlers = `
       lead_stage: "click_to_whatsapp",
     };
     trackMetaCustom("whatsapp_click", props, { eventID: eventId });
-    trackMetaStandard("Lead", props, { eventID: eventId });
+    trackMetaStandard("AddToCart", props, { eventID: eventId });
     trackGaEvent("whatsapp_click", props);
-    sendMetaServerEvent("Lead", eventId, props);
+    sendMetaServerEvent("AddToCart", eventId, props);
   }
   ready(function () {
     const tracking = window.NUANCE_TRACKING;
