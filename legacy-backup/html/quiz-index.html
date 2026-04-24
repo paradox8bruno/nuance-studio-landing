@@ -22,6 +22,36 @@
           "utm_content",
           "utm_term",
           "fbclid",
+          "ctwa_clid",
+          "source_id",
+          "source_type",
+          "source_url",
+          "ad_id",
+          "adset_id",
+          "campaign_id",
+          "ad_name",
+          "adset_name",
+          "campaign_name",
+          "placement",
+          "site_source_name",
+          "fb_ref",
+          "fb_source",
+          "fb_action_ids",
+          "fb_action_types",
+          "mibextid",
+          "igshid",
+        ];
+        const META_PARAM_PATTERNS = [
+          /^fb/i,
+          /^ig/i,
+          /^utm_/i,
+          /clid$/i,
+          /^ad(_|$)/i,
+          /^adset(_|$)/i,
+          /^campaign(_|$)/i,
+          /^placement$/i,
+          /^site_source_name$/i,
+          /^source(_|$)/i,
         ];
         const now = Date.now();
 
@@ -79,7 +109,15 @@
               cleaned[key] = value ? "true" : "false";
               return;
             }
-            cleaned[key] = String(value).slice(0, 500);
+            if (typeof value === "object") {
+              try {
+                cleaned[key] = JSON.stringify(value).slice(0, 1000);
+              } catch (error) {
+                cleaned[key] = String(value).slice(0, 1000);
+              }
+              return;
+            }
+            cleaned[key] = String(value).slice(0, 1000);
           });
           return cleaned;
         }
@@ -90,6 +128,22 @@
           const value = search.get(key);
           if (value) query[key] = value.trim();
         });
+        const allQueryParams = {};
+        search.forEach((value, key) => {
+          const cleanKey = key.trim();
+          const cleanValue = value.trim();
+          if (!cleanKey || !cleanValue) return;
+          if (allQueryParams[cleanKey]) {
+            allQueryParams[cleanKey] = [].concat(allQueryParams[cleanKey], cleanValue);
+            return;
+          }
+          allQueryParams[cleanKey] = cleanValue;
+        });
+        const metaQueryParams = Object.fromEntries(
+          Object.entries(allQueryParams).filter(([key]) =>
+            META_PARAM_PATTERNS.some((pattern) => pattern.test(key)),
+          ),
+        );
 
         const firstTouchKey = STORAGE_PREFIX + ":first_touch";
         const lastTouchKey = STORAGE_PREFIX + ":last_touch";
@@ -103,13 +157,17 @@
           landing_url: window.location.href,
           referrer,
           referrer_host: referrerHost,
+          url_query_params: allQueryParams,
+          meta_query_params: metaQueryParams,
           ...query,
         });
 
         const existingFirstTouch = safeRead(localStorage, firstTouchKey);
         const existingLastTouch = safeRead(localStorage, lastTouchKey);
         const existingSessionTouch = safeRead(sessionStorage, sessionTouchKey);
-        const hasCampaignParams = ATTR_KEYS.some((key) => key in query);
+        const hasCampaignParams =
+          ATTR_KEYS.some((key) => key in query) ||
+          Object.keys(metaQueryParams).length > 0;
 
         const firstTouch = existingFirstTouch || touchPoint;
         const lastTouch =
@@ -179,6 +237,74 @@
             lastTouch?.fbclid ||
             firstTouch?.fbclid ||
             "",
+          ctwa_clid:
+            query.ctwa_clid ||
+            sessionTouch?.ctwa_clid ||
+            lastTouch?.ctwa_clid ||
+            firstTouch?.ctwa_clid ||
+            "",
+          source_id:
+            query.source_id ||
+            sessionTouch?.source_id ||
+            lastTouch?.source_id ||
+            firstTouch?.source_id ||
+            "",
+          source_type:
+            query.source_type ||
+            sessionTouch?.source_type ||
+            lastTouch?.source_type ||
+            firstTouch?.source_type ||
+            "",
+          source_url:
+            query.source_url ||
+            sessionTouch?.source_url ||
+            lastTouch?.source_url ||
+            firstTouch?.source_url ||
+            "",
+          ad_id:
+            query.ad_id ||
+            sessionTouch?.ad_id ||
+            lastTouch?.ad_id ||
+            firstTouch?.ad_id ||
+            "",
+          adset_id:
+            query.adset_id ||
+            sessionTouch?.adset_id ||
+            lastTouch?.adset_id ||
+            firstTouch?.adset_id ||
+            "",
+          campaign_id:
+            query.campaign_id ||
+            sessionTouch?.campaign_id ||
+            lastTouch?.campaign_id ||
+            firstTouch?.campaign_id ||
+            "",
+          placement:
+            query.placement ||
+            sessionTouch?.placement ||
+            lastTouch?.placement ||
+            firstTouch?.placement ||
+            "",
+          site_source_name:
+            query.site_source_name ||
+            sessionTouch?.site_source_name ||
+            lastTouch?.site_source_name ||
+            firstTouch?.site_source_name ||
+            "",
+          url_query_params:
+            Object.keys(allQueryParams).length
+              ? allQueryParams
+              : sessionTouch?.url_query_params ||
+                lastTouch?.url_query_params ||
+                firstTouch?.url_query_params ||
+                "",
+          meta_query_params:
+            Object.keys(metaQueryParams).length
+              ? metaQueryParams
+              : sessionTouch?.meta_query_params ||
+                lastTouch?.meta_query_params ||
+                firstTouch?.meta_query_params ||
+                "",
           fbp,
           fbc,
           referrer_host:
@@ -206,6 +332,8 @@
               page_location: window.location.href,
               page_title: document.title,
               ...this.attribution,
+              fbp: getCookie("_fbp") || this.attribution.fbp || "",
+              fbc: getCookie("_fbc") || this.attribution.fbc || "",
               ...extra,
             });
           },
