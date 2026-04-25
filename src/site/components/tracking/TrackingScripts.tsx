@@ -209,9 +209,18 @@ const bootstrap = `
 
 const handlers = `
 (function () {
+  if (window.NUANCE_EVENT_HANDLERS_READY) return;
+  window.NUANCE_EVENT_HANDLERS_READY = true;
+
   function ready(fn) {
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
     else fn();
+  }
+  function markOnce(key) {
+    window.NUANCE_TRACKING_SENT = window.NUANCE_TRACKING_SENT || {};
+    if (window.NUANCE_TRACKING_SENT[key]) return false;
+    window.NUANCE_TRACKING_SENT[key] = true;
+    return true;
   }
   function trackMetaCustom(name, props, options) {
     if (typeof fbq === "undefined" || !window.NUANCE_TRACKING) return;
@@ -245,6 +254,14 @@ const handlers = `
   function trackWA(origin) {
     const tracking = window.NUANCE_TRACKING;
     if (!tracking) return;
+    const clickKey = [window.location.pathname, origin || "unknown"].join(":");
+    const lastClick = window.NUANCE_LAST_WA_CLICK || {};
+    const lastClickAt = lastClick[clickKey] || 0;
+    const now = Date.now();
+    if (now - lastClickAt < 2000) return;
+    lastClick[clickKey] = now;
+    window.NUANCE_LAST_WA_CLICK = lastClick;
+
     const eventId = tracking.buildEventId("whatsapp");
     const props = {
       content_name: tracking.pageType === "quiz" ? "quiz_whatsapp" : "whatsapp_click",
@@ -261,18 +278,21 @@ const handlers = `
   ready(function () {
     const tracking = window.NUANCE_TRACKING;
     if (!tracking) return;
+    const pageKey = [tracking.pageType, window.location.pathname].join(":");
     const viewProps = {
       page_group: tracking.pageType === "quiz" ? "quiz" : "sales",
       entry_channel: tracking.attribution.utm_source || tracking.attribution.referrer_host || "(direct)",
     };
-    trackMetaCustom(tracking.pageType === "quiz" ? "quiz_viewed" : "landing_viewed", viewProps);
-    trackGaEvent(tracking.pageType === "quiz" ? "quiz_viewed" : "landing_viewed", viewProps);
+    if (markOnce("view:" + pageKey)) {
+      trackMetaCustom(tracking.pageType === "quiz" ? "quiz_viewed" : "landing_viewed", viewProps);
+      trackGaEvent(tracking.pageType === "quiz" ? "quiz_viewed" : "landing_viewed", viewProps);
+    }
 
-    document.querySelectorAll("[data-wa-source]").forEach(function (link) {
-      link.addEventListener("click", function () {
-        trackWA(link.getAttribute("data-wa-source"));
-      });
-    });
+    document.addEventListener("click", function (event) {
+      const target = event.target instanceof Element ? event.target.closest("[data-wa-source]") : null;
+      if (!target) return;
+      trackWA(target.getAttribute("data-wa-source"));
+    }, true);
 
     const progress = document.getElementById("progressBar");
     if (progress) {
@@ -288,8 +308,10 @@ const handlers = `
       const observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
-          trackMetaCustom("pricing_section_view", { section_name: "pricing", visibility_threshold: "0.45" });
-          trackGaEvent("pricing_section_view", { section_name: "pricing", visibility_threshold: "0.45" });
+          if (markOnce("pricing:" + pageKey)) {
+            trackMetaCustom("pricing_section_view", { section_name: "pricing", visibility_threshold: "0.45" });
+            trackGaEvent("pricing_section_view", { section_name: "pricing", visibility_threshold: "0.45" });
+          }
           observer.disconnect();
         });
       }, { threshold: 0.45 });
@@ -321,13 +343,21 @@ export function TrackingScripts() {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-            n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-            document,'script','https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${brand.pixelId}', window.NUANCE_TRACKING ? { external_id: window.NUANCE_TRACKING.attribution.external_id || '' } : {});
-            fbq('track', 'PageView', window.NUANCE_TRACKING ? window.NUANCE_TRACKING.getEventProps({page_group: window.NUANCE_TRACKING.pageType === "quiz" ? "quiz" : "sales"}) : {});
+            window.NUANCE_PIXEL_SENT = window.NUANCE_PIXEL_SENT || {};
+            var nuancePageKey = window.location.pathname;
+            if (!window.NUANCE_PIXEL_READY) {
+              !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+              n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+              document,'script','https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '${brand.pixelId}', window.NUANCE_TRACKING ? { external_id: window.NUANCE_TRACKING.attribution.external_id || '' } : {});
+              window.NUANCE_PIXEL_READY = true;
+            }
+            if (!window.NUANCE_PIXEL_SENT['PageView:' + nuancePageKey]) {
+              window.NUANCE_PIXEL_SENT['PageView:' + nuancePageKey] = true;
+              fbq('track', 'PageView', window.NUANCE_TRACKING ? window.NUANCE_TRACKING.getEventProps({page_group: window.NUANCE_TRACKING.pageType === "quiz" ? "quiz" : "sales"}) : {});
+            }
           `,
         }}
       />
