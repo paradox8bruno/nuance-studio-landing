@@ -31,6 +31,30 @@ const bootstrap = `
   function setCookie(name, value, maxAgeSeconds) {
     document.cookie = name + "=" + encodeURIComponent(value) + "; path=/; max-age=" + String(maxAgeSeconds) + "; SameSite=Lax";
   }
+  function randomSegment() {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      return window.crypto.randomUUID().replace(/-/g, "");
+    }
+    return Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+  }
+  function getOrCreateClientId() {
+    const key = STORAGE_PREFIX + ":external_id";
+    const existing = safeRead(localStorage, key);
+    if (existing && typeof existing.id === "string") return existing.id;
+    const id = "ns_" + randomSegment();
+    safeWrite(localStorage, key, {
+      id,
+      created_at: new Date(now).toISOString(),
+    });
+    return id;
+  }
+  function getOrCreateFbp() {
+    const existing = getCookie("_fbp");
+    if (existing) return existing;
+    const value = "fb.1." + now + "." + randomSegment().slice(0, 16);
+    setCookie("_fbp", value, 7776000);
+    return value;
+  }
   function getHost(value) {
     try { return value ? new URL(value).hostname : ""; } catch (error) { return ""; }
   }
@@ -96,14 +120,23 @@ const bootstrap = `
   const lastTouch = hasCampaignParams || !existingLastTouch ? { ...(existingLastTouch || {}), ...touchPoint } : existingLastTouch;
   const sessionTouch = hasCampaignParams || !existingSessionTouch ? { ...(existingSessionTouch || {}), ...touchPoint } : existingSessionTouch;
 
-  const fbp = getCookie("_fbp") || "";
+  const externalId = getOrCreateClientId();
+  const fbp = getOrCreateFbp();
   const existingFbc = getCookie("_fbc") || "";
   const derivedFbc = query.fbclid ? "fb.1." + now + "." + query.fbclid : "";
   if (!existingFbc && derivedFbc) setCookie("_fbc", derivedFbc, 7776000);
   const fbc = existingFbc || derivedFbc || sessionTouch?.fbc || lastTouch?.fbc || firstTouch?.fbc || "";
+  if (fbp) {
+    lastTouch.fbp = fbp;
+    sessionTouch.fbp = fbp;
+  }
   if (fbc) {
     lastTouch.fbc = fbc;
     sessionTouch.fbc = fbc;
+  }
+  if (externalId) {
+    lastTouch.external_id = externalId;
+    sessionTouch.external_id = externalId;
   }
 
   safeWrite(localStorage, firstTouchKey, firstTouch);
@@ -130,6 +163,7 @@ const bootstrap = `
     meta_query_params: Object.keys(metaQueryParams).length ? metaQueryParams : sessionTouch?.meta_query_params || lastTouch?.meta_query_params || firstTouch?.meta_query_params || "",
     fbp,
     fbc,
+    external_id: externalId,
     referrer_host: sessionTouch?.referrer_host || lastTouch?.referrer_host || firstTouch?.referrer_host || referrerHost,
     landing_page: firstTouch?.landing_page || window.location.pathname,
     first_touch_source: firstTouch?.utm_source || firstTouch?.referrer_host || "(direct)",
@@ -152,6 +186,7 @@ const bootstrap = `
         ...this.attribution,
         fbp: getCookie("_fbp") || this.attribution.fbp || "",
         fbc: getCookie("_fbc") || this.attribution.fbc || "",
+        external_id: this.attribution.external_id || "",
         ...extra,
       });
     },
@@ -200,8 +235,9 @@ const handlers = `
       event_source_url: window.location.href,
       page_type: tracking.pageType,
       user_data: {
-        fbp: tracking.attribution.fbp || "",
-        fbc: tracking.attribution.fbc || "",
+        fbp: tracking.getEventProps({}).fbp || "",
+        fbc: tracking.getEventProps({}).fbc || "",
+        external_id: tracking.attribution.external_id || "",
       },
       custom_data: tracking.getEventProps(customData || {}),
     });
@@ -290,7 +326,7 @@ export function TrackingScripts() {
             n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
             t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
             document,'script','https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${brand.pixelId}');
+            fbq('init', '${brand.pixelId}', window.NUANCE_TRACKING ? { external_id: window.NUANCE_TRACKING.attribution.external_id || '' } : {});
             fbq('track', 'PageView', window.NUANCE_TRACKING ? window.NUANCE_TRACKING.getEventProps({page_group: window.NUANCE_TRACKING.pageType === "quiz" ? "quiz" : "sales"}) : {});
           `,
         }}

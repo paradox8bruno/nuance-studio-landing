@@ -56,6 +56,7 @@ export async function POST(req: NextRequest) {
     custom_data?: Record<string, unknown>;
     fbp?: string;
     fbc?: string;
+    external_id?: string;
   };
 
   if (!payload.event_name) {
@@ -78,6 +79,9 @@ export async function POST(req: NextRequest) {
         user_data: sanitizeRecord({
           fbp: payload.user_data?.fbp || payload.fbp || "",
           fbc: payload.user_data?.fbc || payload.fbc || "",
+          external_id: payload.user_data?.external_id || payload.external_id || "",
+          em: payload.user_data?.em || "",
+          ph: payload.user_data?.ph || "",
           client_ip_address: getClientIp(req),
           client_user_agent: req.headers.get("user-agent") || "",
         }),
